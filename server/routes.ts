@@ -12,6 +12,26 @@ export async function registerRoutes(app: Express): Promise<Server> {
         return res.status(400).json({ message: "Invalid query" });
       }
       
+      // Check if query is study abroad related
+      const studyAbroadKeywords = [
+        "study abroad", "international student", "university", "college", "visa", 
+        "scholarship", "education", "degree", "program", "course", "campus", 
+        "academic", "tuition", "student", "admission", "application", "school",
+        "overseas", "foreign", "international", "exchange", "global", "abroad",
+        "bachelor", "master", "phd", "dormitory", "accommodation", "housing"
+      ];
+      
+      const isStudyAbroadRelated = studyAbroadKeywords.some(keyword => 
+        query.toLowerCase().includes(keyword.toLowerCase())
+      );
+      
+      if (!isStudyAbroadRelated) {
+        return res.json({ 
+          answer: "I'm sorry, but I can only answer questions related to studying abroad, international education, universities, visas, scholarships, and student life overseas. Please ask a question related to these topics.",
+          citations: []
+        });
+      }
+      
       // Check for API key in environment variables
       const apiKey = process.env.PERPLEXITY_API_KEY;
       if (!apiKey) {
@@ -30,7 +50,7 @@ export async function registerRoutes(app: Express): Promise<Server> {
           messages: [
             {
               role: "system",
-              content: "You are a helpful assistant providing information about studying abroad. Be precise, concise, and focused on international education topics like visa requirements, scholarships, universities, and student life."
+              content: "You are a helpful assistant for Path Panda, providing information ONLY about studying abroad. Be precise, concise, and focused on international education topics like visa requirements, scholarships, universities, and student life. If the question is not related to studying abroad, politely decline to answer and explain you only provide information about international education."
             },
             {
               role: "user",

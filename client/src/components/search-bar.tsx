@@ -51,7 +51,10 @@ export default function SearchBar() {
               Have a study abroad question?
             </h2>
             <p className="text-gray-600 dark:text-gray-300">
-              Get instant answers with our AI-powered search
+              Get instant answers with our AI-powered study abroad assistant
+            </p>
+            <p className="mt-2 text-sm text-panda-purple dark:text-panda-lav italic">
+              (Only answers questions related to international education)
             </p>
           </div>
           
@@ -62,7 +65,7 @@ export default function SearchBar() {
                   type="text"
                   value={searchQuery}
                   onChange={(e) => setSearchQuery(e.target.value)}
-                  placeholder="Ask about visa requirements, scholarships, etc."
+                  placeholder="E.g., What scholarships are available for engineering students in Germany?"
                   className="flex-grow px-4 py-3 rounded-lg border dark:border-gray-600 dark:bg-gray-800 dark:text-white focus:ring-2 focus:ring-panda-lav outline-none"
                 />
                 <Button 
