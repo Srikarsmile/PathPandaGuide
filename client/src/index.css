@@ -1,0 +1,161 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --background: 0 0% 100%;
+  --foreground: 20 14.3% 4.1%;
+  --muted: 60 4.8% 95.9%;
+  --muted-foreground: 25 5.3% 44.7%;
+  --popover: 0 0% 100%;
+  --popover-foreground: 20 14.3% 4.1%;
+  --card: 0 0% 100%;
+  --card-foreground: 20 14.3% 4.1%;
+  --border: 20 5.9% 90%;
+  --input: 20 5.9% 90%;
+  --primary: 207 90% 54%;
+  --primary-foreground: 211 100% 99%;
+  --secondary: 60 4.8% 95.9%;
+  --secondary-foreground: 24 9.8% 10%;
+  --accent: 60 4.8% 95.9%;
+  --accent-foreground: 24 9.8% 10%;
+  --destructive: 0 84.2% 60.2%;
+  --destructive-foreground: 60 9.1% 97.8%;
+  --ring: 20 14.3% 4.1%;
+  --radius: 0.5rem;
+  
+  /* Path Panda Custom Colors */
+  --panda-pink: 359 96% 73%;  /* #FC7A7A */
+  --panda-yellow: 45 100% 60%; /* #FFCF33 */
+  --panda-purple: 284 89% 22%; /* #5C076B */
+  --panda-lav: 271 42% 67%;    /* #B088CF */
+}
+
+.dark {
+  --background: 240 10% 3.9%;
+  --foreground: 0 0% 98%;
+  --muted: 240 3.7% 15.9%;
+  --muted-foreground: 240 5% 64.9%;
+  --popover: 240 10% 3.9%;
+  --popover-foreground: 0 0% 98%;
+  --card: 240 10% 3.9%;
+  --card-foreground: 0 0% 98%;
+  --border: 240 3.7% 15.9%;
+  --input: 240 3.7% 15.9%;
+  --primary: 207 90% 54%;
+  --primary-foreground: 211 100% 99%;
+  --secondary: 240 3.7% 15.9%;
+  --secondary-foreground: 0 0% 98%;
+  --accent: 240 3.7% 15.9%;
+  --accent-foreground: 0 0% 98%;
+  --destructive: 0 62.8% 30.6%;
+  --destructive-foreground: 0 0% 98%;
+  --ring: 240 4.9% 83.9%;
+  --radius: 0.5rem;
+  
+  /* Path Panda Custom Colors - Dark mode might use the same values or adjusted ones */
+  --panda-pink: 359 96% 73%;  /* #FC7A7A */
+  --panda-yellow: 45 100% 60%; /* #FFCF33 */
+  --panda-purple: 284 89% 22%; /* #5C076B */
+  --panda-lav: 271 42% 67%;    /* #B088CF */
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply font-sans antialiased bg-background text-foreground;
+  }
+}
+
+@layer components {
+  .bg-panda-pink {
+    @apply bg-[#FC7A7A];
+  }
+  
+  .bg-panda-yellow {
+    @apply bg-[#FFCF33];
+  }
+  
+  .bg-panda-purple {
+    @apply bg-[#5C076B];
+  }
+  
+  .bg-panda-lav {
+    @apply bg-[#B088CF];
+  }
+
+  .text-panda-pink {
+    @apply text-[#FC7A7A];
+  }
+  
+  .text-panda-yellow {
+    @apply text-[#FFCF33];
+  }
+  
+  .text-panda-purple {
+    @apply text-[#5C076B];
+  }
+  
+  .text-panda-lav {
+    @apply text-[#B088CF];
+  }
+
+  .border-panda-pink {
+    @apply border-[#FC7A7A];
+  }
+  
+  .border-panda-yellow {
+    @apply border-[#FFCF33];
+  }
+  
+  .border-panda-purple {
+    @apply border-[#5C076B];
+  }
+  
+  .border-panda-lav {
+    @apply border-[#B088CF];
+  }
+
+  .hover-panda-pink:hover {
+    @apply hover:text-[#FC7A7A];
+  }
+  
+  .hover-panda-yellow:hover {
+    @apply hover:text-[#FFCF33];
+  }
+  
+  .hover-panda-purple:hover {
+    @apply hover:text-[#5C076B];
+  }
+  
+  .hover-panda-lav:hover {
+    @apply hover:text-[#B088CF];
+  }
+
+  .from-panda-pink {
+    @apply from-[#FC7A7A];
+  }
+  
+  .to-panda-purple {
+    @apply to-[#5C076B];
+  }
+
+  .bg-panda-pink-20 {
+    @apply bg-[#FC7A7A]/20;
+  }
+  
+  .bg-panda-yellow-20 {
+    @apply bg-[#FFCF33]/20;
+  }
+  
+  .bg-panda-purple-20 {
+    @apply bg-[#5C076B]/20;
+  }
+  
+  .bg-panda-lav-20 {
+    @apply bg-[#B088CF]/20;
+  }
+}
