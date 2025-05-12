@@ -92,8 +92,12 @@ export default function SearchBar() {
               <div className="mt-6 border-t dark:border-gray-600 pt-6">
                 <div className="mb-4">
                   <h3 className="text-xl font-semibold text-gray-800 dark:text-white mb-3">Answer</h3>
-                  <div className="text-gray-700 dark:text-gray-300 bg-gray-50 dark:bg-gray-800 p-4 rounded-lg">
-                    <p>{searchResult.answer}</p>
+                  <div className="prose dark:prose-invert max-w-none text-gray-700 dark:text-gray-300 bg-gray-50 dark:bg-gray-800 p-4 rounded-lg">
+                    {searchResult.answer.split('\n').map((paragraph, idx) => (
+                      <p key={idx} className="mb-3 last:mb-0">
+                        {paragraph}
+                      </p>
+                    ))}
                   </div>
                 </div>
                 

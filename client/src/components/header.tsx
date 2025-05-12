@@ -30,6 +30,11 @@ export default function Header() {
                 Home
               </span>
             </Link>
+            <Link href="/tools">
+              <span className="text-gray-700 dark:text-gray-300 hover:text-panda-purple dark:hover:text-panda-lav transition-colors duration-200 cursor-pointer">
+                Tools
+              </span>
+            </Link>
             <Link href="/blog">
               <span className="text-gray-700 dark:text-gray-300 hover:text-panda-purple dark:hover:text-panda-lav transition-colors duration-200 cursor-pointer">
                 Blog
@@ -66,6 +71,11 @@ export default function Header() {
               <Link href="/">
                 <span className="text-gray-700 dark:text-gray-300 hover:text-panda-purple dark:hover:text-panda-lav transition-colors duration-200 cursor-pointer">
                   Home
+                </span>
+              </Link>
+              <Link href="/tools">
+                <span className="text-gray-700 dark:text-gray-300 hover:text-panda-purple dark:hover:text-panda-lav transition-colors duration-200 cursor-pointer">
+                  Tools
                 </span>
               </Link>
               <Link href="/blog">
