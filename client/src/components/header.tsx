@@ -13,12 +13,12 @@ export default function Header() {
   };
 
   return (
-    <header className="bg-white dark:bg-gray-800 shadow-md">
-      <div className="container mx-auto px-4 py-4">
+    <header className="bg-white dark:bg-gray-800 shadow-md sticky top-0 z-50">
+      <div className="container mx-auto px-4 py-3 md:py-4">
         <div className="flex justify-between items-center">
           <div className="flex items-center">
             <Link href="/">
-              <span className="flex items-center text-panda-purple dark:text-panda-lav font-bold text-2xl cursor-pointer">
+              <span className="flex items-center text-panda-purple dark:text-panda-lav font-bold text-xl md:text-2xl cursor-pointer">
                 Path Panda
               </span>
             </Link>
@@ -51,57 +51,72 @@ export default function Header() {
               </span>
             </Link>
             
+            <Link href="/consult">
+              <Button
+                className="bg-panda-purple hover:bg-panda-purple/90 text-white font-medium py-2 px-4 rounded-lg"
+              >
+                Book Consultation
+              </Button>
+            </Link>
+            
             <AuthButton />
             <DarkModeToggle />
           </div>
           
           {/* Mobile menu button */}
-          <div className="md:hidden">
+          <div className="flex items-center md:hidden">
+            <DarkModeToggle className="mr-2" />
             <Button 
               variant="ghost" 
               size="icon" 
-              className="text-gray-700 dark:text-gray-300 hover:text-panda-purple dark:hover:text-panda-lav"
+              className="text-gray-700 dark:text-gray-300 hover:text-panda-purple dark:hover:text-panda-lav p-1"
               onClick={toggleMobileMenu}
               aria-label="Toggle mobile menu"
             >
-              <Menu className="h-6 w-6" />
+              <Menu className="h-5 w-5" />
             </Button>
           </div>
         </div>
         
         {/* Mobile menu */}
         {isMobileMenuOpen && (
-          <div className="md:hidden mt-4 pb-4">
-            <div className="flex flex-col space-y-3">
-              <Link href="/">
-                <span className="text-gray-700 dark:text-gray-300 hover:text-panda-purple dark:hover:text-panda-lav transition-colors duration-200 cursor-pointer">
+          <div className="md:hidden mt-3 pb-3 border-t border-gray-100 dark:border-gray-700 pt-3 animate-in slide-in-from-top duration-300">
+            <nav className="flex flex-col space-y-4">
+              <Link href="/" onClick={() => setIsMobileMenuOpen(false)}>
+                <span className="text-gray-700 dark:text-gray-300 hover:text-panda-purple dark:hover:text-panda-lav transition-colors duration-200 cursor-pointer block py-1 px-2 rounded-md hover:bg-gray-50 dark:hover:bg-gray-700">
                   Home
                 </span>
               </Link>
-              <Link href="/tools">
-                <span className="text-gray-700 dark:text-gray-300 hover:text-panda-purple dark:hover:text-panda-lav transition-colors duration-200 cursor-pointer">
+              <Link href="/tools" onClick={() => setIsMobileMenuOpen(false)}>
+                <span className="text-gray-700 dark:text-gray-300 hover:text-panda-purple dark:hover:text-panda-lav transition-colors duration-200 cursor-pointer block py-1 px-2 rounded-md hover:bg-gray-50 dark:hover:bg-gray-700">
                   Tools
                 </span>
               </Link>
-              <Link href="/features">
-                <span className="text-gray-700 dark:text-gray-300 hover:text-panda-purple dark:hover:text-panda-lav transition-colors duration-200 cursor-pointer">
+              <Link href="/features" onClick={() => setIsMobileMenuOpen(false)}>
+                <span className="text-gray-700 dark:text-gray-300 hover:text-panda-purple dark:hover:text-panda-lav transition-colors duration-200 cursor-pointer block py-1 px-2 rounded-md hover:bg-gray-50 dark:hover:bg-gray-700">
                   Features
                 </span>
               </Link>
-              <Link href="/blog">
-                <span className="text-gray-700 dark:text-gray-300 hover:text-panda-purple dark:hover:text-panda-lav transition-colors duration-200 cursor-pointer">
+              <Link href="/blog" onClick={() => setIsMobileMenuOpen(false)}>
+                <span className="text-gray-700 dark:text-gray-300 hover:text-panda-purple dark:hover:text-panda-lav transition-colors duration-200 cursor-pointer block py-1 px-2 rounded-md hover:bg-gray-50 dark:hover:bg-gray-700">
                   Blog
                 </span>
               </Link>
-              <Link href="/contact">
-                <span className="text-gray-700 dark:text-gray-300 hover:text-panda-purple dark:hover:text-panda-lav transition-colors duration-200 cursor-pointer">
+              <Link href="/contact" onClick={() => setIsMobileMenuOpen(false)}>
+                <span className="text-gray-700 dark:text-gray-300 hover:text-panda-purple dark:hover:text-panda-lav transition-colors duration-200 cursor-pointer block py-1 px-2 rounded-md hover:bg-gray-50 dark:hover:bg-gray-700">
                   Contact
                 </span>
               </Link>
+              <Link href="/consult" onClick={() => setIsMobileMenuOpen(false)}>
+                <span className="block bg-panda-purple text-white font-medium py-2 px-3 rounded-lg text-center hover:bg-opacity-90 transition-colors duration-200">
+                  Book Consultation
+                </span>
+              </Link>
               
-              <AuthButton />
-              <DarkModeToggle className="w-fit" />
-            </div>
+              <div className="px-2">
+                <AuthButton />
+              </div>
+            </nav>
           </div>
         )}
       </div>
