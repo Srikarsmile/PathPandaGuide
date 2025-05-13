@@ -60,6 +60,7 @@ export default function AuthPage() {
   });
   
   const onLoginSubmit = async (data: LoginFormValues) => {
+    console.log("Login attempt with:", data);
     loginMutation.mutate(data);
   };
   
