@@ -231,9 +231,18 @@ export default function ApplicationChecklist() {
           <h2 className="text-3xl font-bold text-gray-800 dark:text-white mb-4">
             Application Checklist Generator
           </h2>
-          <p className="text-gray-600 dark:text-gray-400 max-w-2xl mx-auto">
-            Create a personalized checklist of documents and requirements for your study abroad application.
+          <p className="text-gray-600 dark:text-gray-400 max-w-2xl mx-auto mb-3">
+            Get a basic overview of documents needed for your study abroad application. For a comprehensive, personalized checklist and expert guidance, book a free consultation with our advisors.
           </p>
+          <div className="flex justify-center">
+            <Button 
+              variant="default" 
+              className="bg-panda-purple hover:bg-panda-purple/90 mb-4"
+              onClick={() => window.location.href = '/consult'}
+            >
+              Book Free Consultation
+            </Button>
+          </div>
         </div>
 
         <div className="grid md:grid-cols-12 gap-8 max-w-5xl mx-auto">
@@ -321,6 +330,18 @@ export default function ApplicationChecklist() {
                         {countryRequirements.find(c => c.country === selectedCountry)?.additionalNotes}
                       </p>
                     </div>
+                    <div className="pt-2 mt-2 border-t border-gray-100 dark:border-gray-700">
+                      <p className="text-sm text-gray-700 dark:text-gray-300 italic">
+                        <strong>Note:</strong> Requirements can vary significantly between institutions and change frequently. Our advisors can provide the most current, detailed information for your specific situation.
+                      </p>
+                      <Button 
+                        variant="link" 
+                        className="p-0 h-auto text-panda-purple dark:text-panda-lav mt-1"
+                        onClick={() => window.location.href = '/consult'}
+                      >
+                        Schedule a free consultation →
+                      </Button>
+                    </div>
                   </div>
                 </CardContent>
               </Card>
@@ -366,19 +387,36 @@ export default function ApplicationChecklist() {
                     ))}
                   </div>
 
-                  <div className="mt-6 pt-6 border-t border-gray-200 dark:border-gray-700 flex flex-wrap gap-2">
-                    <Button variant="outline" size="sm" onClick={resetChecklist}>
-                      <FileText className="mr-1 h-4 w-4" />
-                      Create New
-                    </Button>
-                    <Button variant="outline" size="sm">
-                      <Save className="mr-1 h-4 w-4" />
-                      Save Checklist
-                    </Button>
-                    <Button variant="outline" size="sm">
-                      <Share2 className="mr-1 h-4 w-4" />
-                      Share
-                    </Button>
+                  <div className="mt-6 pt-6 border-t border-gray-200 dark:border-gray-700">
+                    <div className="bg-panda-lav/10 p-4 rounded-lg mb-4">
+                      <h4 className="font-medium text-panda-purple mb-2">Need Expert Guidance?</h4>
+                      <p className="text-sm text-gray-700 dark:text-gray-300 mb-3">
+                        This is just a basic overview. Our experts can provide:
+                      </p>
+                      <ul className="text-sm list-disc list-inside space-y-1 text-gray-700 dark:text-gray-300 mb-3">
+                        <li>Institution-specific requirements</li>
+                        <li>Personalized timeline and tracking</li>
+                        <li>Document preparation support</li>
+                        <li>Application review services</li>
+                      </ul>
+                      <Button
+                        className="w-full bg-panda-purple hover:bg-panda-purple/90 mt-2"
+                        onClick={() => window.location.href = '/consult'}
+                      >
+                        Get Personal Support
+                      </Button>
+                    </div>
+                    
+                    <div className="flex flex-wrap gap-2">
+                      <Button variant="outline" size="sm" onClick={resetChecklist}>
+                        <FileText className="mr-1 h-4 w-4" />
+                        Create New
+                      </Button>
+                      <Button variant="outline" size="sm" onClick={() => window.location.href = '/tools'}>
+                        <Save className="mr-1 h-4 w-4" />
+                        Explore More Tools
+                      </Button>
+                    </div>
                   </div>
                 </CardContent>
               </Card>
@@ -386,10 +424,16 @@ export default function ApplicationChecklist() {
               <div className="h-full flex items-center justify-center bg-gray-50 dark:bg-gray-800 rounded-lg p-12">
                 <div className="text-center">
                   <CheckCircle className="h-12 w-12 mx-auto text-gray-400 mb-4" />
-                  <h3 className="text-xl font-medium text-gray-700 dark:text-gray-300 mb-2">Generate Your Checklist</h3>
-                  <p className="text-gray-600 dark:text-gray-400 max-w-md">
-                    Select your destination country and program level on the left to generate a personalized document checklist for your study abroad application.
+                  <h3 className="text-xl font-medium text-gray-700 dark:text-gray-300 mb-2">Generate Your Basic Checklist</h3>
+                  <p className="text-gray-600 dark:text-gray-400 max-w-md mb-4">
+                    Select your destination country and program level on the left to generate a basic document checklist. This tool provides general guidance, but for a comprehensive, institution-specific checklist, we recommend consulting with our experts.
                   </p>
+                  <Button
+                    className="bg-panda-purple hover:bg-panda-purple/90"
+                    onClick={() => window.location.href = '/consult'}
+                  >
+                    Get Expert Advice
+                  </Button>
                 </div>
               </div>
             )}
