@@ -61,12 +61,36 @@
 }
 
 @layer base {
+  :root {
+    /* Apply transitions to all theme-related properties */
+    --transition-duration: 300ms;
+    --transition-timing: ease-in-out;
+  }
+
   * {
     @apply border-border;
   }
 
+  html {
+    @apply transition-colors duration-300 ease-in-out;
+  }
+
   body {
-    @apply font-sans antialiased bg-background text-foreground;
+    @apply font-sans antialiased bg-background text-foreground transition-colors duration-300 ease-in-out;
+  }
+
+  /* Apply transitions to common theme-sensitive elements */
+  h1, h2, h3, h4, h5, h6, p, span, a, button, input, select, textarea,
+  .card, .bg-background, .text-foreground, .bg-card, .text-card-foreground,
+  .bg-primary, .bg-secondary, .border, .shadow {
+    @apply transition-colors duration-300 ease-in-out;
+  }
+
+  /* Transitions for opacity changes often used in dark/light mode */
+  .bg-opacity-20, .bg-opacity-30, .bg-opacity-50, .bg-opacity-70, .bg-opacity-90,
+  .text-opacity-20, .text-opacity-30, .text-opacity-50, .text-opacity-70, .text-opacity-90,
+  .opacity-20, .opacity-30, .opacity-50, .opacity-70, .opacity-90 {
+    @apply transition-opacity duration-300 ease-in-out;
   }
 }
 
@@ -171,6 +195,10 @@
   .animate-float-reverse {
     animation: float-reverse 7s ease-in-out infinite;
   }
+
+  .animate-spin-slow {
+    animation: spin 1s ease-out;
+  }
   
   .bg-grid-white {
     background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32' width='32' height='32' fill='none' stroke='rgb(255 255 255 / 0.05)'%3e%3cpath d='M0 .5H31.5V32'/%3e%3c/svg%3e");
@@ -178,6 +206,25 @@
   
   .bg-grid-8 {
     background-size: 8rem 8rem;
+  }
+  
+  /* Dark mode transition indicator */
+  .theme-transition-overlay {
+    @apply fixed inset-0 z-[9999] pointer-events-none;
+    opacity: 0;
+    transition: opacity 800ms ease-in-out;
+    mix-blend-mode: overlay;
+  }
+  
+  /* Theme transition animations */
+  @keyframes theme-fade-in {
+    from { opacity: 0; }
+    to { opacity: 1; }
+  }
+  
+  @keyframes theme-fade-out {
+    from { opacity: 1; }
+    to { opacity: 0; }
   }
   
   @keyframes float {
@@ -201,6 +248,15 @@
     }
     100% {
       transform: translateY(0px);
+    }
+  }
+  
+  @keyframes spin {
+    from {
+      transform: rotate(0deg);
+    }
+    to {
+      transform: rotate(360deg);
     }
   }
 }
