@@ -322,35 +322,79 @@ export default function CoursePopularityMap() {
           </Select>
         </div>
         
+        {/* Mobile view - Discipline selection and Top Countries */}
+        <div className="lg:hidden">
+          <div className="bg-gray-50 dark:bg-gray-800 rounded-xl p-4 mb-6">
+            <h3 className="text-xl font-bold text-gray-800 dark:text-white mb-4">
+              Top Countries for {disciplines.find(d => d.id === selectedDiscipline)?.name}
+            </h3>
+            <div className="space-y-3 mb-4">
+              {topCountries.map((country, index) => (
+                <div 
+                  key={country.code}
+                  className={`p-3 rounded-lg flex items-center justify-between cursor-pointer transition-colors ${
+                    selectedCountry === country.code 
+                      ? "bg-panda-purple/10 border border-panda-purple/30" 
+                      : "bg-white dark:bg-gray-800 hover:bg-gray-50 dark:hover:bg-gray-700 border border-gray-100 dark:border-gray-700"
+                  }`}
+                  onClick={() => setSelectedCountry(country.code)}
+                >
+                  <div className="flex items-center">
+                    <div className="w-6 h-6 rounded-full bg-panda-purple/10 flex items-center justify-center mr-3 text-xs font-semibold text-panda-purple">
+                      {index + 1}
+                    </div>
+                    <span className="font-medium">{country.name}</span>
+                  </div>
+                  <div className="flex">
+                    {[...Array(5)].map((_, i) => (
+                      <svg 
+                        key={i} 
+                        className={`w-4 h-4 ${i < Math.floor(country.score) ? "text-panda-yellow" : "text-gray-300 dark:text-gray-600"}`} 
+                        fill="currentColor" 
+                        viewBox="0 0 20 20"
+                      >
+                        <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
+                      </svg>
+                    ))}
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+        </div>
+
         <div className="grid lg:grid-cols-3 gap-8">
           <div className="lg:col-span-2 bg-gray-50 dark:bg-gray-800 rounded-xl p-4 relative">
-            <div className="flex justify-end mb-4 space-x-2">
-              <Button
-                onClick={handleZoomIn}
-                variant="outline"
-                size="sm"
-                className="w-8 h-8 p-0"
-              >
-                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="h-4 w-4">
-                  <line x1="12" y1="5" x2="12" y2="19"></line>
-                  <line x1="5" y1="12" x2="19" y2="12"></line>
-                </svg>
-                <span className="sr-only">Zoom in</span>
-              </Button>
-              <Button
-                onClick={handleZoomOut}
-                variant="outline"
-                size="sm"
-                className="w-8 h-8 p-0"
-              >
-                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="h-4 w-4">
-                  <line x1="5" y1="12" x2="19" y2="12"></line>
-                </svg>
-                <span className="sr-only">Zoom out</span>
-              </Button>
+            <div className="flex justify-between items-center mb-4">
+              <h3 className="text-lg font-medium text-gray-700 dark:text-gray-300 sm:hidden">Course Map</h3>
+              <div className="flex space-x-2">
+                <Button
+                  onClick={handleZoomIn}
+                  variant="outline"
+                  size="sm"
+                  className="w-8 h-8 p-0"
+                >
+                  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="h-4 w-4">
+                    <line x1="12" y1="5" x2="12" y2="19"></line>
+                    <line x1="5" y1="12" x2="19" y2="12"></line>
+                  </svg>
+                  <span className="sr-only">Zoom in</span>
+                </Button>
+                <Button
+                  onClick={handleZoomOut}
+                  variant="outline"
+                  size="sm"
+                  className="w-8 h-8 p-0"
+                >
+                  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="h-4 w-4">
+                    <line x1="5" y1="12" x2="19" y2="12"></line>
+                  </svg>
+                  <span className="sr-only">Zoom out</span>
+                </Button>
+              </div>
             </div>
             
-            <div style={{ height: "500px" }}>
+            <div style={{ height: "350px", maxHeight: "60vh" }} className="md:h-[500px]">
               <ComposableMap
                 projectionConfig={{
                   rotate: [-10, 0, 0],
@@ -425,7 +469,7 @@ export default function CoursePopularityMap() {
             </div>
           </div>
           
-          <div>
+          <div className="hidden lg:block">
             <div className="mb-6">
               <h3 className="text-xl font-bold text-gray-800 dark:text-white mb-4">
                 Top Countries for {disciplines.find(d => d.id === selectedDiscipline)?.name}
@@ -522,6 +566,74 @@ export default function CoursePopularityMap() {
               </Card>
             )}
           </div>
+          
+          {/* Mobile view - Country Details (shown only when a country is selected) */}
+          {selectedCountry && (
+            <div className="mt-6 lg:hidden">
+              <Card>
+                <CardHeader className="pb-3">
+                  <div className="flex items-center justify-between">
+                    <div>
+                      <CardTitle>
+                        {countryNames[selectedCountry as keyof typeof countryNames] || selectedCountry}
+                      </CardTitle>
+                      <CardDescription>
+                        {disciplines.find(d => d.id === selectedDiscipline)?.name} Programs
+                      </CardDescription>
+                    </div>
+                    <Button 
+                      variant="ghost" 
+                      size="sm" 
+                      className="h-8 w-8 p-0"
+                      onClick={() => setSelectedCountry(null)}
+                    >
+                      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="h-4 w-4">
+                        <line x1="18" y1="6" x2="6" y2="18"></line>
+                        <line x1="6" y1="6" x2="18" y2="18"></line>
+                      </svg>
+                      <span className="sr-only">Close</span>
+                    </Button>
+                  </div>
+                </CardHeader>
+                <CardContent>
+                  {getUniversities().length > 0 ? (
+                    <>
+                      <p className="text-sm text-gray-600 dark:text-gray-400 mb-3">
+                        Top Universities:
+                      </p>
+                      <ul className="space-y-2 mb-4">
+                        {getUniversities().map((uni, index) => (
+                          <li key={index} className="flex items-start">
+                            <Badge variant="outline" className="mr-2 mt-0.5">
+                              #{uni.rank}
+                            </Badge>
+                            <span className="text-sm">{uni.name}</span>
+                          </li>
+                        ))}
+                      </ul>
+                    </>
+                  ) : (
+                    <p className="text-sm text-gray-600 dark:text-gray-400 mb-3">
+                      University data not available for this selection.
+                    </p>
+                  )}
+                  
+                  {popularityReasons[selectedDiscipline as keyof typeof popularityReasons]?.[
+                    selectedCountry as keyof (typeof popularityReasons)[keyof typeof popularityReasons]
+                  ] && (
+                    <div className="mt-4 p-3 bg-gray-50 dark:bg-gray-800 rounded-lg">
+                      <p className="text-sm">
+                        <span className="font-semibold">Why it's popular:</span> {" "}
+                        {popularityReasons[selectedDiscipline as keyof typeof popularityReasons][
+                          selectedCountry as keyof (typeof popularityReasons)[keyof typeof popularityReasons]
+                        ]}
+                      </p>
+                    </div>
+                  )}
+                </CardContent>
+              </Card>
+            </div>
+          )}
         </div>
       </div>
     </div>

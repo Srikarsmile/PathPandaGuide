@@ -51,18 +51,18 @@ export default function SearchBar() {
       
       <div className="container relative mx-auto px-4 z-10">
         <div className="max-w-4xl mx-auto">
-          <div className="text-center mb-12">
-            <div className="inline-flex items-center bg-panda-lav/10 rounded-full py-1 px-4 mb-4">
-              <span className="h-2 w-2 rounded-full bg-panda-lav mr-2"></span>
-              <span className="text-sm font-medium text-panda-lav">AI-Powered Assistant</span>
+          <div className="text-center mb-8 md:mb-12">
+            <div className="inline-flex items-center bg-panda-lav/10 rounded-full py-1 px-3 md:px-4 mb-3 md:mb-4">
+              <span className="h-1.5 w-1.5 md:h-2 md:w-2 rounded-full bg-panda-lav mr-1.5 md:mr-2"></span>
+              <span className="text-xs md:text-sm font-medium text-panda-lav">AI-Powered Assistant</span>
             </div>
-            <h2 className="text-4xl md:text-5xl font-bold text-gray-800 dark:text-white mb-4">
+            <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold text-gray-800 dark:text-white mb-3 md:mb-4">
               Have a Study Abroad Question?
             </h2>
-            <p className="text-xl text-gray-600 dark:text-gray-300 mb-2">
+            <p className="text-base sm:text-lg md:text-xl text-gray-600 dark:text-gray-300 mb-2">
               Get instant answers with our AI-powered study abroad assistant
             </p>
-            <p className="text-sm text-panda-purple dark:text-panda-lav">
+            <p className="text-xs sm:text-sm text-panda-purple dark:text-panda-lav">
               Only answers questions related to international education
             </p>
           </div>

@@ -41,10 +41,16 @@ export default function Tools() {
           <section className="py-16 bg-white dark:bg-gray-900">
             <div className="container mx-auto px-4">
               <Tabs defaultValue="universities" className="w-full">
-                <TabsList className="grid w-full grid-cols-3 mb-10">
-                  <TabsTrigger value="universities">University Comparison</TabsTrigger>
-                  <TabsTrigger value="scholarships">Scholarship Finder</TabsTrigger>
-                  <TabsTrigger value="coursemap">Course Popularity Map</TabsTrigger>
+                <TabsList className="flex flex-wrap w-full mb-10">
+                  <TabsTrigger value="universities" className="flex-1 min-w-[120px] text-xs sm:text-sm md:text-base">
+                    University Comparison
+                  </TabsTrigger>
+                  <TabsTrigger value="scholarships" className="flex-1 min-w-[120px] text-xs sm:text-sm md:text-base">
+                    Scholarship Finder
+                  </TabsTrigger>
+                  <TabsTrigger value="coursemap" className="flex-1 min-w-[120px] text-xs sm:text-sm md:text-base">
+                    Course Popularity
+                  </TabsTrigger>
                 </TabsList>
                 
                 <TabsContent value="universities">
