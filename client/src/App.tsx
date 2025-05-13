@@ -10,6 +10,7 @@ import BlogPost from "@/pages/blog-post";
 import Contact from "@/pages/contact";
 import Tools from "@/pages/tools";
 import Features from "@/pages/features";
+import About from "@/pages/about";
 import AuthPage from "@/pages/auth-page";
 import { lazy, Suspense } from "react";
 import { Helmet } from "react-helmet";
@@ -33,6 +34,7 @@ function Router() {
       <Route path="/contact" component={Contact} />
       <Route path="/tools" component={Tools} />
       <Route path="/features" component={Features} />
+      <Route path="/about" component={About} />
       <Route path="/auth" component={AuthPage} />
       <Route path="/consult">
         <Suspense fallback={

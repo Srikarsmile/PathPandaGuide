@@ -45,6 +45,11 @@ export default function Header() {
                 Blog
               </span>
             </Link>
+            <Link href="/about">
+              <span className="text-gray-700 dark:text-gray-300 hover:text-panda-purple dark:hover:text-panda-lav transition-colors duration-200 cursor-pointer">
+                About
+              </span>
+            </Link>
             <Link href="/contact">
               <span className="text-gray-700 dark:text-gray-300 hover:text-panda-purple dark:hover:text-panda-lav transition-colors duration-200 cursor-pointer">
                 Contact
@@ -100,6 +105,11 @@ export default function Header() {
               <Link href="/blog" onClick={() => setIsMobileMenuOpen(false)}>
                 <span className="text-gray-700 dark:text-gray-300 hover:text-panda-purple dark:hover:text-panda-lav transition-colors duration-200 cursor-pointer block py-1 px-2 rounded-md hover:bg-gray-50 dark:hover:bg-gray-700">
                   Blog
+                </span>
+              </Link>
+              <Link href="/about" onClick={() => setIsMobileMenuOpen(false)}>
+                <span className="text-gray-700 dark:text-gray-300 hover:text-panda-purple dark:hover:text-panda-lav transition-colors duration-200 cursor-pointer block py-1 px-2 rounded-md hover:bg-gray-50 dark:hover:bg-gray-700">
+                  About
                 </span>
               </Link>
               <Link href="/contact" onClick={() => setIsMobileMenuOpen(false)}>
