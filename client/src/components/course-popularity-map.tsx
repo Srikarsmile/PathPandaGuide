@@ -239,7 +239,7 @@ const popularityReasons = {
 export default function CoursePopularityMap() {
   const [selectedDiscipline, setSelectedDiscipline] = useState("engineering");
   const [selectedCountry, setSelectedCountry] = useState<string | null>(null);
-  const [position, setPosition] = useState({ coordinates: [0, 10], zoom: 1 });
+  const [position, setPosition] = useState<{ coordinates: [number, number]; zoom: number }>({ coordinates: [0, 10] as [number, number], zoom: 1 });
 
   // Get data for the selected discipline
   const disciplineData = popularityData[selectedDiscipline as keyof typeof popularityData] || {};
@@ -359,7 +359,7 @@ export default function CoursePopularityMap() {
               >
                 <ZoomableGroup
                   zoom={position.zoom}
-                  center={position.coordinates}
+                  center={position.coordinates as [number, number]}
                   onMoveEnd={handleMoveEnd}
                 >
                   <Sphere stroke="#DDD" strokeWidth={0.5} />
