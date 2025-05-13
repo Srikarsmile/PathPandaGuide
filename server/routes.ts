@@ -1,8 +1,26 @@
-import type { Express } from "express";
+import type { Express, Request, Response, NextFunction } from "express";
 import { createServer, type Server } from "http";
 import { storage } from "./storage";
+import { setupAuth } from "./auth";
+import { blogPosts, countries, universities, insertBlogPostSchema, insertCountrySchema, insertUniversitySchema } from "@shared/schema";
+import { z } from "zod";
+
+// Middleware to check if user is authenticated and is an admin
+function requireAdmin(req: Request, res: Response, next: NextFunction) {
+  if (!req.isAuthenticated()) {
+    return res.status(401).json({ message: "Not authenticated" });
+  }
+  
+  if (req.user.role !== "admin") {
+    return res.status(403).json({ message: "Not authorized" });
+  }
+  
+  next();
+}
 
 export async function registerRoutes(app: Express): Promise<Server> {
+  // Setup authentication
+  setupAuth(app);
   // API routes
   app.post("/api/pplx", async (req, res) => {
     try {
@@ -84,6 +102,314 @@ export async function registerRoutes(app: Express): Promise<Server> {
     } catch (error) {
       console.error("Server error:", error);
       return res.status(500).json({ message: "Internal server error", error: String(error) });
+    }
+  });
+
+  // Admin API routes
+  // Blog Posts
+  app.get("/api/admin/blog-posts", requireAdmin, async (req, res) => {
+    try {
+      const posts = await storage.getAllBlogPosts();
+      res.json(posts);
+    } catch (error) {
+      console.error("Error fetching blog posts:", error);
+      res.status(500).json({ message: "Error fetching blog posts" });
+    }
+  });
+  
+  app.get("/api/admin/blog-posts/:id", requireAdmin, async (req, res) => {
+    try {
+      const id = parseInt(req.params.id);
+      const post = await storage.getBlogPostById(id);
+      
+      if (!post) {
+        return res.status(404).json({ message: "Blog post not found" });
+      }
+      
+      res.json(post);
+    } catch (error) {
+      console.error("Error fetching blog post:", error);
+      res.status(500).json({ message: "Error fetching blog post" });
+    }
+  });
+  
+  app.post("/api/admin/blog-posts", requireAdmin, async (req, res) => {
+    try {
+      const validatedData = insertBlogPostSchema.parse(req.body);
+      const post = await storage.createBlogPost(validatedData);
+      res.status(201).json(post);
+    } catch (error) {
+      if (error instanceof z.ZodError) {
+        return res.status(400).json({ 
+          message: "Validation error", 
+          errors: error.errors 
+        });
+      }
+      
+      console.error("Error creating blog post:", error);
+      res.status(500).json({ message: "Error creating blog post" });
+    }
+  });
+  
+  app.patch("/api/admin/blog-posts/:id", requireAdmin, async (req, res) => {
+    try {
+      const id = parseInt(req.params.id);
+      // Partial validation of the input data
+      const validatedData = insertBlogPostSchema.partial().parse(req.body);
+      
+      const updatedPost = await storage.updateBlogPost(id, validatedData);
+      
+      if (!updatedPost) {
+        return res.status(404).json({ message: "Blog post not found" });
+      }
+      
+      res.json(updatedPost);
+    } catch (error) {
+      if (error instanceof z.ZodError) {
+        return res.status(400).json({ 
+          message: "Validation error", 
+          errors: error.errors 
+        });
+      }
+      
+      console.error("Error updating blog post:", error);
+      res.status(500).json({ message: "Error updating blog post" });
+    }
+  });
+  
+  app.delete("/api/admin/blog-posts/:id", requireAdmin, async (req, res) => {
+    try {
+      const id = parseInt(req.params.id);
+      const success = await storage.deleteBlogPost(id);
+      
+      if (!success) {
+        return res.status(404).json({ message: "Blog post not found" });
+      }
+      
+      res.status(204).end();
+    } catch (error) {
+      console.error("Error deleting blog post:", error);
+      res.status(500).json({ message: "Error deleting blog post" });
+    }
+  });
+  
+  // Countries
+  app.get("/api/admin/countries", requireAdmin, async (req, res) => {
+    try {
+      const countries = await storage.getAllCountries();
+      res.json(countries);
+    } catch (error) {
+      console.error("Error fetching countries:", error);
+      res.status(500).json({ message: "Error fetching countries" });
+    }
+  });
+  
+  app.get("/api/admin/countries/:id", requireAdmin, async (req, res) => {
+    try {
+      const id = parseInt(req.params.id);
+      const country = await storage.getCountryById(id);
+      
+      if (!country) {
+        return res.status(404).json({ message: "Country not found" });
+      }
+      
+      res.json(country);
+    } catch (error) {
+      console.error("Error fetching country:", error);
+      res.status(500).json({ message: "Error fetching country" });
+    }
+  });
+  
+  app.post("/api/admin/countries", requireAdmin, async (req, res) => {
+    try {
+      const validatedData = insertCountrySchema.parse(req.body);
+      const country = await storage.createCountry(validatedData);
+      res.status(201).json(country);
+    } catch (error) {
+      if (error instanceof z.ZodError) {
+        return res.status(400).json({ 
+          message: "Validation error", 
+          errors: error.errors 
+        });
+      }
+      
+      console.error("Error creating country:", error);
+      res.status(500).json({ message: "Error creating country" });
+    }
+  });
+  
+  app.patch("/api/admin/countries/:id", requireAdmin, async (req, res) => {
+    try {
+      const id = parseInt(req.params.id);
+      const validatedData = insertCountrySchema.partial().parse(req.body);
+      
+      const updatedCountry = await storage.updateCountry(id, validatedData);
+      
+      if (!updatedCountry) {
+        return res.status(404).json({ message: "Country not found" });
+      }
+      
+      res.json(updatedCountry);
+    } catch (error) {
+      if (error instanceof z.ZodError) {
+        return res.status(400).json({ 
+          message: "Validation error", 
+          errors: error.errors 
+        });
+      }
+      
+      console.error("Error updating country:", error);
+      res.status(500).json({ message: "Error updating country" });
+    }
+  });
+  
+  app.delete("/api/admin/countries/:id", requireAdmin, async (req, res) => {
+    try {
+      const id = parseInt(req.params.id);
+      const success = await storage.deleteCountry(id);
+      
+      if (!success) {
+        return res.status(404).json({ message: "Country not found" });
+      }
+      
+      res.status(204).end();
+    } catch (error) {
+      console.error("Error deleting country:", error);
+      res.status(500).json({ message: "Error deleting country" });
+    }
+  });
+  
+  // Universities
+  app.get("/api/admin/universities", requireAdmin, async (req, res) => {
+    try {
+      const universities = await storage.getAllUniversities();
+      res.json(universities);
+    } catch (error) {
+      console.error("Error fetching universities:", error);
+      res.status(500).json({ message: "Error fetching universities" });
+    }
+  });
+  
+  app.get("/api/admin/universities/:id", requireAdmin, async (req, res) => {
+    try {
+      const id = parseInt(req.params.id);
+      const university = await storage.getUniversityById(id);
+      
+      if (!university) {
+        return res.status(404).json({ message: "University not found" });
+      }
+      
+      res.json(university);
+    } catch (error) {
+      console.error("Error fetching university:", error);
+      res.status(500).json({ message: "Error fetching university" });
+    }
+  });
+  
+  app.post("/api/admin/universities", requireAdmin, async (req, res) => {
+    try {
+      const validatedData = insertUniversitySchema.parse(req.body);
+      const university = await storage.createUniversity(validatedData);
+      res.status(201).json(university);
+    } catch (error) {
+      if (error instanceof z.ZodError) {
+        return res.status(400).json({ 
+          message: "Validation error", 
+          errors: error.errors 
+        });
+      }
+      
+      console.error("Error creating university:", error);
+      res.status(500).json({ message: "Error creating university" });
+    }
+  });
+  
+  app.patch("/api/admin/universities/:id", requireAdmin, async (req, res) => {
+    try {
+      const id = parseInt(req.params.id);
+      const validatedData = insertUniversitySchema.partial().parse(req.body);
+      
+      const updatedUniversity = await storage.updateUniversity(id, validatedData);
+      
+      if (!updatedUniversity) {
+        return res.status(404).json({ message: "University not found" });
+      }
+      
+      res.json(updatedUniversity);
+    } catch (error) {
+      if (error instanceof z.ZodError) {
+        return res.status(400).json({ 
+          message: "Validation error", 
+          errors: error.errors 
+        });
+      }
+      
+      console.error("Error updating university:", error);
+      res.status(500).json({ message: "Error updating university" });
+    }
+  });
+  
+  app.delete("/api/admin/universities/:id", requireAdmin, async (req, res) => {
+    try {
+      const id = parseInt(req.params.id);
+      const success = await storage.deleteUniversity(id);
+      
+      if (!success) {
+        return res.status(404).json({ message: "University not found" });
+      }
+      
+      res.status(204).end();
+    } catch (error) {
+      console.error("Error deleting university:", error);
+      res.status(500).json({ message: "Error deleting university" });
+    }
+  });
+  
+  // Public routes - these are for non-admin users to access data
+  app.get("/api/blog-posts", async (req, res) => {
+    try {
+      const posts = await storage.getAllBlogPosts();
+      // Only return published posts for public view
+      const publishedPosts = posts.filter(post => post.published);
+      res.json(publishedPosts);
+    } catch (error) {
+      console.error("Error fetching blog posts:", error);
+      res.status(500).json({ message: "Error fetching blog posts" });
+    }
+  });
+  
+  app.get("/api/blog-posts/:slug", async (req, res) => {
+    try {
+      const post = await storage.getBlogPostBySlug(req.params.slug);
+      
+      if (!post || !post.published) {
+        return res.status(404).json({ message: "Blog post not found" });
+      }
+      
+      res.json(post);
+    } catch (error) {
+      console.error("Error fetching blog post:", error);
+      res.status(500).json({ message: "Error fetching blog post" });
+    }
+  });
+  
+  app.get("/api/countries", async (req, res) => {
+    try {
+      const countries = await storage.getAllCountries();
+      res.json(countries);
+    } catch (error) {
+      console.error("Error fetching countries:", error);
+      res.status(500).json({ message: "Error fetching countries" });
+    }
+  });
+  
+  app.get("/api/universities", async (req, res) => {
+    try {
+      const universities = await storage.getAllUniversities();
+      res.json(universities);
+    } catch (error) {
+      console.error("Error fetching universities:", error);
+      res.status(500).json({ message: "Error fetching universities" });
     }
   });
 
