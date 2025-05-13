@@ -257,10 +257,72 @@ export default function BlogPostForm({ post, onSuccess, onCancel }: BlogPostForm
               name="imageUrl"
               render={({ field }) => (
                 <FormItem>
-                  <FormLabel>Image URL</FormLabel>
-                  <FormControl>
-                    <Input placeholder="https://example.com/image.jpg" {...field} />
-                  </FormControl>
+                  <FormLabel>Upload Image</FormLabel>
+                  <div className="flex flex-col gap-2">
+                    <FormControl>
+                      <Input 
+                        type="file" 
+                        accept="image/*"
+                        onChange={async (e) => {
+                          const file = e.target.files?.[0];
+                          if (file) {
+                            try {
+                              // Create form data for upload
+                              const formData = new FormData();
+                              formData.append('image', file);
+                              
+                              // Upload image
+                              const response = await fetch('/api/upload', {
+                                method: 'POST',
+                                body: formData,
+                              });
+                              
+                              if (!response.ok) {
+                                throw new Error('Image upload failed');
+                              }
+                              
+                              const { imageUrl } = await response.json();
+                              field.onChange(imageUrl);
+                              
+                              toast({
+                                title: "Image uploaded",
+                                description: "Image has been uploaded successfully",
+                              });
+                            } catch (error) {
+                              toast({
+                                title: "Image upload failed",
+                                description: error instanceof Error ? error.message : "Unknown error",
+                                variant: "destructive",
+                              });
+                            }
+                          }
+                        }}
+                      />
+                    </FormControl>
+                    
+                    {field.value && (
+                      <div className="mt-2">
+                        <p className="text-sm mb-2">Current image:</p>
+                        <div className="relative w-full h-40 bg-gray-100 dark:bg-gray-800 rounded-md overflow-hidden">
+                          <img 
+                            src={field.value} 
+                            alt="Preview" 
+                            className="w-full h-full object-contain"
+                          />
+                        </div>
+                        <Input 
+                          type="text" 
+                          value={field.value} 
+                          onChange={(e) => field.onChange(e.target.value)} 
+                          className="mt-2"
+                          placeholder="Image path will appear here after upload"
+                        />
+                      </div>
+                    )}
+                  </div>
+                  <FormDescription>
+                    Upload an image for the blog post or provide a URL directly
+                  </FormDescription>
                   <FormMessage />
                 </FormItem>
               )}

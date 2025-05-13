@@ -1,9 +1,14 @@
 import type { Express, Request, Response, NextFunction } from "express";
+import express from "express";
 import { createServer, type Server } from "http";
-import { storage } from "./storage";
+import { storage as dbStorage } from "./storage";
 import { setupAuth } from "./auth";
 import { blogPosts, countries, universities, insertBlogPostSchema, insertCountrySchema, insertUniversitySchema } from "@shared/schema";
 import { z } from "zod";
+import multer from "multer";
+import path from "path";
+import fs from "fs";
+import { v4 as uuidv4 } from "uuid";
 
 // Middleware to check if user is authenticated and is an admin
 function requireAdmin(req: Request, res: Response, next: NextFunction) {
@@ -18,9 +23,60 @@ function requireAdmin(req: Request, res: Response, next: NextFunction) {
   next();
 }
 
+// Configure multer for file uploads
+const fileStorage = multer.diskStorage({
+  destination: (req, file, cb) => {
+    cb(null, 'public/uploads/');
+  },
+  filename: (req, file, cb) => {
+    // Create a unique filename to prevent conflicts
+    const uniqueSuffix = uuidv4();
+    const ext = path.extname(file.originalname).toLowerCase();
+    cb(null, `${Date.now()}-${uniqueSuffix}${ext}`);
+  }
+});
+
+// File filter to only allow image files
+const fileFilter = (req: Request, file: Express.Multer.File, cb: multer.FileFilterCallback) => {
+  // Accept image files only
+  if (file.mimetype.startsWith('image/')) {
+    cb(null, true);
+  } else {
+    cb(new Error('Only image files are allowed!'));
+  }
+};
+
+const upload = multer({ 
+  storage: fileStorage, 
+  fileFilter,
+  limits: {
+    fileSize: 5 * 1024 * 1024, // 5MB max file size
+  }
+});
+
 export async function registerRoutes(app: Express): Promise<Server> {
   // Setup authentication
   setupAuth(app);
+  
+  // Serve static files from public directory
+  app.use('/public', express.static('public'));
+  
+  // Image upload endpoint
+  app.post('/api/upload', requireAdmin, upload.single('image'), (req, res) => {
+    try {
+      if (!req.file) {
+        return res.status(400).json({ message: 'No file uploaded' });
+      }
+      
+      // Return the URL path to the uploaded file
+      const imageUrl = `/public/uploads/${req.file.filename}`;
+      
+      return res.status(200).json({ imageUrl });
+    } catch (error) {
+      console.error('Error uploading file:', error);
+      return res.status(500).json({ message: 'Error uploading file' });
+    }
+  });
   // API routes
   app.post("/api/pplx", async (req, res) => {
     try {
