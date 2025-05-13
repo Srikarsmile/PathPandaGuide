@@ -21,25 +21,25 @@ export default function HeroSection() {
           <div className="inline-block px-4 py-2 rounded-full bg-white/10 backdrop-blur-sm mb-4 md:mb-6 border border-white/20">
             <span className="text-xs md:text-sm font-medium text-white flex items-center">
               <span className="w-2 h-2 bg-panda-yellow rounded-full mr-2 animate-pulse"></span>
-              Premium Education Consultancy
+              Global Education Specialists
             </span>
           </div>
           <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold mb-4 md:mb-6 leading-tight">
-            Your <span className="text-panda-yellow">Elite Pathway</span> to Global Education Excellence
+            Your <span className="text-panda-yellow">Path</span> to Academic Excellence Abroad
           </h1>
           <p className="text-base md:text-xl mb-6 md:mb-8 text-white/90 max-w-lg">
-            Experience personalized guidance from our elite network of advisors. We transform your international education aspirations into prestigious academic achievements.
+            Personalized guidance from advisors who understand your ambitions. We transform your international education aspirations into exceptional academic journeys.
           </p>
           <div className="flex flex-wrap gap-3 md:gap-4 items-center">
             <Link href="/consult">
               <Button className="px-5 py-5 md:px-8 md:py-7 bg-gradient-to-r from-panda-yellow to-[#FFC000] text-panda-purple font-bold rounded-xl shadow-xl transition-all duration-300 hover:shadow-2xl hover:-translate-y-1 text-sm md:text-lg group flex items-center justify-center border border-white/10">
-                <span>Secure Your Premium Consultation</span>
+                <span>Book a Consultation</span>
                 <ArrowRight className="ml-2 h-4 w-4 md:h-5 md:w-5 transition-transform group-hover:translate-x-1" />
               </Button>
             </Link>
             <Link href="/features">
               <Button variant="outline" className="px-5 py-5 md:px-8 md:py-7 bg-white/10 backdrop-blur-sm hover:bg-white/20 text-white border border-white/30 font-semibold rounded-xl shadow-lg transition-all duration-200 hover:shadow-xl text-sm md:text-lg flex items-center justify-center">
-                <span>Discover Our Elite Services</span>
+                <span>Explore Our Services</span>
               </Button>
             </Link>
           </div>
@@ -49,17 +49,17 @@ export default function HeroSection() {
             <div className="text-center relative">
               <div className="absolute -top-1 -left-1 w-6 h-6 border-t-2 border-l-2 border-panda-yellow/50 rounded-tl-lg"></div>
               <div className="text-2xl sm:text-3xl md:text-4xl font-bold bg-gradient-to-r from-panda-yellow to-[#FFD700] text-transparent bg-clip-text">50+</div>
-              <div className="text-xs md:text-sm text-white/90 font-medium">Elite Destinations</div>
+              <div className="text-xs md:text-sm text-white/90 font-medium">Destinations</div>
             </div>
             <div className="text-center relative">
               <div className="absolute -top-1 -left-1 w-6 h-6 border-t-2 border-l-2 border-panda-yellow/50 rounded-tl-lg"></div>
               <div className="text-2xl sm:text-3xl md:text-4xl font-bold bg-gradient-to-r from-panda-yellow to-[#FFD700] text-transparent bg-clip-text">1000+</div>
-              <div className="text-xs md:text-sm text-white/90 font-medium">Premier Institutions</div>
+              <div className="text-xs md:text-sm text-white/90 font-medium">Institutions</div>
             </div>
             <div className="text-center relative">
               <div className="absolute -top-1 -left-1 w-6 h-6 border-t-2 border-l-2 border-panda-yellow/50 rounded-tl-lg"></div>
               <div className="text-2xl sm:text-3xl md:text-4xl font-bold bg-gradient-to-r from-panda-yellow to-[#FFD700] text-transparent bg-clip-text">10k+</div>
-              <div className="text-xs md:text-sm text-white/90 font-medium">Success Stories</div>
+              <div className="text-xs md:text-sm text-white/90 font-medium">Students Placed</div>
             </div>
           </div>
         </div>
@@ -83,18 +83,18 @@ export default function HeroSection() {
               className="absolute inset-4 object-cover rounded-xl shadow-lg"
             />
             
-            {/* Premium badges */}
+            {/* Refined badges */}
             <div className="absolute -left-4 md:-left-5 top-10 bg-gradient-to-r from-white to-gray-100 rounded-lg shadow-xl p-2 md:p-3 flex items-center gap-1 md:gap-2 animate-float border border-[#FFD700]/30">
               <GraduationCap className="h-5 w-5 md:h-6 md:w-6 text-panda-purple" />
-              <span className="text-xs md:text-sm font-medium text-gray-700">Prestigious Universities</span>
+              <span className="text-xs md:text-sm font-medium text-gray-700">Top-tier Universities</span>
             </div>
             <div className="absolute -right-4 md:-right-5 top-1/3 bg-gradient-to-r from-white to-gray-100 rounded-lg shadow-xl p-2 md:p-3 flex items-center gap-1 md:gap-2 animate-float-reverse hidden sm:flex border border-[#FFD700]/30">
               <Globe className="h-5 w-5 md:h-6 md:w-6 text-panda-purple" />
-              <span className="text-xs md:text-sm font-medium text-gray-700">Elite Global Network</span>
+              <span className="text-xs md:text-sm font-medium text-gray-700">Global Network</span>
             </div>
             <div className="absolute -left-4 md:-left-5 bottom-10 bg-gradient-to-r from-white to-gray-100 rounded-lg shadow-xl p-2 md:p-3 flex items-center gap-1 md:gap-2 animate-float-slow border border-[#FFD700]/30">
               <Award className="h-5 w-5 md:h-6 md:w-6 text-[#FFC000]" />
-              <span className="text-xs md:text-sm font-medium text-gray-700">Exclusive Scholarships</span>
+              <span className="text-xs md:text-sm font-medium text-gray-700">Scholarship Access</span>
             </div>
           </div>
         </div>
