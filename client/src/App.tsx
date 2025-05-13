@@ -10,11 +10,17 @@ import BlogPost from "@/pages/blog-post";
 import Contact from "@/pages/contact";
 import Tools from "@/pages/tools";
 import Features from "@/pages/features";
+import AuthPage from "@/pages/auth-page";
 import { lazy, Suspense } from "react";
 import { Helmet } from "react-helmet";
+import { AuthProvider } from "@/hooks/use-auth";
+import { ProtectedRoute } from "@/lib/protected-route";
 
 // Lazy load the consult page
 const Consult = lazy(() => import("@/pages/consult"));
+
+// Lazy load the admin dashboard page
+const AdminDashboard = lazy(() => import("@/pages/admin-dashboard"));
 
 function Router() {
   return (
@@ -25,6 +31,7 @@ function Router() {
       <Route path="/contact" component={Contact} />
       <Route path="/tools" component={Tools} />
       <Route path="/features" component={Features} />
+      <Route path="/auth" component={AuthPage} />
       <Route path="/consult">
         <Suspense fallback={
           <div className="min-h-screen flex items-center justify-center p-12 bg-gradient-to-b from-panda-purple/5 to-panda-lav/5">
@@ -37,6 +44,21 @@ function Router() {
           <Consult />
         </Suspense>
       </Route>
+      
+      {/* Admin Routes */}
+      <Route path="/admin">
+        <Suspense fallback={
+          <div className="min-h-screen flex items-center justify-center p-12 bg-gradient-to-b from-panda-purple/5 to-panda-lav/5">
+            <div className="flex flex-col items-center">
+              <div className="w-12 h-12 rounded-full border-4 border-panda-purple/30 border-t-panda-purple animate-spin mb-4"></div>
+              <p className="text-panda-purple dark:text-panda-lav font-medium">Loading admin dashboard...</p>
+            </div>
+          </div>
+        }>
+          <AdminDashboard />
+        </Suspense>
+      </Route>
+      
       <Route component={NotFound} />
     </Switch>
   );
@@ -54,10 +76,12 @@ function App() {
       </Helmet>
       
       <QueryClientProvider client={queryClient}>
-        <TooltipProvider>
-          <Toaster />
-          <Router />
-        </TooltipProvider>
+        <AuthProvider>
+          <TooltipProvider>
+            <Toaster />
+            <Router />
+          </TooltipProvider>
+        </AuthProvider>
       </QueryClientProvider>
     </>
   );

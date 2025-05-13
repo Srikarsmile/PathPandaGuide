@@ -126,17 +126,46 @@ export class DatabaseStorage implements IStorage {
   }
   
   async createCountry(country: InsertCountry): Promise<Country> {
+    // Ensure arrays are properly formatted before inserting
+    const countryData = {
+      ...country,
+      topUniversities: Array.isArray(country.topUniversities) ? country.topUniversities : [],
+      scholarships: Array.isArray(country.scholarships) ? country.scholarships : [],
+      featuredCities: Array.isArray(country.featuredCities) ? country.featuredCities : []
+    };
+    
     const [newCountry] = await db
       .insert(countries)
-      .values(country)
+      .values(countryData)
       .returning();
     return newCountry;
   }
   
   async updateCountry(id: number, country: Partial<InsertCountry>): Promise<Country | undefined> {
+    // Ensure arrays are properly formatted before updating
+    const countryData: Partial<InsertCountry> = { ...country };
+    
+    if (country.topUniversities) {
+      countryData.topUniversities = Array.isArray(country.topUniversities) 
+        ? country.topUniversities 
+        : [];
+    }
+    
+    if (country.scholarships) {
+      countryData.scholarships = Array.isArray(country.scholarships) 
+        ? country.scholarships 
+        : [];
+    }
+    
+    if (country.featuredCities) {
+      countryData.featuredCities = Array.isArray(country.featuredCities) 
+        ? country.featuredCities 
+        : [];
+    }
+    
     const [updatedCountry] = await db
       .update(countries)
-      .set(country)
+      .set(countryData)
       .where(eq(countries.id, id))
       .returning();
     return updatedCountry;
@@ -165,17 +194,32 @@ export class DatabaseStorage implements IStorage {
   }
   
   async createUniversity(university: InsertUniversity): Promise<University> {
+    // Ensure arrays are properly formatted before inserting
+    const universityData = {
+      ...university,
+      strengths: Array.isArray(university.strengths) ? university.strengths : []
+    };
+    
     const [newUniversity] = await db
       .insert(universities)
-      .values(university)
+      .values(universityData)
       .returning();
     return newUniversity;
   }
   
   async updateUniversity(id: number, university: Partial<InsertUniversity>): Promise<University | undefined> {
+    // Ensure arrays are properly formatted before updating
+    const universityData: Partial<InsertUniversity> = { ...university };
+    
+    if (university.strengths) {
+      universityData.strengths = Array.isArray(university.strengths) 
+        ? university.strengths 
+        : [];
+    }
+    
     const [updatedUniversity] = await db
       .update(universities)
-      .set(university)
+      .set(universityData)
       .where(eq(universities.id, id))
       .returning();
     return updatedUniversity;

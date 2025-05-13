@@ -1,30 +1,60 @@
-import { useState, useEffect } from "react";
 import { Button } from "@/components/ui/button";
 import { Link } from "wouter";
+import { useAuth } from "@/hooks/use-auth";
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuSeparator,
+  DropdownMenuTrigger,
+} from "@/components/ui/dropdown-menu";
+import { User, ShieldCheck, LogOut } from "lucide-react";
 
 export default function AuthButton() {
-  const [authEnabled, setAuthEnabled] = useState(false);
-  const [isClient, setIsClient] = useState(false);
+  const { user, logoutMutation } = useAuth();
 
-  useEffect(() => {
-    // Check if we're on the client-side
-    setIsClient(true);
-    
-    // Get ENABLE_AUTH from environment
-    const enableAuth = import.meta.env.VITE_ENABLE_AUTH === "true";
-    setAuthEnabled(enableAuth);
-  }, []);
+  const handleLogout = () => {
+    logoutMutation.mutate();
+  };
 
-  // Only render after checking client-side and if auth is enabled
-  if (!isClient || !authEnabled) {
-    return null;
+  if (!user) {
+    return (
+      <Link href="/auth">
+        <Button className="bg-panda-lav hover:bg-panda-purple text-white">
+          Sign In
+        </Button>
+      </Link>
+    );
   }
 
   return (
-    <Link href="/login">
-      <Button className="bg-panda-lav hover:bg-panda-purple text-white">
-        Sign In
-      </Button>
-    </Link>
+    <DropdownMenu>
+      <DropdownMenuTrigger asChild>
+        <Button variant="outline" className="flex items-center gap-2">
+          <User className="h-4 w-4" />
+          {user.username}
+        </Button>
+      </DropdownMenuTrigger>
+      <DropdownMenuContent align="end">
+        {user.role === "admin" && (
+          <>
+            <Link href="/admin">
+              <DropdownMenuItem className="cursor-pointer">
+                <ShieldCheck className="h-4 w-4 mr-2" />
+                Admin Dashboard
+              </DropdownMenuItem>
+            </Link>
+            <DropdownMenuSeparator />
+          </>
+        )}
+        <DropdownMenuItem 
+          className="cursor-pointer text-red-500 focus:text-red-500"
+          onClick={handleLogout}
+        >
+          <LogOut className="h-4 w-4 mr-2" />
+          Logout
+        </DropdownMenuItem>
+      </DropdownMenuContent>
+    </DropdownMenu>
   );
 }
