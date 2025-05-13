@@ -1,22 +1,20 @@
 import Header from "@/components/header";
 import Footer from "@/components/footer";
-import CostCalculator from "@/components/cost-calculator";
 import ApplicationChecklist from "@/components/application-checklist";
-import StudentTestimonials from "@/components/student-testimonials";
 import InteractiveMap from "@/components/interactive-map";
 import LanguageResources from "@/components/language-resources";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Helmet } from "react-helmet";
-import { Calculator, FileCheck, Users, Globe, Languages } from "lucide-react";
+import { FileCheck, Globe, Languages } from "lucide-react";
 
 export default function Features() {
   return (
     <>
       <Helmet>
         <title>Study Abroad Features | Path Panda</title>
-        <meta name="description" content="Use our specialized study abroad tools including cost of living calculator, application checklist, student testimonials, interactive map, and language resources." />
+        <meta name="description" content="Use our specialized study abroad tools including application checklist, interactive country explorer map, and language learning resources." />
         <meta property="og:title" content="Study Abroad Features | Path Panda" />
-        <meta property="og:description" content="Use our specialized study abroad tools including cost of living calculator, application checklist, student testimonials, interactive map, and language resources." />
+        <meta property="og:description" content="Use our specialized study abroad tools including application checklist, interactive country explorer map, and language learning resources." />
         <meta property="og:type" content="website" />
         <meta property="og:url" content="https://pathpanda.com/features" />
       </Helmet>
@@ -36,20 +34,12 @@ export default function Features() {
           
           <section className="py-10 bg-white dark:bg-gray-900">
             <div className="container mx-auto px-4">
-              <Tabs defaultValue="cost" className="w-full">
+              <Tabs defaultValue="checklist" className="w-full">
                 <div className="flex justify-center mb-8">
-                  <TabsList className="grid grid-cols-3 md:grid-cols-5 gap-1">
-                    <TabsTrigger value="cost" className="flex flex-col items-center text-xs sm:text-sm py-2 px-1 sm:px-3">
-                      <Calculator className="h-4 w-4 mb-1" />
-                      <span>Cost Calculator</span>
-                    </TabsTrigger>
+                  <TabsList className="grid grid-cols-3 gap-1">
                     <TabsTrigger value="checklist" className="flex flex-col items-center text-xs sm:text-sm py-2 px-1 sm:px-3">
                       <FileCheck className="h-4 w-4 mb-1" />
                       <span>Application Checklist</span>
-                    </TabsTrigger>
-                    <TabsTrigger value="testimonials" className="flex flex-col items-center text-xs sm:text-sm py-2 px-1 sm:px-3">
-                      <Users className="h-4 w-4 mb-1" />
-                      <span>Student Stories</span>
                     </TabsTrigger>
                     <TabsTrigger value="map" className="flex flex-col items-center text-xs sm:text-sm py-2 px-1 sm:px-3">
                       <Globe className="h-4 w-4 mb-1" />
@@ -62,16 +52,8 @@ export default function Features() {
                   </TabsList>
                 </div>
                 
-                <TabsContent value="cost">
-                  <CostCalculator />
-                </TabsContent>
-                
                 <TabsContent value="checklist">
                   <ApplicationChecklist />
-                </TabsContent>
-                
-                <TabsContent value="testimonials">
-                  <StudentTestimonials />
                 </TabsContent>
                 
                 <TabsContent value="map">
