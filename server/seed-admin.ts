@@ -2,6 +2,7 @@ import { db } from "./db";
 import { users } from "@shared/schema";
 import { scrypt, randomBytes } from "crypto";
 import { promisify } from "util";
+import { eq } from "drizzle-orm";
 
 const scryptAsync = promisify(scrypt);
 
@@ -17,7 +18,7 @@ async function seedAdmin() {
     const [existingAdmin] = await db
       .select()
       .from(users)
-      .where(user => user.role.equals("admin"));
+      .where(eq(users.role, "admin"));
     
     if (existingAdmin) {
       console.log("Admin user already exists:", existingAdmin.username);
