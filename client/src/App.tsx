@@ -10,8 +10,11 @@ import BlogPost from "@/pages/blog-post";
 import Contact from "@/pages/contact";
 import Tools from "@/pages/tools";
 import Features from "@/pages/features";
-import Consult from "@/pages/consult";
+import { lazy, Suspense } from "react";
 import { Helmet } from "react-helmet";
+
+// Lazy load the consult page
+const Consult = lazy(() => import("@/pages/consult"));
 
 function Router() {
   return (
@@ -22,7 +25,18 @@ function Router() {
       <Route path="/contact" component={Contact} />
       <Route path="/tools" component={Tools} />
       <Route path="/features" component={Features} />
-      <Route path="/consult" component={Consult} />
+      <Route path="/consult">
+        <Suspense fallback={
+          <div className="min-h-screen flex items-center justify-center p-12 bg-gradient-to-b from-panda-purple/5 to-panda-lav/5">
+            <div className="flex flex-col items-center">
+              <div className="w-12 h-12 rounded-full border-4 border-panda-purple/30 border-t-panda-purple animate-spin mb-4"></div>
+              <p className="text-panda-purple dark:text-panda-lav font-medium">Loading consultation page...</p>
+            </div>
+          </div>
+        }>
+          <Consult />
+        </Suspense>
+      </Route>
       <Route component={NotFound} />
     </Switch>
   );

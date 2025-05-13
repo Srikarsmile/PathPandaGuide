@@ -416,17 +416,17 @@ export default function Consult() {
                         name="message"
                         render={({ field }) => (
                           <FormItem>
-                            <FormLabel className="text-gray-700 dark:text-gray-300">
-                              Additional Information <span className="text-gray-400 text-sm">(Optional)</span>
+                            <FormLabel className="text-gray-700 dark:text-gray-300 text-sm md:text-base">
+                              Additional Information <span className="text-gray-400 text-xs md:text-sm">(Optional)</span>
                             </FormLabel>
                             <FormControl>
                               <Textarea
                                 placeholder="Tell us about your specific requirements or questions"
-                                className="resize-none rounded-lg min-h-[120px]"
+                                className="resize-none rounded-lg min-h-[100px] md:min-h-[120px] text-sm md:text-base"
                                 {...field}
                               />
                             </FormControl>
-                            <FormMessage />
+                            <FormMessage className="text-xs md:text-sm" />
                           </FormItem>
                         )}
                       />
@@ -458,79 +458,79 @@ export default function Consult() {
           </div>
         </section>
 
-        <section className="py-16 bg-gray-50 dark:bg-gray-900">
+        <section className="py-12 md:py-16 bg-gray-50 dark:bg-gray-900">
           <div className="container px-4 mx-auto">
             <div className="max-w-4xl mx-auto">
-              <h2 className="text-3xl font-bold text-center mb-10 text-gray-800 dark:text-white">
+              <h2 className="text-2xl sm:text-3xl font-bold text-center mb-8 md:mb-10 text-gray-800 dark:text-white">
                 What to Expect in Your Consultation
               </h2>
               
-              <div className="grid md:grid-cols-2 gap-6">
-                <div className="bg-white dark:bg-gray-800 rounded-xl p-6 border border-gray-100 dark:border-gray-700 shadow-sm flex">
-                  <div className="w-12 h-12 rounded-full bg-panda-yellow/10 flex items-center justify-center mr-4 flex-shrink-0">
-                    <GraduationCap className="w-6 h-6 text-panda-yellow" />
+              <div className="grid md:grid-cols-2 gap-4 md:gap-6">
+                <div className="bg-white dark:bg-gray-800 rounded-xl p-4 md:p-6 border border-gray-100 dark:border-gray-700 shadow-sm flex">
+                  <div className="w-10 h-10 md:w-12 md:h-12 rounded-full bg-panda-yellow/10 flex items-center justify-center mr-3 md:mr-4 flex-shrink-0">
+                    <GraduationCap className="w-5 h-5 md:w-6 md:h-6 text-panda-yellow" />
                   </div>
                   <div>
-                    <h3 className="font-bold text-lg mb-2 text-gray-800 dark:text-white">
+                    <h3 className="font-bold text-base md:text-lg mb-1 md:mb-2 text-gray-800 dark:text-white">
                       Academic Assessment
                     </h3>
-                    <p className="text-gray-600 dark:text-gray-300 text-sm">
+                    <p className="text-gray-600 dark:text-gray-300 text-xs md:text-sm">
                       Our experts will evaluate your academic background to suggest suitable programs and universities that match your profile.
                     </p>
                   </div>
                 </div>
 
-                <div className="bg-white dark:bg-gray-800 rounded-xl p-6 border border-gray-100 dark:border-gray-700 shadow-sm flex">
-                  <div className="w-12 h-12 rounded-full bg-panda-pink/10 flex items-center justify-center mr-4 flex-shrink-0">
-                    <Map className="w-6 h-6 text-panda-pink" />
+                <div className="bg-white dark:bg-gray-800 rounded-xl p-4 md:p-6 border border-gray-100 dark:border-gray-700 shadow-sm flex">
+                  <div className="w-10 h-10 md:w-12 md:h-12 rounded-full bg-panda-pink/10 flex items-center justify-center mr-3 md:mr-4 flex-shrink-0">
+                    <Map className="w-5 h-5 md:w-6 md:h-6 text-panda-pink" />
                   </div>
                   <div>
-                    <h3 className="font-bold text-lg mb-2 text-gray-800 dark:text-white">
+                    <h3 className="font-bold text-base md:text-lg mb-1 md:mb-2 text-gray-800 dark:text-white">
                       Destination Guidance
                     </h3>
-                    <p className="text-gray-600 dark:text-gray-300 text-sm">
+                    <p className="text-gray-600 dark:text-gray-300 text-xs md:text-sm">
                       Get insights on different study destinations, their education systems, cost of living, and job opportunities after graduation.
                     </p>
                   </div>
                 </div>
 
-                <div className="bg-white dark:bg-gray-800 rounded-xl p-6 border border-gray-100 dark:border-gray-700 shadow-sm flex">
-                  <div className="w-12 h-12 rounded-full bg-panda-purple/10 flex items-center justify-center mr-4 flex-shrink-0">
-                    <Globe className="w-6 h-6 text-panda-purple" />
+                <div className="bg-white dark:bg-gray-800 rounded-xl p-4 md:p-6 border border-gray-100 dark:border-gray-700 shadow-sm flex">
+                  <div className="w-10 h-10 md:w-12 md:h-12 rounded-full bg-panda-purple/10 flex items-center justify-center mr-3 md:mr-4 flex-shrink-0">
+                    <Globe className="w-5 h-5 md:w-6 md:h-6 text-panda-purple" />
                   </div>
                   <div>
-                    <h3 className="font-bold text-lg mb-2 text-gray-800 dark:text-white">
+                    <h3 className="font-bold text-base md:text-lg mb-1 md:mb-2 text-gray-800 dark:text-white">
                       Visa Requirements
                     </h3>
-                    <p className="text-gray-600 dark:text-gray-300 text-sm">
+                    <p className="text-gray-600 dark:text-gray-300 text-xs md:text-sm">
                       Understand the visa application process, documentation requirements, and preparation tips to increase your visa approval chances.
                     </p>
                   </div>
                 </div>
 
-                <div className="bg-white dark:bg-gray-800 rounded-xl p-6 border border-gray-100 dark:border-gray-700 shadow-sm flex">
-                  <div className="w-12 h-12 rounded-full bg-green-100 flex items-center justify-center mr-4 flex-shrink-0">
-                    <BookOpen className="w-6 h-6 text-green-600" />
+                <div className="bg-white dark:bg-gray-800 rounded-xl p-4 md:p-6 border border-gray-100 dark:border-gray-700 shadow-sm flex">
+                  <div className="w-10 h-10 md:w-12 md:h-12 rounded-full bg-green-100 flex items-center justify-center mr-3 md:mr-4 flex-shrink-0">
+                    <BookOpen className="w-5 h-5 md:w-6 md:h-6 text-green-600" />
                   </div>
                   <div>
-                    <h3 className="font-bold text-lg mb-2 text-gray-800 dark:text-white">
+                    <h3 className="font-bold text-base md:text-lg mb-1 md:mb-2 text-gray-800 dark:text-white">
                       Scholarship Options
                     </h3>
-                    <p className="text-gray-600 dark:text-gray-300 text-sm">
+                    <p className="text-gray-600 dark:text-gray-300 text-xs md:text-sm">
                       Explore available scholarships, financial aid, and funding opportunities based on your academic achievements and target institutions.
                     </p>
                   </div>
                 </div>
 
-                <div className="bg-white dark:bg-gray-800 rounded-xl p-6 border border-gray-100 dark:border-gray-700 shadow-sm flex md:col-span-2">
-                  <div className="w-12 h-12 rounded-full bg-blue-100 flex items-center justify-center mr-4 flex-shrink-0">
-                    <MessageSquare className="w-6 h-6 text-blue-600" />
+                <div className="bg-white dark:bg-gray-800 rounded-xl p-4 md:p-6 border border-gray-100 dark:border-gray-700 shadow-sm flex md:col-span-2">
+                  <div className="w-10 h-10 md:w-12 md:h-12 rounded-full bg-blue-100 flex items-center justify-center mr-3 md:mr-4 flex-shrink-0">
+                    <MessageSquare className="w-5 h-5 md:w-6 md:h-6 text-blue-600" />
                   </div>
                   <div>
-                    <h3 className="font-bold text-lg mb-2 text-gray-800 dark:text-white">
+                    <h3 className="font-bold text-base md:text-lg mb-1 md:mb-2 text-gray-800 dark:text-white">
                       Personalized Action Plan
                     </h3>
-                    <p className="text-gray-600 dark:text-gray-300 text-sm">
+                    <p className="text-gray-600 dark:text-gray-300 text-xs md:text-sm">
                       Receive a customized roadmap with next steps, application timeline, test preparation strategies, and document checklist to streamline your study abroad journey.
                     </p>
                   </div>
