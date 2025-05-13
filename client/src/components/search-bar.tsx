@@ -67,71 +67,69 @@ export default function SearchBar() {
             </p>
           </div>
           
-          <div className="bg-white dark:bg-gray-700 rounded-3xl shadow-xl p-8 border border-gray-100 dark:border-gray-600 backdrop-blur-sm">
+          <div className="bg-white dark:bg-gray-700 rounded-3xl shadow-xl p-5 sm:p-6 md:p-8 border border-gray-100 dark:border-gray-600 backdrop-blur-sm">
             <form onSubmit={handleSearch} className="mb-4">
-              <div className="flex flex-col md:flex-row gap-4">
+              <div className="flex flex-col md:flex-row gap-3 md:gap-4">
                 <div className="relative flex-grow">
-                  <div className="absolute inset-y-0 left-4 flex items-center pointer-events-none">
-                    <Search className="h-5 w-5 text-gray-400" />
+                  <div className="absolute inset-y-0 left-3 md:left-4 flex items-center pointer-events-none">
+                    <Search className="h-4 w-4 md:h-5 md:w-5 text-gray-400" />
                   </div>
                   <Input
                     type="text"
                     value={searchQuery}
                     onChange={(e) => setSearchQuery(e.target.value)}
                     placeholder="E.g., What scholarships are available for engineering students in Germany?"
-                    className="w-full pl-12 pr-4 py-6 rounded-xl border-gray-200 dark:border-gray-600 dark:bg-gray-800 dark:text-white focus:ring-2 focus:ring-panda-lav focus:border-transparent text-lg"
+                    className="w-full pl-9 md:pl-12 pr-3 md:pr-4 py-4 md:py-6 rounded-lg md:rounded-xl border-gray-200 dark:border-gray-600 dark:bg-gray-800 dark:text-white focus:ring-2 focus:ring-panda-lav focus:border-transparent text-sm md:text-lg"
                   />
                 </div>
                 <Button 
                   type="submit"
-                  className="px-8 py-6 bg-panda-purple hover:bg-opacity-90 text-white font-semibold rounded-xl shadow-lg transition-all duration-200 hover:shadow-xl transform hover:-translate-y-1 text-lg"
+                  className="px-5 py-4 md:px-8 md:py-6 bg-panda-purple hover:bg-opacity-90 text-white font-semibold rounded-lg md:rounded-xl shadow-lg transition-all duration-200 hover:shadow-xl transform hover:-translate-y-1 text-sm md:text-lg"
                   disabled={isLoading}
                 >
                   {isLoading ? (
                     <span className="animate-pulse flex items-center">
-                      <svg className="animate-spin -ml-1 mr-3 h-5 w-5 text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+                      <svg className="animate-spin -ml-1 mr-2 md:mr-3 h-4 w-4 md:h-5 md:w-5 text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
                         <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle>
                         <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
                       </svg>
-                      Searching...
+                      <span className="text-sm md:text-base">Searching...</span>
                     </span>
                   ) : (
-                    <>
-                      Ask Question
-                    </>
+                    <span className="text-sm md:text-base">Ask Question</span>
                   )}
                 </Button>
               </div>
             </form>
             
             {error && (
-              <div className="mt-6 p-6 bg-red-50 dark:bg-red-900/20 text-red-600 dark:text-red-300 rounded-xl border border-red-100 dark:border-red-800/30">
+              <div className="mt-4 md:mt-6 p-4 md:p-6 bg-red-50 dark:bg-red-900/20 text-red-600 dark:text-red-300 rounded-xl border border-red-100 dark:border-red-800/30">
                 <div className="flex items-center mb-2">
-                  <svg className="h-6 w-6 text-red-500 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <svg className="h-5 w-5 md:h-6 md:w-6 text-red-500 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z" />
                   </svg>
-                  <span className="font-semibold">Error</span>
+                  <span className="font-semibold text-sm md:text-base">Error</span>
                 </div>
-                {error}
+                <div className="text-sm md:text-base">{error}</div>
               </div>
             )}
             
             {searchResult && (
-              <div className="mt-8 border-t dark:border-gray-600 pt-8">
-                <div className="mb-6">
-                  <div className="flex items-center mb-4">
-                    <div className="w-10 h-10 rounded-full bg-panda-purple/10 flex items-center justify-center mr-3">
-                      <svg className="h-6 w-6 text-panda-purple" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <div className="mt-6 md:mt-8 border-t dark:border-gray-600 pt-6 md:pt-8">
+                <div className="mb-4 md:mb-6">
+                  <div className="flex items-center mb-3 md:mb-4">
+                    <div className="w-8 h-8 md:w-10 md:h-10 rounded-full bg-panda-purple/10 flex items-center justify-center mr-2 md:mr-3">
+                      <svg className="h-4 w-4 md:h-6 md:w-6 text-panda-purple" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
                       </svg>
                     </div>
-                    <h3 className="text-2xl font-bold text-gray-800 dark:text-white">Answer</h3>
+                    <h3 className="text-xl md:text-2xl font-bold text-gray-800 dark:text-white">Answer</h3>
                   </div>
                   
-                  <div className="prose dark:prose-invert max-w-none text-gray-700 dark:text-gray-300 bg-gray-50 dark:bg-gray-800 p-6 rounded-xl border border-gray-100 dark:border-gray-700">
+                  <div className="prose dark:prose-invert max-w-none text-gray-700 dark:text-gray-300 bg-gray-50 dark:bg-gray-800 p-4 md:p-6 rounded-xl border border-gray-100 dark:border-gray-700 text-sm md:text-base">
                     {searchResult.answer.split('\n').map((paragraph, idx) => (
                       paragraph.trim() ? (
-                        <p key={idx} className="mb-4 last:mb-0">
+                        <p key={idx} className="mb-3 md:mb-4 last:mb-0">
                           {paragraph}
                         </p>
                       ) : null
@@ -141,8 +139,8 @@ export default function SearchBar() {
                 
                 {searchResult.citations.length > 0 && (
                   <div>
-                    <h4 className="text-lg font-semibold text-gray-800 dark:text-white mb-3 flex items-center">
-                      <svg className="h-5 w-5 text-panda-pink mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <h4 className="text-base md:text-lg font-semibold text-gray-800 dark:text-white mb-2 md:mb-3 flex items-center">
+                      <svg className="h-4 w-4 md:h-5 md:w-5 text-panda-pink mr-1.5 md:mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13.828 10.172a4 4 0 00-5.656 0l-4 4a4 4 0 105.656 5.656l1.102-1.101m-.758-4.899a4 4 0 005.656 0l4-4a4 4 0 00-5.656-5.656l-1.1 1.1" />
                       </svg>
                       Sources
@@ -154,7 +152,7 @@ export default function SearchBar() {
                           href={citation}
                           target="_blank"
                           rel="noopener noreferrer"
-                          className="px-4 py-2 bg-white dark:bg-gray-700 text-panda-purple dark:text-panda-lav border border-panda-purple/20 dark:border-panda-lav/20 rounded-full text-sm hover:bg-panda-purple/5 dark:hover:bg-panda-lav/5 transition-colors shadow-sm flex items-center"
+                          className="px-3 py-1.5 md:px-4 md:py-2 bg-white dark:bg-gray-700 text-panda-purple dark:text-panda-lav border border-panda-purple/20 dark:border-panda-lav/20 rounded-full text-xs md:text-sm hover:bg-panda-purple/5 dark:hover:bg-panda-lav/5 transition-colors shadow-sm flex items-center"
                         >
                           <svg className="h-3 w-3 mr-1.5" fill="currentColor" viewBox="0 0 20 20">
                             <path fillRule="evenodd" d="M12.586 4.586a2 2 0 112.828 2.828l-3 3a2 2 0 01-2.828 0 1 1 0 00-1.414 1.414 4 4 0 005.656 0l3-3a4 4 0 00-5.656-5.656l-1.5 1.5a1 1 0 101.414 1.414l1.5-1.5zm-5 5a2 2 0 012.828 0 1 1 0 101.414-1.414 4 4 0 00-5.656 0l-3 3a4 4 0 105.656 5.656l1.5-1.5a1 1 0 10-1.414-1.414l-1.5 1.5a2 2 0 11-2.828-2.828l3-3z" clipRule="evenodd" />

@@ -10,6 +10,7 @@ import BlogPost from "@/pages/blog-post";
 import Contact from "@/pages/contact";
 import Tools from "@/pages/tools";
 import Features from "@/pages/features";
+import Consult from "@/pages/consult";
 import { Helmet } from "react-helmet";
 
 function Router() {
@@ -21,6 +22,7 @@ function Router() {
       <Route path="/contact" component={Contact} />
       <Route path="/tools" component={Tools} />
       <Route path="/features" component={Features} />
+      <Route path="/consult" component={Consult} />
       <Route component={NotFound} />
     </Switch>
   );
