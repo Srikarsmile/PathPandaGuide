@@ -78,6 +78,7 @@ export async function registerRoutes(app: Express): Promise<Server> {
     }
   });
   // API routes
+  // Fix all references to storage -> dbStorage
   app.post("/api/pplx", async (req, res) => {
     try {
       const { query } = req.body;
@@ -165,7 +166,7 @@ export async function registerRoutes(app: Express): Promise<Server> {
   // Blog Posts
   app.get("/api/admin/blog-posts", requireAdmin, async (req, res) => {
     try {
-      const posts = await storage.getAllBlogPosts();
+      const posts = await dbStorage.getAllBlogPosts();
       res.json(posts);
     } catch (error) {
       console.error("Error fetching blog posts:", error);
@@ -176,7 +177,7 @@ export async function registerRoutes(app: Express): Promise<Server> {
   app.get("/api/admin/blog-posts/:id", requireAdmin, async (req, res) => {
     try {
       const id = parseInt(req.params.id);
-      const post = await storage.getBlogPostById(id);
+      const post = await dbStorage.getBlogPostById(id);
       
       if (!post) {
         return res.status(404).json({ message: "Blog post not found" });
@@ -192,7 +193,7 @@ export async function registerRoutes(app: Express): Promise<Server> {
   app.post("/api/admin/blog-posts", requireAdmin, async (req, res) => {
     try {
       const validatedData = insertBlogPostSchema.parse(req.body);
-      const post = await storage.createBlogPost(validatedData);
+      const post = await dbStorage.createBlogPost(validatedData);
       res.status(201).json(post);
     } catch (error) {
       if (error instanceof z.ZodError) {
@@ -213,7 +214,7 @@ export async function registerRoutes(app: Express): Promise<Server> {
       // Partial validation of the input data
       const validatedData = insertBlogPostSchema.partial().parse(req.body);
       
-      const updatedPost = await storage.updateBlogPost(id, validatedData);
+      const updatedPost = await dbStorage.updateBlogPost(id, validatedData);
       
       if (!updatedPost) {
         return res.status(404).json({ message: "Blog post not found" });
@@ -236,7 +237,7 @@ export async function registerRoutes(app: Express): Promise<Server> {
   app.delete("/api/admin/blog-posts/:id", requireAdmin, async (req, res) => {
     try {
       const id = parseInt(req.params.id);
-      const success = await storage.deleteBlogPost(id);
+      const success = await dbStorage.deleteBlogPost(id);
       
       if (!success) {
         return res.status(404).json({ message: "Blog post not found" });
@@ -252,7 +253,7 @@ export async function registerRoutes(app: Express): Promise<Server> {
   // Countries
   app.get("/api/admin/countries", requireAdmin, async (req, res) => {
     try {
-      const countries = await storage.getAllCountries();
+      const countries = await dbStorage.getAllCountries();
       res.json(countries);
     } catch (error) {
       console.error("Error fetching countries:", error);
@@ -263,7 +264,7 @@ export async function registerRoutes(app: Express): Promise<Server> {
   app.get("/api/admin/countries/:id", requireAdmin, async (req, res) => {
     try {
       const id = parseInt(req.params.id);
-      const country = await storage.getCountryById(id);
+      const country = await dbStorage.getCountryById(id);
       
       if (!country) {
         return res.status(404).json({ message: "Country not found" });
@@ -279,7 +280,7 @@ export async function registerRoutes(app: Express): Promise<Server> {
   app.post("/api/admin/countries", requireAdmin, async (req, res) => {
     try {
       const validatedData = insertCountrySchema.parse(req.body);
-      const country = await storage.createCountry(validatedData);
+      const country = await dbStorage.createCountry(validatedData);
       res.status(201).json(country);
     } catch (error) {
       if (error instanceof z.ZodError) {
@@ -299,7 +300,7 @@ export async function registerRoutes(app: Express): Promise<Server> {
       const id = parseInt(req.params.id);
       const validatedData = insertCountrySchema.partial().parse(req.body);
       
-      const updatedCountry = await storage.updateCountry(id, validatedData);
+      const updatedCountry = await dbStorage.updateCountry(id, validatedData);
       
       if (!updatedCountry) {
         return res.status(404).json({ message: "Country not found" });
@@ -322,7 +323,7 @@ export async function registerRoutes(app: Express): Promise<Server> {
   app.delete("/api/admin/countries/:id", requireAdmin, async (req, res) => {
     try {
       const id = parseInt(req.params.id);
-      const success = await storage.deleteCountry(id);
+      const success = await dbStorage.deleteCountry(id);
       
       if (!success) {
         return res.status(404).json({ message: "Country not found" });
@@ -338,7 +339,7 @@ export async function registerRoutes(app: Express): Promise<Server> {
   // Universities
   app.get("/api/admin/universities", requireAdmin, async (req, res) => {
     try {
-      const universities = await storage.getAllUniversities();
+      const universities = await dbStorage.getAllUniversities();
       res.json(universities);
     } catch (error) {
       console.error("Error fetching universities:", error);
@@ -349,7 +350,7 @@ export async function registerRoutes(app: Express): Promise<Server> {
   app.get("/api/admin/universities/:id", requireAdmin, async (req, res) => {
     try {
       const id = parseInt(req.params.id);
-      const university = await storage.getUniversityById(id);
+      const university = await dbStorage.getUniversityById(id);
       
       if (!university) {
         return res.status(404).json({ message: "University not found" });
@@ -365,7 +366,7 @@ export async function registerRoutes(app: Express): Promise<Server> {
   app.post("/api/admin/universities", requireAdmin, async (req, res) => {
     try {
       const validatedData = insertUniversitySchema.parse(req.body);
-      const university = await storage.createUniversity(validatedData);
+      const university = await dbStorage.createUniversity(validatedData);
       res.status(201).json(university);
     } catch (error) {
       if (error instanceof z.ZodError) {
@@ -385,7 +386,7 @@ export async function registerRoutes(app: Express): Promise<Server> {
       const id = parseInt(req.params.id);
       const validatedData = insertUniversitySchema.partial().parse(req.body);
       
-      const updatedUniversity = await storage.updateUniversity(id, validatedData);
+      const updatedUniversity = await dbStorage.updateUniversity(id, validatedData);
       
       if (!updatedUniversity) {
         return res.status(404).json({ message: "University not found" });
@@ -408,7 +409,7 @@ export async function registerRoutes(app: Express): Promise<Server> {
   app.delete("/api/admin/universities/:id", requireAdmin, async (req, res) => {
     try {
       const id = parseInt(req.params.id);
-      const success = await storage.deleteUniversity(id);
+      const success = await dbStorage.deleteUniversity(id);
       
       if (!success) {
         return res.status(404).json({ message: "University not found" });
@@ -424,9 +425,9 @@ export async function registerRoutes(app: Express): Promise<Server> {
   // Public routes - these are for non-admin users to access data
   app.get("/api/blog-posts", async (req, res) => {
     try {
-      const posts = await storage.getAllBlogPosts();
+      const posts = await dbStorage.getAllBlogPosts();
       // Only return published posts for public view
-      const publishedPosts = posts.filter(post => post.published);
+      const publishedPosts = posts.filter((post: BlogPost) => post.published);
       res.json(publishedPosts);
     } catch (error) {
       console.error("Error fetching blog posts:", error);
@@ -436,7 +437,7 @@ export async function registerRoutes(app: Express): Promise<Server> {
   
   app.get("/api/blog-posts/:slug", async (req, res) => {
     try {
-      const post = await storage.getBlogPostBySlug(req.params.slug);
+      const post = await dbStorage.getBlogPostBySlug(req.params.slug);
       
       if (!post || !post.published) {
         return res.status(404).json({ message: "Blog post not found" });
@@ -451,7 +452,7 @@ export async function registerRoutes(app: Express): Promise<Server> {
   
   app.get("/api/countries", async (req, res) => {
     try {
-      const countries = await storage.getAllCountries();
+      const countries = await dbStorage.getAllCountries();
       res.json(countries);
     } catch (error) {
       console.error("Error fetching countries:", error);
@@ -461,7 +462,7 @@ export async function registerRoutes(app: Express): Promise<Server> {
   
   app.get("/api/universities", async (req, res) => {
     try {
-      const universities = await storage.getAllUniversities();
+      const universities = await dbStorage.getAllUniversities();
       res.json(universities);
     } catch (error) {
       console.error("Error fetching universities:", error);
