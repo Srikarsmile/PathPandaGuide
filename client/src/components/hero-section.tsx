@@ -27,16 +27,16 @@ export default function HeroSection() {
           <p className="text-xl mb-8 text-white/90 max-w-lg">
             We guide students to their ideal international education opportunities, from visa support to scholarship applications.
           </p>
-          <div className="flex flex-wrap gap-4">
+          <div className="flex flex-wrap gap-4 items-center">
             <Link href="/consult">
-              <Button className="px-8 py-7 bg-panda-yellow hover:bg-opacity-90 text-panda-purple font-bold rounded-xl shadow-xl transition-all duration-300 hover:shadow-2xl hover:-translate-y-1 text-lg group">
-                Book a free consult
+              <Button className="px-8 py-7 bg-panda-yellow hover:bg-opacity-90 text-panda-purple font-bold rounded-xl shadow-xl transition-all duration-300 hover:shadow-2xl hover:-translate-y-1 text-lg group flex items-center justify-center">
+                <span>Book a free consult</span>
                 <ArrowRight className="ml-2 h-5 w-5 transition-transform group-hover:translate-x-1" />
               </Button>
             </Link>
             <Link href="/features">
-              <Button variant="outline" className="px-8 py-7 bg-white/10 backdrop-blur-sm hover:bg-white/20 text-white border-white/20 font-semibold rounded-xl shadow-lg transition-all duration-200 hover:shadow-xl text-lg">
-                Explore Features
+              <Button variant="outline" className="px-8 py-7 bg-white/10 backdrop-blur-sm hover:bg-white/20 text-white border-white/20 font-semibold rounded-xl shadow-lg transition-all duration-200 hover:shadow-xl text-lg flex items-center justify-center">
+                <span>Explore Features</span>
               </Button>
             </Link>
           </div>
