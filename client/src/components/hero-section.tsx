@@ -5,10 +5,11 @@ import { ArrowRight, GraduationCap, Globe, Award } from "lucide-react";
 export default function HeroSection() {
   return (
     <section className="relative overflow-hidden">
-      {/* Premium royal background */}
-      <div className="absolute inset-0 bg-gradient-to-br from-[#2a0845] via-panda-purple to-[#6441A5] opacity-95">
-        <div className="absolute inset-0 bg-[url('https://images.unsplash.com/photo-1523050854058-8df90110c9f1?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1950&q=80')] bg-cover bg-center mix-blend-overlay opacity-20"></div>
-        <div className="absolute inset-0 bg-[url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNjAiIGhlaWdodD0iNjAiIHZpZXdCb3g9IjAgMCA2MCA2MCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48ZyBmaWxsPSJub25lIiBmaWxsLXJ1bGU9ImV2ZW5vZGQiPjxnIGZpbGw9IiNmZmZmZmYiIGZpbGwtb3BhY2l0eT0iMC4xIj48cGF0aCBkPSJNMzYgMzRjMC0yLjIwOS0xLjc5LTQtNC00cy00IDEuNzkxLTQgNCAzLjc5IDYgNCA2YzEuMjI0-Ljk1NyA0LTMuNzkxIDQtNnoiLz48L2c+PC9nPjwvc3ZnPg==')] opacity-20"></div>
+      {/* Premium royal background with dark mode support */}
+      <div className="absolute inset-0 bg-gradient-to-br from-[#2a0845] via-panda-purple to-[#6441A5] opacity-95 dark:from-[#1a0835] dark:via-[#4C0666] dark:to-[#5431A5] dark:opacity-90">
+        <div className="absolute inset-0 bg-[url('https://images.unsplash.com/photo-1523050854058-8df90110c9f1?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1950&q=80')] bg-cover bg-center mix-blend-overlay opacity-20 dark:opacity-15"></div>
+        <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent dark:from-black/40 dark:to-transparent"></div>
+        <div className="absolute inset-0 bg-[url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNjAiIGhlaWdodD0iNjAiIHZpZXdCb3g9IjAgMCA2MCA2MCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48ZyBmaWxsPSJub25lIiBmaWxsLXJ1bGU9ImV2ZW5vZGQiPjxnIGZpbGw9IiNmZmZmZmYiIGZpbGwtb3BhY2l0eT0iMC4xIj48cGF0aCBkPSJNMzYgMzRjMC0yLjIwOS0xLjc5LTQtNC00cy00IDEuNzkxLTQgNCAzLjc5IDYgNCA2YzEuMjI0-Ljk1NyA0LTMuNzkxIDQtNnoiLz48L2c+PC9nPjwvc3ZnPg==')] opacity-20 dark:opacity-30"></div>
       </div>
 
       {/* Floating elements */}
@@ -24,10 +25,10 @@ export default function HeroSection() {
               Global Education Specialists
             </span>
           </div>
-          <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold mb-4 md:mb-6 leading-tight">
-            Your <span className="text-panda-yellow">Path</span> to Academic Excellence Abroad
+          <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold mb-4 md:mb-6 leading-tight text-white">
+            Your <span className="text-panda-yellow drop-shadow-md">Path</span> to Academic Excellence Abroad
           </h1>
-          <p className="text-base md:text-xl mb-6 md:mb-8 text-white/90 max-w-lg">
+          <p className="text-base md:text-xl mb-6 md:mb-8 text-white font-medium max-w-lg drop-shadow-sm">
             Personalized guidance from advisors who understand your ambitions. We transform your international education aspirations into exceptional academic journeys.
           </p>
           <div className="flex flex-wrap gap-3 md:gap-4 items-center">
@@ -48,18 +49,18 @@ export default function HeroSection() {
           <div className="grid grid-cols-3 gap-2 md:gap-4 mt-8 md:mt-12 bg-gradient-to-r from-white/10 to-white/5 backdrop-blur-sm rounded-xl p-3 md:p-6 border border-white/20 shadow-xl">
             <div className="text-center relative">
               <div className="absolute -top-1 -left-1 w-6 h-6 border-t-2 border-l-2 border-panda-yellow/50 rounded-tl-lg"></div>
-              <div className="text-2xl sm:text-3xl md:text-4xl font-bold bg-gradient-to-r from-panda-yellow to-[#FFD700] text-transparent bg-clip-text">50+</div>
-              <div className="text-xs md:text-sm text-white/90 font-medium">Destinations</div>
+              <div className="text-2xl sm:text-3xl md:text-4xl font-bold bg-gradient-to-r from-panda-yellow to-[#FFD700] text-transparent bg-clip-text drop-shadow-lg">50+</div>
+              <div className="text-xs md:text-sm text-white font-medium">Destinations</div>
             </div>
             <div className="text-center relative">
               <div className="absolute -top-1 -left-1 w-6 h-6 border-t-2 border-l-2 border-panda-yellow/50 rounded-tl-lg"></div>
-              <div className="text-2xl sm:text-3xl md:text-4xl font-bold bg-gradient-to-r from-panda-yellow to-[#FFD700] text-transparent bg-clip-text">1000+</div>
-              <div className="text-xs md:text-sm text-white/90 font-medium">Institutions</div>
+              <div className="text-2xl sm:text-3xl md:text-4xl font-bold bg-gradient-to-r from-panda-yellow to-[#FFD700] text-transparent bg-clip-text drop-shadow-lg">1000+</div>
+              <div className="text-xs md:text-sm text-white font-medium">Institutions</div>
             </div>
             <div className="text-center relative">
               <div className="absolute -top-1 -left-1 w-6 h-6 border-t-2 border-l-2 border-panda-yellow/50 rounded-tl-lg"></div>
-              <div className="text-2xl sm:text-3xl md:text-4xl font-bold bg-gradient-to-r from-panda-yellow to-[#FFD700] text-transparent bg-clip-text">10k+</div>
-              <div className="text-xs md:text-sm text-white/90 font-medium">Students Placed</div>
+              <div className="text-2xl sm:text-3xl md:text-4xl font-bold bg-gradient-to-r from-panda-yellow to-[#FFD700] text-transparent bg-clip-text drop-shadow-lg">10k+</div>
+              <div className="text-xs md:text-sm text-white font-medium">Students Placed</div>
             </div>
           </div>
         </div>
@@ -83,18 +84,18 @@ export default function HeroSection() {
               className="absolute inset-4 object-cover rounded-xl shadow-lg"
             />
             
-            {/* Refined badges */}
-            <div className="absolute -left-4 md:-left-5 top-10 bg-gradient-to-r from-white to-gray-100 rounded-lg shadow-xl p-2 md:p-3 flex items-center gap-1 md:gap-2 animate-float border border-[#FFD700]/30">
+            {/* Enhanced badges */}
+            <div className="absolute -left-4 md:-left-5 top-10 bg-gradient-to-r from-white to-gray-100 rounded-lg shadow-2xl p-2 md:p-3 flex items-center gap-1 md:gap-2 animate-float border-2 border-[#FFD700]/40">
               <GraduationCap className="h-5 w-5 md:h-6 md:w-6 text-panda-purple" />
-              <span className="text-xs md:text-sm font-medium text-gray-700">Top-tier Universities</span>
+              <span className="text-xs md:text-sm font-bold text-gray-800">Top-tier Universities</span>
             </div>
-            <div className="absolute -right-4 md:-right-5 top-1/3 bg-gradient-to-r from-white to-gray-100 rounded-lg shadow-xl p-2 md:p-3 flex items-center gap-1 md:gap-2 animate-float-reverse hidden sm:flex border border-[#FFD700]/30">
+            <div className="absolute -right-4 md:-right-5 top-1/3 bg-gradient-to-r from-white to-gray-100 rounded-lg shadow-2xl p-2 md:p-3 flex items-center gap-1 md:gap-2 animate-float-reverse hidden sm:flex border-2 border-[#FFD700]/40">
               <Globe className="h-5 w-5 md:h-6 md:w-6 text-panda-purple" />
-              <span className="text-xs md:text-sm font-medium text-gray-700">Global Network</span>
+              <span className="text-xs md:text-sm font-bold text-gray-800">Global Network</span>
             </div>
-            <div className="absolute -left-4 md:-left-5 bottom-10 bg-gradient-to-r from-white to-gray-100 rounded-lg shadow-xl p-2 md:p-3 flex items-center gap-1 md:gap-2 animate-float-slow border border-[#FFD700]/30">
+            <div className="absolute -left-4 md:-left-5 bottom-10 bg-gradient-to-r from-white to-gray-100 rounded-lg shadow-2xl p-2 md:p-3 flex items-center gap-1 md:gap-2 animate-float-slow border-2 border-[#FFD700]/40">
               <Award className="h-5 w-5 md:h-6 md:w-6 text-[#FFC000]" />
-              <span className="text-xs md:text-sm font-medium text-gray-700">Scholarship Access</span>
+              <span className="text-xs md:text-sm font-bold text-gray-800">Scholarship Access</span>
             </div>
           </div>
         </div>

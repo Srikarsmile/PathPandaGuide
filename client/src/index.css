@@ -33,31 +33,31 @@
 
 .dark {
   --background: 240 10% 3.9%;
-  --foreground: 0 0% 98%;
+  --foreground: 0 0% 100%;  /* Increased brightness for better contrast */
   --muted: 240 3.7% 15.9%;
-  --muted-foreground: 240 5% 64.9%;
+  --muted-foreground: 240 5% 84.9%; /* Increased brightness for better contrast */
   --popover: 240 10% 3.9%;
-  --popover-foreground: 0 0% 98%;
+  --popover-foreground: 0 0% 100%; /* Increased brightness for better contrast */
   --card: 240 10% 3.9%;
-  --card-foreground: 0 0% 98%;
-  --border: 240 3.7% 15.9%;
+  --card-foreground: 0 0% 100%; /* Increased brightness for better contrast */
+  --border: 240 3.7% 25.9%; /* Increased brightness for better visibility */
   --input: 240 3.7% 15.9%;
-  --primary: 207 90% 54%;
-  --primary-foreground: 211 100% 99%;
+  --primary: 207 90% 64%; /* Made slightly brighter for dark mode */
+  --primary-foreground: 211 100% 100%; /* Increased brightness for better contrast */
   --secondary: 240 3.7% 15.9%;
-  --secondary-foreground: 0 0% 98%;
+  --secondary-foreground: 0 0% 100%; /* Increased brightness for better contrast */
   --accent: 240 3.7% 15.9%;
-  --accent-foreground: 0 0% 98%;
-  --destructive: 0 62.8% 30.6%;
-  --destructive-foreground: 0 0% 98%;
+  --accent-foreground: 0 0% 100%; /* Increased brightness for better contrast */
+  --destructive: 0 82.8% 40.6%; /* Made more visible */
+  --destructive-foreground: 0 0% 100%; /* Increased brightness for better contrast */
   --ring: 240 4.9% 83.9%;
   --radius: 0.5rem;
   
-  /* Path Panda Custom Colors - Dark mode might use the same values or adjusted ones */
-  --panda-pink: 359 96% 73%;  /* #FC7A7A */
-  --panda-yellow: 45 100% 60%; /* #FFCF33 */
-  --panda-purple: 284 89% 22%; /* #5C076B */
-  --panda-lav: 271 42% 67%;    /* #B088CF */
+  /* Path Panda Custom Colors - Adjusted for Dark Mode */
+  --panda-pink: 359 96% 80%;      /* Brighter #FC7A7A */
+  --panda-yellow: 45 100% 65%;    /* Brighter #FFCF33 */
+  --panda-purple: 284 89% 35%;    /* Brighter #5C076B */
+  --panda-lav: 271 52% 77%;       /* Brighter #B088CF */
 }
 
 @layer base {
