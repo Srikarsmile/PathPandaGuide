@@ -174,7 +174,7 @@ export default function AdminDashboard() {
                   Manage your blog posts here. You can create, edit, and delete posts.
                 </CardDescription>
               </div>
-              <Button>
+              <Button onClick={() => window.location.href = "/admin/blog/new"}>
                 <Plus className="mr-2 h-4 w-4" /> Add New Post
               </Button>
             </CardHeader>
@@ -222,7 +222,11 @@ export default function AdminDashboard() {
                         {post.published ? "Yes" : "No"}
                       </div>
                       <div className="col-span-3 flex gap-2">
-                        <Button variant="outline" size="sm">
+                        <Button 
+                          variant="outline" 
+                          size="sm"
+                          onClick={() => window.location.href = `/admin/blog/edit/${post.id}`}
+                        >
                           <Edit className="h-4 w-4" />
                         </Button>
                         <Button 

@@ -19,8 +19,10 @@ import { ProtectedRoute } from "@/lib/protected-route";
 // Lazy load the consult page
 const Consult = lazy(() => import("@/pages/consult"));
 
-// Lazy load the admin dashboard page
+// Lazy load admin pages
 const AdminDashboard = lazy(() => import("@/pages/admin-dashboard"));
+const AdminBlogNew = lazy(() => import("@/pages/admin-blog-new"));
+const AdminBlogEdit = lazy(() => import("@/pages/admin-blog-edit"));
 
 function Router() {
   return (
@@ -56,6 +58,32 @@ function Router() {
           </div>
         }>
           <AdminDashboard />
+        </Suspense>
+      </Route>
+      
+      <Route path="/admin/blog/new">
+        <Suspense fallback={
+          <div className="min-h-screen flex items-center justify-center p-12 bg-gradient-to-b from-panda-purple/5 to-panda-lav/5">
+            <div className="flex flex-col items-center">
+              <div className="w-12 h-12 rounded-full border-4 border-panda-purple/30 border-t-panda-purple animate-spin mb-4"></div>
+              <p className="text-panda-purple dark:text-panda-lav font-medium">Loading new blog post form...</p>
+            </div>
+          </div>
+        }>
+          <AdminBlogNew />
+        </Suspense>
+      </Route>
+      
+      <Route path="/admin/blog/edit/:id">
+        <Suspense fallback={
+          <div className="min-h-screen flex items-center justify-center p-12 bg-gradient-to-b from-panda-purple/5 to-panda-lav/5">
+            <div className="flex flex-col items-center">
+              <div className="w-12 h-12 rounded-full border-4 border-panda-purple/30 border-t-panda-purple animate-spin mb-4"></div>
+              <p className="text-panda-purple dark:text-panda-lav font-medium">Loading blog post editor...</p>
+            </div>
+          </div>
+        }>
+          <AdminBlogEdit />
         </Suspense>
       </Route>
       
