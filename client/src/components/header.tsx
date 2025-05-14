@@ -4,6 +4,7 @@ import { Button } from "@/components/ui/button";
 import { Menu } from "lucide-react";
 import DarkModeToggle from "./dark-mode-toggle";
 import AuthButton from "./auth-button";
+import pathPandaLogo from "../assets/path-panda-logo.png";
 
 export default function Header() {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
@@ -20,7 +21,7 @@ export default function Header() {
             <Link href="/">
               <div className="flex items-center cursor-pointer">
                 <img 
-                  src="/path-panda-logo.png" 
+                  src={pathPandaLogo} 
                   alt="Path Panda Logo" 
                   className="h-9 md:h-10 mr-2 transition-all duration-300 hover:scale-105 filter dark:brightness-125" 
                 />
