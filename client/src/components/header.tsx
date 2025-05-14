@@ -15,7 +15,7 @@ export default function Header() {
 
   return (
     <header className="bg-white dark:bg-gray-900 shadow-sm sticky top-0 z-50 border-b border-gray-100 dark:border-gray-800">
-      <div className="container mx-auto px-6 py-4">
+      <div className="container mx-auto px-6 py-1">
         <div className="flex justify-between items-center">
           <div className="flex items-center">
             <Link href="/">
@@ -23,41 +23,41 @@ export default function Header() {
                 <img 
                   src={pathPandaLogo} 
                   alt="Path Panda Logo" 
-                  className="h-16 md:h-20 transition-all duration-300 hover:scale-105 filter dark:brightness-125" 
+                  className="h-28 md:h-40 -my-8 transition-all duration-300 hover:scale-105 filter dark:brightness-125" 
                 />
               </div>
             </Link>
           </div>
           
-          <div className="hidden md:flex items-center space-x-10">
-            <nav className="flex items-center space-x-8">
+          <div className="hidden md:flex items-center space-x-6">
+            <nav className="flex items-center space-x-6">
               <Link href="/">
-                <span className="text-gray-800 dark:text-white font-medium text-sm hover:text-panda-purple dark:hover:text-panda-yellow transition-colors duration-200">
+                <span className="text-gray-600 dark:text-gray-300 font-light text-xs hover:text-panda-purple dark:hover:text-panda-yellow transition-colors duration-200">
                   Home
                 </span>
               </Link>
               <Link href="/tools">
-                <span className="text-gray-800 dark:text-white font-medium text-sm hover:text-panda-purple dark:hover:text-panda-yellow transition-colors duration-200">
+                <span className="text-gray-600 dark:text-gray-300 font-light text-xs hover:text-panda-purple dark:hover:text-panda-yellow transition-colors duration-200">
                   Resources
                 </span>
               </Link>
               <Link href="/features">
-                <span className="text-gray-800 dark:text-white font-medium text-sm hover:text-panda-purple dark:hover:text-panda-yellow transition-colors duration-200">
+                <span className="text-gray-600 dark:text-gray-300 font-light text-xs hover:text-panda-purple dark:hover:text-panda-yellow transition-colors duration-200">
                   Services
                 </span>
               </Link>
               <Link href="/blog">
-                <span className="text-gray-800 dark:text-white font-medium text-sm hover:text-panda-purple dark:hover:text-panda-yellow transition-colors duration-200">
+                <span className="text-gray-600 dark:text-gray-300 font-light text-xs hover:text-panda-purple dark:hover:text-panda-yellow transition-colors duration-200">
                   Insights
                 </span>
               </Link>
               <Link href="/about">
-                <span className="text-gray-800 dark:text-white font-medium text-sm hover:text-panda-purple dark:hover:text-panda-yellow transition-colors duration-200">
+                <span className="text-gray-600 dark:text-gray-300 font-light text-xs hover:text-panda-purple dark:hover:text-panda-yellow transition-colors duration-200">
                   About
                 </span>
               </Link>
               <Link href="/contact">
-                <span className="text-gray-800 dark:text-white font-medium text-sm hover:text-panda-purple dark:hover:text-panda-yellow transition-colors duration-200">
+                <span className="text-gray-600 dark:text-gray-300 font-light text-xs hover:text-panda-purple dark:hover:text-panda-yellow transition-colors duration-200">
                   Contact
                 </span>
               </Link>
@@ -66,7 +66,7 @@ export default function Header() {
             <div className="flex items-center space-x-4">
               <Link href="/consult">
                 <Button
-                  className="bg-panda-purple hover:bg-panda-purple/90 text-white font-medium text-sm px-5 py-2 rounded"
+                  className="bg-panda-purple/90 hover:bg-panda-purple text-white font-light text-xs px-4 py-1.5 rounded text-[10px]"
                 >
                   Schedule Advising
                 </Button>
