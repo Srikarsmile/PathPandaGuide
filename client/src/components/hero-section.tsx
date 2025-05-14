@@ -49,17 +49,17 @@ export default function HeroSection() {
           <div className="grid grid-cols-3 gap-2 md:gap-4 mt-8 md:mt-12 bg-gradient-to-r from-white/10 to-white/5 backdrop-blur-sm rounded-xl p-3 md:p-6 border border-white/20 shadow-xl">
             <div className="text-center relative">
               <div className="absolute -top-1 -left-1 w-6 h-6 border-t-2 border-l-2 border-panda-yellow/50 rounded-tl-lg"></div>
-              <div className="text-2xl sm:text-3xl md:text-4xl font-bold bg-gradient-to-r from-panda-yellow to-[#FFD700] text-transparent bg-clip-text drop-shadow-lg">50+</div>
+              <div className="text-2xl sm:text-3xl md:text-4xl font-bold text-panda-yellow drop-shadow-lg">50+</div>
               <div className="text-xs md:text-sm text-white font-medium">Destinations</div>
             </div>
             <div className="text-center relative">
               <div className="absolute -top-1 -left-1 w-6 h-6 border-t-2 border-l-2 border-panda-yellow/50 rounded-tl-lg"></div>
-              <div className="text-2xl sm:text-3xl md:text-4xl font-bold bg-gradient-to-r from-panda-yellow to-[#FFD700] text-transparent bg-clip-text drop-shadow-lg">1000+</div>
+              <div className="text-2xl sm:text-3xl md:text-4xl font-bold text-panda-yellow drop-shadow-lg">1000+</div>
               <div className="text-xs md:text-sm text-white font-medium">Institutions</div>
             </div>
             <div className="text-center relative">
               <div className="absolute -top-1 -left-1 w-6 h-6 border-t-2 border-l-2 border-panda-yellow/50 rounded-tl-lg"></div>
-              <div className="text-2xl sm:text-3xl md:text-4xl font-bold bg-gradient-to-r from-panda-yellow to-[#FFD700] text-transparent bg-clip-text drop-shadow-lg">10k+</div>
+              <div className="text-2xl sm:text-3xl md:text-4xl font-bold text-panda-yellow drop-shadow-lg">10k+</div>
               <div className="text-xs md:text-sm text-white font-medium">Students Placed</div>
             </div>
           </div>
