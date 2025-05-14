@@ -15,7 +15,7 @@ export default function Header() {
 
   return (
     <header className="bg-gradient-to-r from-white/80 to-white/95 dark:from-gray-900/80 dark:to-gray-900/95 backdrop-blur-lg shadow-lg sticky top-0 z-50 border-b border-gray-100/50 dark:border-gray-800/50">
-      <div className="container mx-auto px-4 py-1 md:py-2">
+      <div className="container mx-auto px-4 py-3 md:py-5">
         <div className="flex justify-between items-center">
           <div className="flex items-center">
             <Link href="/">
@@ -23,14 +23,14 @@ export default function Header() {
                 <img 
                   src={pathPandaLogo} 
                   alt="Path Panda Logo" 
-                  className="h-20 md:h-24 mr-4 transition-all duration-300 hover:scale-105 filter dark:brightness-125" 
+                  className="h-28 md:h-32 -my-4 mr-4 transition-all duration-300 hover:scale-105 filter dark:brightness-125" 
                 />
               </div>
             </Link>
           </div>
           
-          <div className="hidden md:flex items-center space-x-6">
-            <div className="flex space-x-1 md:space-x-2 lg:space-x-5">
+          <div className="hidden md:flex items-center space-x-8">
+            <div className="flex space-x-1 md:space-x-2 lg:space-x-6">
               <Link href="/">
                 <span className="relative text-gray-800 dark:text-white hover:text-panda-purple dark:hover:text-panda-yellow cursor-pointer font-light text-sm md:text-base group px-2 py-1 transition-all duration-300">
                   <span className="relative z-10">Home</span>
