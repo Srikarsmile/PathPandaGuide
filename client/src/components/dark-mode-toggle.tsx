@@ -1,30 +1,18 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Moon, Sun } from "lucide-react";
+import { useTheme } from "@/lib/theme-context";
 
 interface DarkModeToggleProps {
   className?: string;
 }
 
 export default function DarkModeToggle({ className }: DarkModeToggleProps) {
-  const [isDarkMode, setIsDarkMode] = useState(false);
+  const { theme, toggleTheme } = useTheme();
   const [isAnimating, setIsAnimating] = useState(false);
+  const isDarkMode = theme === 'dark';
 
-  useEffect(() => {
-    // Check for saved theme preference or prefer-color-scheme
-    const savedTheme = localStorage.getItem("theme");
-    const prefersDark = window.matchMedia("(prefers-color-scheme: dark)").matches;
-    
-    if (savedTheme === "dark" || (!savedTheme && prefersDark)) {
-      document.documentElement.classList.add("dark");
-      setIsDarkMode(true);
-    } else {
-      document.documentElement.classList.remove("dark");
-      setIsDarkMode(false);
-    }
-  }, []);
-
-  const toggleDarkMode = () => {
+  const handleToggle = () => {
     if (isAnimating) return; // Prevent rapid clicking during animation
     
     setIsAnimating(true);
@@ -45,16 +33,8 @@ export default function DarkModeToggle({ className }: DarkModeToggleProps) {
       overlay.style.opacity = '1';
       
       setTimeout(() => {
-        // Update theme after a slight delay for visual effect
-        setIsDarkMode(newDarkMode);
-        
-        if (newDarkMode) {
-          document.documentElement.classList.add("dark");
-          localStorage.setItem("theme", "dark");
-        } else {
-          document.documentElement.classList.remove("dark");
-          localStorage.setItem("theme", "light");
-        }
+        // Toggle theme
+        toggleTheme();
         
         // Fade out the overlay
         setTimeout(() => {
@@ -73,7 +53,7 @@ export default function DarkModeToggle({ className }: DarkModeToggleProps) {
 
   return (
     <Button 
-      onClick={toggleDarkMode} 
+      onClick={handleToggle} 
       size="icon" 
       variant="outline" 
       disabled={isAnimating}

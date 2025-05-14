@@ -215,7 +215,7 @@ export default function AuthPage() {
       </div>
       
       {/* Right side - Hero section */}
-      <div className="w-full md:w-1/2 bg-gradient-to-br from-pink-500 to-purple-900 p-12 flex items-center justify-center text-white">
+      <div className="w-full md:w-1/2 bg-gradient-to-br from-pink-500 to-purple-900 dark:from-gray-800 dark:to-gray-950 p-12 flex items-center justify-center text-white transition-colors duration-300">
         <div className="max-w-lg">
           <h1 className="text-4xl font-bold mb-6">Path Panda Admin Dashboard</h1>
           <p className="text-xl mb-6">
