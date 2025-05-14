@@ -22,7 +22,7 @@ export default function About() {
         
         <main className="flex-grow">
           {/* Hero section */}
-          <section className="bg-gradient-to-r from-panda-pink to-panda-purple text-white pt-16 pb-20 relative overflow-hidden">
+          <section className="bg-gradient-to-r from-panda-pink to-panda-purple dark:from-gray-800 dark:to-gray-900 text-white pt-16 pb-20 relative overflow-hidden transition-colors duration-300">
             <div className="absolute top-10 left-10 w-20 h-20 rounded-full bg-white opacity-10"></div>
             <div className="absolute bottom-10 right-10 w-32 h-32 rounded-full bg-panda-yellow opacity-10"></div>
             <div className="container mx-auto px-4 relative z-10">

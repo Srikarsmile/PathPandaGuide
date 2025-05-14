@@ -23,7 +23,7 @@ export default function Features() {
         <Header />
         
         <main className="flex-grow">
-          <div className="bg-gradient-to-r from-panda-pink to-panda-purple text-white py-12">
+          <div className="bg-gradient-to-r from-panda-pink to-panda-purple dark:from-gray-800 dark:to-gray-900 text-white py-12 transition-colors duration-300">
             <div className="container mx-auto px-4">
               <h1 className="text-4xl font-bold mb-4 text-center">Study Abroad Features</h1>
               <p className="text-xl max-w-2xl mx-auto text-center">

@@ -22,7 +22,7 @@ export default function Tools() {
         <Header />
         
         <main className="flex-grow">
-          <div className="relative overflow-hidden bg-gradient-to-r from-panda-purple to-panda-pink text-white py-16">
+          <div className="relative overflow-hidden bg-gradient-to-r from-panda-purple to-panda-pink dark:from-gray-800 dark:to-gray-900 text-white py-16 transition-colors duration-300">
             <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-panda-yellow via-white to-panda-yellow opacity-20"></div>
             <div className="absolute -top-24 -right-24 w-48 h-48 rounded-full bg-panda-yellow opacity-10"></div>
             <div className="absolute -bottom-32 -left-32 w-64 h-64 rounded-full bg-panda-lav opacity-10"></div>
