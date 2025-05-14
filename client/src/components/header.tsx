@@ -58,7 +58,7 @@ export default function Header() {
                 </span>
               </Link>
               <Link href="/contact">
-                <span className="text-gray-900 dark:text-gray-200 font-normal text-sm hover:text-panda-purple dark:hover:text-panda-yellow transition-colors duration-200">
+                <span className="text-gray-900 dark:text-gray-200 font-medium text-sm hover:text-panda-purple dark:hover:text-panda-yellow transition-colors duration-200">
                   Contact
                 </span>
               </Link>
@@ -98,32 +98,32 @@ export default function Header() {
           <div className="md:hidden mt-3 pb-3 border-t border-gray-100 dark:border-gray-700 pt-3 animate-in slide-in-from-top duration-300">
             <nav className="flex flex-col space-y-3">
               <Link href="/" onClick={() => setIsMobileMenuOpen(false)}>
-                <span className="block text-gray-900 dark:text-white hover:bg-gray-50 dark:hover:bg-gray-800 px-4 py-2 rounded-md font-medium text-sm">
+                <span className="block text-gray-900 dark:text-white hover:bg-gray-50 dark:hover:bg-gray-800 px-4 py-2 rounded-md font-semibold text-sm">
                   Home
                 </span>
               </Link>
               <Link href="/tools" onClick={() => setIsMobileMenuOpen(false)}>
-                <span className="block text-gray-900 dark:text-white hover:bg-gray-50 dark:hover:bg-gray-800 px-4 py-2 rounded-md font-medium text-sm">
+                <span className="block text-gray-900 dark:text-white hover:bg-gray-50 dark:hover:bg-gray-800 px-4 py-2 rounded-md font-semibold text-sm">
                   Resources
                 </span>
               </Link>
               <Link href="/features" onClick={() => setIsMobileMenuOpen(false)}>
-                <span className="block text-gray-900 dark:text-white hover:bg-gray-50 dark:hover:bg-gray-800 px-4 py-2 rounded-md font-medium text-sm">
+                <span className="block text-gray-900 dark:text-white hover:bg-gray-50 dark:hover:bg-gray-800 px-4 py-2 rounded-md font-semibold text-sm">
                   Services
                 </span>
               </Link>
               <Link href="/blog" onClick={() => setIsMobileMenuOpen(false)}>
-                <span className="block text-gray-900 dark:text-white hover:bg-gray-50 dark:hover:bg-gray-800 px-4 py-2 rounded-md font-medium text-sm">
+                <span className="block text-gray-900 dark:text-white hover:bg-gray-50 dark:hover:bg-gray-800 px-4 py-2 rounded-md font-semibold text-sm">
                   Insights
                 </span>
               </Link>
               <Link href="/about" onClick={() => setIsMobileMenuOpen(false)}>
-                <span className="block text-gray-900 dark:text-white hover:bg-gray-50 dark:hover:bg-gray-800 px-4 py-2 rounded-md font-medium text-sm">
+                <span className="block text-gray-900 dark:text-white hover:bg-gray-50 dark:hover:bg-gray-800 px-4 py-2 rounded-md font-semibold text-sm">
                   About
                 </span>
               </Link>
               <Link href="/contact" onClick={() => setIsMobileMenuOpen(false)}>
-                <span className="block text-gray-900 dark:text-white hover:bg-gray-50 dark:hover:bg-gray-800 px-4 py-2 rounded-md font-medium text-sm">
+                <span className="block text-gray-900 dark:text-white hover:bg-gray-50 dark:hover:bg-gray-800 px-4 py-2 rounded-md font-semibold text-sm">
                   Contact
                 </span>
               </Link>
