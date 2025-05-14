@@ -18,10 +18,13 @@ export default function Header() {
         <div className="flex justify-between items-center">
           <div className="flex items-center">
             <Link href="/">
-              <span className="flex items-center font-bold text-xl md:text-2xl cursor-pointer">
-                <span className="bg-gradient-to-r from-panda-yellow to-[#FFC000] text-transparent bg-clip-text mr-1">Path</span>
-                <span className="bg-gradient-to-r from-panda-purple to-panda-lav text-transparent bg-clip-text">Panda</span>
-              </span>
+              <div className="flex items-center cursor-pointer">
+                <img 
+                  src="/path-panda-logo.png" 
+                  alt="Path Panda Logo" 
+                  className="h-9 md:h-10 mr-2 transition-all duration-300 hover:scale-105 filter dark:brightness-125" 
+                />
+              </div>
             </Link>
           </div>
           
