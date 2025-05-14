@@ -33,7 +33,7 @@ export default function HeroSection() {
           </p>
           <div className="flex flex-wrap gap-3 md:gap-4 items-center">
             <Link href="/consult">
-              <Button className="px-5 py-5 md:px-8 md:py-7 bg-gradient-to-r from-panda-yellow to-[#FFC000] text-panda-purple font-bold rounded-xl shadow-xl transition-all duration-300 hover:shadow-2xl hover:-translate-y-1 text-sm md:text-lg group flex items-center justify-center border border-white/10">
+              <Button className="px-5 py-5 md:px-8 md:py-7 bg-panda-yellow hover:bg-panda-yellow/90 text-panda-purple font-bold rounded-xl shadow-xl transition-all duration-300 hover:shadow-2xl hover:-translate-y-1 text-sm md:text-lg group flex items-center justify-center border border-white/10">
                 <span>Book a Consultation</span>
                 <ArrowRight className="ml-2 h-4 w-4 md:h-5 md:w-5 transition-transform group-hover:translate-x-1" />
               </Button>

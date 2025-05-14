@@ -18,10 +18,10 @@ export default function CTASection() {
         <div className="bg-white/10 backdrop-blur-lg rounded-3xl p-6 sm:p-8 md:p-12 shadow-2xl border border-white/20 max-w-5xl mx-auto">
           <div className="grid md:grid-cols-5 gap-6 md:gap-8 items-center">
             <div className="md:col-span-3">
-              <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold text-white mb-4 md:mb-6 leading-tight">
-                Ready to Start Your <span className="text-panda-yellow">Study Abroad</span> Journey?
+              <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold text-white drop-shadow-lg mb-4 md:mb-6 leading-tight">
+                Ready to Start Your <span className="text-panda-yellow drop-shadow-lg">Study Abroad</span> Journey?
               </h2>
-              <p className="text-base sm:text-lg md:text-xl text-white/90 mb-6 md:mb-8 max-w-2xl">
+              <p className="text-base sm:text-lg md:text-xl text-white font-medium drop-shadow mb-6 md:mb-8 max-w-2xl">
                 Get personalized guidance from our experienced consultants and take the first step toward your international education.
               </p>
               
@@ -42,7 +42,7 @@ export default function CTASection() {
               <div className="bg-white/20 backdrop-blur-md rounded-2xl p-5 md:p-8 shadow-lg border border-white/20">
                 <h3 className="text-xl md:text-2xl font-bold text-white mb-4 md:mb-6 text-center">Book Your Session</h3>
                 <Link href="/consult">
-                  <Button className="w-full px-4 py-6 md:px-8 md:py-8 bg-panda-yellow hover:bg-opacity-90 text-panda-purple font-bold rounded-xl shadow-xl transition-all duration-300 hover:shadow-2xl hover:-translate-y-1 text-base md:text-lg group flex items-center justify-center">
+                  <Button className="w-full px-4 py-6 md:px-8 md:py-8 bg-panda-yellow hover:bg-panda-yellow/90 text-panda-purple font-bold rounded-xl shadow-xl transition-all duration-300 hover:shadow-2xl hover:-translate-y-1 text-base md:text-lg group flex items-center justify-center">
                     <span>Book Free Consultation</span>
                     <ArrowRight className="ml-2 h-4 w-4 md:h-5 md:w-5 transition-transform group-hover:translate-x-1" />
                   </Button>
