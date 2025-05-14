@@ -109,7 +109,7 @@ export default function Consult() {
 
       <Header />
 
-      <main className="bg-gradient-to-b from-panda-purple/5 to-panda-lav/5">
+      <main className="bg-gradient-to-b from-panda-purple/5 to-panda-lav/5 dark:from-gray-900 dark:to-gray-900">
         <section className="py-16 md:py-24">
           <div className="container px-4 mx-auto">
             <div className="max-w-3xl mx-auto">

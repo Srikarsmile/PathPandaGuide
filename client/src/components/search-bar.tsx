@@ -45,7 +45,7 @@ export default function SearchBar() {
   return (
     <section className="py-24 bg-gray-50 dark:bg-gray-800 relative overflow-hidden">
       {/* Decorative elements */}
-      <div className="absolute top-0 left-0 w-full h-full bg-gradient-to-br from-panda-lav/5 to-panda-pink/5"></div>
+      <div className="absolute top-0 left-0 w-full h-full bg-gradient-to-br from-panda-lav/5 to-panda-pink/5 dark:from-panda-lav/10 dark:to-panda-pink/10"></div>
       <div className="absolute top-12 right-24 w-24 h-24 bg-panda-yellow/20 rounded-full blur-3xl"></div>
       <div className="absolute bottom-12 left-24 w-32 h-32 bg-panda-purple/20 rounded-full blur-3xl"></div>
       
