@@ -13,59 +13,70 @@ export default function Header() {
   };
 
   return (
-    <header className="bg-white/90 dark:bg-gray-900/90 backdrop-blur-md shadow-lg sticky top-0 z-50 border-b border-gray-100 dark:border-gray-800">
-      <div className="container mx-auto px-4 py-3 md:py-4">
+    <header className="bg-gradient-to-r from-white/80 to-white/95 dark:from-gray-900/80 dark:to-gray-900/95 backdrop-blur-lg shadow-lg sticky top-0 z-50 border-b border-gray-100/50 dark:border-gray-800/50">
+      <div className="container mx-auto px-4 py-3 md:py-5">
         <div className="flex justify-between items-center">
           <div className="flex items-center">
             <Link href="/">
-              <span className="flex items-center text-panda-purple dark:text-panda-lav font-bold text-xl md:text-2xl cursor-pointer">
-                <span className="text-panda-yellow mr-1">Path</span>Panda
+              <span className="flex items-center font-bold text-xl md:text-2xl cursor-pointer">
+                <span className="bg-gradient-to-r from-panda-yellow to-[#FFC000] text-transparent bg-clip-text mr-1">Path</span>
+                <span className="bg-gradient-to-r from-panda-purple to-panda-lav text-transparent bg-clip-text">Panda</span>
               </span>
             </Link>
           </div>
           
           <div className="hidden md:flex items-center space-x-8">
-            <Link href="/">
-              <span className="text-gray-800 dark:text-white hover:text-panda-purple dark:hover:text-panda-yellow transition-colors duration-200 cursor-pointer text-sm uppercase tracking-wide font-medium">
-                Home
-              </span>
-            </Link>
-            <Link href="/tools">
-              <span className="text-gray-800 dark:text-white hover:text-panda-purple dark:hover:text-panda-yellow transition-colors duration-200 cursor-pointer text-sm uppercase tracking-wide font-medium">
-                Resources
-              </span>
-            </Link>
-            <Link href="/features">
-              <span className="text-gray-800 dark:text-white hover:text-panda-purple dark:hover:text-panda-yellow transition-colors duration-200 cursor-pointer text-sm uppercase tracking-wide font-medium">
-                Services
-              </span>
-            </Link>
-            <Link href="/blog">
-              <span className="text-gray-800 dark:text-white hover:text-panda-purple dark:hover:text-panda-yellow transition-colors duration-200 cursor-pointer text-sm uppercase tracking-wide font-medium">
-                Insights
-              </span>
-            </Link>
-            <Link href="/about">
-              <span className="text-gray-800 dark:text-white hover:text-panda-purple dark:hover:text-panda-yellow transition-colors duration-200 cursor-pointer text-sm uppercase tracking-wide font-medium">
-                About
-              </span>
-            </Link>
-            <Link href="/contact">
-              <span className="text-gray-800 dark:text-white hover:text-panda-purple dark:hover:text-panda-yellow transition-colors duration-200 cursor-pointer text-sm uppercase tracking-wide font-medium">
-                Contact
-              </span>
-            </Link>
+            <div className="flex space-x-1 md:space-x-2 lg:space-x-6">
+              <Link href="/">
+                <span className="relative text-gray-800 dark:text-white hover:text-panda-purple dark:hover:text-panda-yellow cursor-pointer font-light text-sm md:text-base group px-2 py-1 transition-all duration-300">
+                  <span className="relative z-10">Home</span>
+                  <span className="absolute bottom-0 left-0 w-0 h-[1px] bg-panda-purple dark:bg-panda-yellow group-hover:w-full transition-all duration-300"></span>
+                </span>
+              </Link>
+              <Link href="/tools">
+                <span className="relative text-gray-800 dark:text-white hover:text-panda-purple dark:hover:text-panda-yellow cursor-pointer font-light text-sm md:text-base group px-2 py-1 transition-all duration-300">
+                  <span className="relative z-10">Resources</span>
+                  <span className="absolute bottom-0 left-0 w-0 h-[1px] bg-panda-purple dark:bg-panda-yellow group-hover:w-full transition-all duration-300"></span>
+                </span>
+              </Link>
+              <Link href="/features">
+                <span className="relative text-gray-800 dark:text-white hover:text-panda-purple dark:hover:text-panda-yellow cursor-pointer font-light text-sm md:text-base group px-2 py-1 transition-all duration-300">
+                  <span className="relative z-10">Services</span>
+                  <span className="absolute bottom-0 left-0 w-0 h-[1px] bg-panda-purple dark:bg-panda-yellow group-hover:w-full transition-all duration-300"></span>
+                </span>
+              </Link>
+              <Link href="/blog">
+                <span className="relative text-gray-800 dark:text-white hover:text-panda-purple dark:hover:text-panda-yellow cursor-pointer font-light text-sm md:text-base group px-2 py-1 transition-all duration-300">
+                  <span className="relative z-10">Insights</span>
+                  <span className="absolute bottom-0 left-0 w-0 h-[1px] bg-panda-purple dark:bg-panda-yellow group-hover:w-full transition-all duration-300"></span>
+                </span>
+              </Link>
+              <Link href="/about">
+                <span className="relative text-gray-800 dark:text-white hover:text-panda-purple dark:hover:text-panda-yellow cursor-pointer font-light text-sm md:text-base group px-2 py-1 transition-all duration-300">
+                  <span className="relative z-10">About</span>
+                  <span className="absolute bottom-0 left-0 w-0 h-[1px] bg-panda-purple dark:bg-panda-yellow group-hover:w-full transition-all duration-300"></span>
+                </span>
+              </Link>
+              <Link href="/contact">
+                <span className="relative text-gray-800 dark:text-white hover:text-panda-purple dark:hover:text-panda-yellow cursor-pointer font-light text-sm md:text-base group px-2 py-1 transition-all duration-300">
+                  <span className="relative z-10">Contact</span>
+                  <span className="absolute bottom-0 left-0 w-0 h-[1px] bg-panda-purple dark:bg-panda-yellow group-hover:w-full transition-all duration-300"></span>
+                </span>
+              </Link>
+            </div>
             
-            <Link href="/consult">
-              <Button
-                className="bg-gradient-to-r from-panda-yellow to-[#FFC000] hover:bg-panda-yellow/90 text-panda-purple font-semibold py-2 px-5 rounded-full shadow-md border border-panda-yellow/30"
-              >
-                Schedule Advising
-              </Button>
-            </Link>
-            
-            <AuthButton />
-            <DarkModeToggle />
+            <div className="ml-4 flex items-center space-x-4">
+              <Link href="/consult">
+                <Button
+                  className="bg-gradient-to-r from-panda-yellow to-[#FFC000] hover:from-[#FFC000] hover:to-panda-yellow text-panda-purple font-medium py-2 px-5 rounded-full shadow-md border border-panda-yellow/30 transition-all duration-300 hover:shadow-lg hover:-translate-y-0.5"
+                >
+                  Schedule Advising
+                </Button>
+              </Link>
+              
+              <AuthButton />
+              <DarkModeToggle />
+            </div>
           </div>
           
           {/* Mobile menu button */}
@@ -85,45 +96,72 @@ export default function Header() {
         
         {/* Mobile menu */}
         {isMobileMenuOpen && (
-          <div className="md:hidden mt-3 pb-3 border-t border-gray-100 dark:border-gray-700 pt-3 animate-in slide-in-from-top duration-300">
-            <nav className="flex flex-col space-y-4">
+          <div className="md:hidden mt-3 pb-3 border-t border-gray-100/50 dark:border-gray-700/50 pt-3 animate-in slide-in-from-top duration-300">
+            <nav className="flex flex-col space-y-5">
               <Link href="/" onClick={() => setIsMobileMenuOpen(false)}>
-                <span className="text-gray-800 dark:text-white hover:text-panda-purple dark:hover:text-panda-yellow transition-colors duration-200 cursor-pointer block py-2 px-3 rounded-md hover:bg-gray-50 dark:hover:bg-gray-800 text-sm uppercase tracking-wide font-medium">
-                  Home
+                <span className="text-gray-800 dark:text-white group cursor-pointer flex items-center px-3 py-2">
+                  <span className="w-0.5 h-0 group-hover:h-full bg-panda-purple dark:bg-panda-yellow transition-all duration-300 mr-3"></span>
+                  <span className="font-light text-base relative">
+                    Home
+                    <span className="absolute bottom-0 left-0 w-0 h-[0.5px] bg-panda-purple/30 dark:bg-panda-yellow/30 group-hover:w-full transition-all duration-300"></span>
+                  </span>
                 </span>
               </Link>
               <Link href="/tools" onClick={() => setIsMobileMenuOpen(false)}>
-                <span className="text-gray-800 dark:text-white hover:text-panda-purple dark:hover:text-panda-yellow transition-colors duration-200 cursor-pointer block py-2 px-3 rounded-md hover:bg-gray-50 dark:hover:bg-gray-800 text-sm uppercase tracking-wide font-medium">
-                  Resources
+                <span className="text-gray-800 dark:text-white group cursor-pointer flex items-center px-3 py-2">
+                  <span className="w-0.5 h-0 group-hover:h-full bg-panda-purple dark:bg-panda-yellow transition-all duration-300 mr-3"></span>
+                  <span className="font-light text-base relative">
+                    Resources
+                    <span className="absolute bottom-0 left-0 w-0 h-[0.5px] bg-panda-purple/30 dark:bg-panda-yellow/30 group-hover:w-full transition-all duration-300"></span>
+                  </span>
                 </span>
               </Link>
               <Link href="/features" onClick={() => setIsMobileMenuOpen(false)}>
-                <span className="text-gray-800 dark:text-white hover:text-panda-purple dark:hover:text-panda-yellow transition-colors duration-200 cursor-pointer block py-2 px-3 rounded-md hover:bg-gray-50 dark:hover:bg-gray-800 text-sm uppercase tracking-wide font-medium">
-                  Services
+                <span className="text-gray-800 dark:text-white group cursor-pointer flex items-center px-3 py-2">
+                  <span className="w-0.5 h-0 group-hover:h-full bg-panda-purple dark:bg-panda-yellow transition-all duration-300 mr-3"></span>
+                  <span className="font-light text-base relative">
+                    Services
+                    <span className="absolute bottom-0 left-0 w-0 h-[0.5px] bg-panda-purple/30 dark:bg-panda-yellow/30 group-hover:w-full transition-all duration-300"></span>
+                  </span>
                 </span>
               </Link>
               <Link href="/blog" onClick={() => setIsMobileMenuOpen(false)}>
-                <span className="text-gray-800 dark:text-white hover:text-panda-purple dark:hover:text-panda-yellow transition-colors duration-200 cursor-pointer block py-2 px-3 rounded-md hover:bg-gray-50 dark:hover:bg-gray-800 text-sm uppercase tracking-wide font-medium">
-                  Insights
+                <span className="text-gray-800 dark:text-white group cursor-pointer flex items-center px-3 py-2">
+                  <span className="w-0.5 h-0 group-hover:h-full bg-panda-purple dark:bg-panda-yellow transition-all duration-300 mr-3"></span>
+                  <span className="font-light text-base relative">
+                    Insights
+                    <span className="absolute bottom-0 left-0 w-0 h-[0.5px] bg-panda-purple/30 dark:bg-panda-yellow/30 group-hover:w-full transition-all duration-300"></span>
+                  </span>
                 </span>
               </Link>
               <Link href="/about" onClick={() => setIsMobileMenuOpen(false)}>
-                <span className="text-gray-800 dark:text-white hover:text-panda-purple dark:hover:text-panda-yellow transition-colors duration-200 cursor-pointer block py-2 px-3 rounded-md hover:bg-gray-50 dark:hover:bg-gray-800 text-sm uppercase tracking-wide font-medium">
-                  About
+                <span className="text-gray-800 dark:text-white group cursor-pointer flex items-center px-3 py-2">
+                  <span className="w-0.5 h-0 group-hover:h-full bg-panda-purple dark:bg-panda-yellow transition-all duration-300 mr-3"></span>
+                  <span className="font-light text-base relative">
+                    About
+                    <span className="absolute bottom-0 left-0 w-0 h-[0.5px] bg-panda-purple/30 dark:bg-panda-yellow/30 group-hover:w-full transition-all duration-300"></span>
+                  </span>
                 </span>
               </Link>
               <Link href="/contact" onClick={() => setIsMobileMenuOpen(false)}>
-                <span className="text-gray-800 dark:text-white hover:text-panda-purple dark:hover:text-panda-yellow transition-colors duration-200 cursor-pointer block py-2 px-3 rounded-md hover:bg-gray-50 dark:hover:bg-gray-800 text-sm uppercase tracking-wide font-medium">
-                  Contact
-                </span>
-              </Link>
-              <Link href="/consult" onClick={() => setIsMobileMenuOpen(false)}>
-                <span className="block bg-gradient-to-r from-panda-yellow to-[#FFC000] text-panda-purple font-semibold py-3 px-4 rounded-full text-center shadow-md border border-panda-yellow/30">
-                  Schedule Advising
+                <span className="text-gray-800 dark:text-white group cursor-pointer flex items-center px-3 py-2">
+                  <span className="w-0.5 h-0 group-hover:h-full bg-panda-purple dark:bg-panda-yellow transition-all duration-300 mr-3"></span>
+                  <span className="font-light text-base relative">
+                    Contact
+                    <span className="absolute bottom-0 left-0 w-0 h-[0.5px] bg-panda-purple/30 dark:bg-panda-yellow/30 group-hover:w-full transition-all duration-300"></span>
+                  </span>
                 </span>
               </Link>
               
-              <div className="px-2">
+              <div className="px-3 pt-3 border-t border-gray-100/20 dark:border-gray-700/20 mt-2">
+                <Link href="/consult" onClick={() => setIsMobileMenuOpen(false)}>
+                  <span className="block bg-gradient-to-r from-panda-yellow to-[#FFC000] hover:from-[#FFC000] hover:to-panda-yellow text-panda-purple font-medium py-3 px-5 rounded-full text-center shadow-md border border-panda-yellow/30 transition-all duration-300">
+                    Schedule Advising
+                  </span>
+                </Link>
+              </div>
+              
+              <div className="px-3 flex justify-start">
                 <AuthButton />
               </div>
             </nav>
