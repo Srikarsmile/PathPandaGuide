@@ -40,7 +40,7 @@ export default function CTASection() {
             </div>
             <div className="md:col-span-2 mt-6 md:mt-0">
               <div className="bg-white/20 backdrop-blur-md rounded-2xl p-5 md:p-8 shadow-lg border border-white/20">
-                <h3 className="text-xl md:text-2xl font-bold text-white mb-4 md:mb-6 text-center">Book Your Session</h3>
+                <h3 className="text-xl md:text-2xl font-bold text-white drop-shadow-lg mb-4 md:mb-6 text-center">Book Your Session</h3>
                 <Link href="/consult">
                   <Button className="w-full px-4 py-6 md:px-8 md:py-8 bg-panda-yellow hover:bg-panda-yellow/90 text-panda-purple font-bold rounded-xl shadow-xl transition-all duration-300 hover:shadow-2xl hover:-translate-y-1 text-base md:text-lg group flex items-center justify-center">
                     <span>Book Free Consultation</span>
