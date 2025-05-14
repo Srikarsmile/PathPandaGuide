@@ -23,7 +23,8 @@ export default function Header() {
                 <img 
                   src={pathPandaLogo} 
                   alt="Path Panda Logo" 
-                  className="h-28 md:h-40 -my-8 transition-all duration-300 hover:scale-105 filter dark:brightness-125" 
+                  className="h-28 md:h-40 -my-8 transition-all duration-300 hover:scale-105 filter dark:brightness-125"
+                  key="logo-image" 
                 />
               </div>
             </Link>
@@ -32,27 +33,27 @@ export default function Header() {
           <div className="hidden md:flex items-center space-x-6">
             <nav className="flex items-center space-x-6">
               <Link href="/">
-                <span className="text-gray-900 dark:text-gray-200 font-normal text-sm hover:text-panda-purple dark:hover:text-panda-yellow transition-colors duration-200">
+                <span className="text-gray-900 dark:text-gray-200 font-medium text-sm hover:text-panda-purple dark:hover:text-panda-yellow transition-colors duration-200">
                   Home
                 </span>
               </Link>
               <Link href="/tools">
-                <span className="text-gray-900 dark:text-gray-200 font-normal text-sm hover:text-panda-purple dark:hover:text-panda-yellow transition-colors duration-200">
+                <span className="text-gray-900 dark:text-gray-200 font-medium text-sm hover:text-panda-purple dark:hover:text-panda-yellow transition-colors duration-200">
                   Resources
                 </span>
               </Link>
               <Link href="/features">
-                <span className="text-gray-900 dark:text-gray-200 font-normal text-sm hover:text-panda-purple dark:hover:text-panda-yellow transition-colors duration-200">
+                <span className="text-gray-900 dark:text-gray-200 font-medium text-sm hover:text-panda-purple dark:hover:text-panda-yellow transition-colors duration-200">
                   Services
                 </span>
               </Link>
               <Link href="/blog">
-                <span className="text-gray-900 dark:text-gray-200 font-normal text-sm hover:text-panda-purple dark:hover:text-panda-yellow transition-colors duration-200">
+                <span className="text-gray-900 dark:text-gray-200 font-medium text-sm hover:text-panda-purple dark:hover:text-panda-yellow transition-colors duration-200">
                   Insights
                 </span>
               </Link>
               <Link href="/about">
-                <span className="text-gray-900 dark:text-gray-200 font-normal text-sm hover:text-panda-purple dark:hover:text-panda-yellow transition-colors duration-200">
+                <span className="text-gray-900 dark:text-gray-200 font-medium text-sm hover:text-panda-purple dark:hover:text-panda-yellow transition-colors duration-200">
                   About
                 </span>
               </Link>
