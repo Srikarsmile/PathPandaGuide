@@ -2,7 +2,7 @@ import { useAuth } from "@/hooks/use-auth";
 import { Button } from "@/components/ui/button";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
-import { Redirect } from "wouter";
+import { Redirect, Link as WouterLink } from "wouter";
 import { Loader2, Plus, Edit, Trash2 } from "lucide-react";
 import { useQuery, useMutation } from "@tanstack/react-query";
 import { queryClient, apiRequest } from "@/lib/queryClient";
@@ -19,11 +19,6 @@ export default function AdminDashboard() {
   const { toast } = useToast();
   const [tabValue, setTabValue] = useState("blog");
   
-  // Only allow admin users to access this page
-  if (user?.role !== "admin") {
-    return <Redirect to="/" />;
-  }
-  
   // Queries for different data types
   const { 
     data: blogPosts,
@@ -31,7 +26,7 @@ export default function AdminDashboard() {
     error: blogPostsError 
   } = useQuery<BlogPost[]>({
     queryKey: ["/api/admin/blog-posts"],
-    enabled: tabValue === "blog",
+    enabled: tabValue === "blog" && user?.role === "admin",
   });
   
   const { 
@@ -40,7 +35,7 @@ export default function AdminDashboard() {
     error: countriesError 
   } = useQuery<Country[]>({
     queryKey: ["/api/admin/countries"],
-    enabled: tabValue === "countries",
+    enabled: tabValue === "countries" && user?.role === "admin",
   });
   
   const { 
@@ -49,8 +44,13 @@ export default function AdminDashboard() {
     error: universitiesError 
   } = useQuery<University[]>({
     queryKey: ["/api/admin/universities"],
-    enabled: tabValue === "universities",
+    enabled: tabValue === "universities" && user?.role === "admin",
   });
+  
+  // Redirect non-admin users
+  if (user?.role !== "admin") {
+    return <Redirect to="/" />;
+  }
   
   // Mutation for deleting a blog post
   const deleteBlogMutation = useMutation({
@@ -174,9 +174,11 @@ export default function AdminDashboard() {
                   Manage your blog posts here. You can create, edit, and delete posts.
                 </CardDescription>
               </div>
-              <Button onClick={() => window.location.href = "/admin/blog/new"}>
-                <Plus className="mr-2 h-4 w-4" /> Add New Post
-              </Button>
+              <WouterLink href="/admin/blog/new">
+                <Button>
+                  <Plus className="mr-2 h-4 w-4" /> Add New Post
+                </Button>
+              </WouterLink>
             </CardHeader>
             <CardContent>
               {isLoadingBlogPosts ? (
@@ -222,13 +224,11 @@ export default function AdminDashboard() {
                         {post.published ? "Yes" : "No"}
                       </div>
                       <div className="col-span-3 flex gap-2">
-                        <Button 
-                          variant="outline" 
-                          size="sm"
-                          onClick={() => window.location.href = `/admin/blog/edit/${post.id}`}
-                        >
-                          <Edit className="h-4 w-4" />
-                        </Button>
+                        <WouterLink href={`/admin/blog/edit/${post.id}`}>
+                          <Button variant="outline" size="sm">
+                            <Edit className="h-4 w-4" />
+                          </Button>
+                        </WouterLink>
                         <Button 
                           variant="destructive" 
                           size="sm"
