@@ -36,6 +36,7 @@ function Router() {
       <Route path="/tools" component={Tools} />
       <Route path="/features" component={Features} />
       <Route path="/about" component={About} />
+      <Route path="/services" component={Services} />
       <Route path="/auth" component={AuthPage} />
       <Route path="/consult">
         <Suspense fallback={
