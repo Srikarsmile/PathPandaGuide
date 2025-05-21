@@ -23,25 +23,29 @@ export default function CTASection() {
               <div className="flex flex-wrap gap-3 md:gap-4 items-center">
                 <div className="flex items-center bg-gray-100 dark:bg-gray-800 rounded-lg px-3 py-1.5 md:px-4 md:py-2 text-gray-800 dark:text-white text-sm md:text-base shadow-md">
                   <Calendar className="h-4 w-4 md:h-5 md:w-5 mr-1.5 md:mr-2" />
-                  <span className="font-medium">Free 30-min session</span>
+                  <span className="font-medium">Expert guidance</span>
                 </div>
                 <div className="flex items-center bg-gray-100 dark:bg-gray-800 rounded-lg px-3 py-1.5 md:px-4 md:py-2 text-gray-800 dark:text-white text-sm md:text-base shadow-md">
                   <svg className="h-4 w-4 md:h-5 md:w-5 mr-1.5 md:mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
                   </svg>
-                  <span className="font-medium">No obligation</span>
+                  <span className="font-medium">Tailored advice</span>
                 </div>
               </div>
             </div>
             <div className="md:col-span-2 mt-6 md:mt-0">
               <div className="bg-white dark:bg-gray-800 rounded-2xl p-5 md:p-8 shadow-lg border border-gray-100 dark:border-gray-700">
                 <h3 className="text-xl md:text-2xl font-bold text-gray-900 dark:text-white mb-4 md:mb-6 text-center">Book Your Session</h3>
-                <Link href="/consult">
+                <a
+                  href="https://wa.me/+918639885985?text=Hi%20Pathpanda%20team%2C%20I%27d%20like%20to%20book%20a%20consultation%20about%20studying%20abroad."
+                  target="_blank"
+                  rel="noopener"
+                >
                   <Button className="w-full px-4 py-6 md:px-8 md:py-8 bg-panda-yellow hover:bg-panda-yellow/90 text-panda-purple font-bold rounded-xl shadow-xl transition-all duration-300 hover:shadow-2xl hover:-translate-y-1 text-base md:text-lg group flex items-center justify-center">
                     <span>Book Free Consultation</span>
                     <ArrowRight className="ml-2 h-4 w-4 md:h-5 md:w-5 transition-transform group-hover:translate-x-1" />
                   </Button>
-                </Link>
+                </a>
                 <p className="text-center text-gray-500 dark:text-gray-300 mt-3 md:mt-4 text-xs md:text-sm font-medium">
                   Our consultants will get back to you within 24 hours
                 </p>

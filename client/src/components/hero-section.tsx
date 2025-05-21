@@ -32,12 +32,16 @@ export default function HeroSection() {
             Personalized guidance from advisors who understand your ambitions. We transform your international education aspirations into exceptional academic journeys.
           </p>
           <div className="flex flex-wrap gap-3 md:gap-4 items-center">
-            <Link href="/consult">
+            <a
+              href="https://wa.me/+918639885985?text=Hi%20Pathpanda%20team%2C%20I%27d%20like%20to%20book%20a%20consultation%20about%20studying%20abroad."
+              target="_blank"
+              rel="noopener"
+            >
               <Button className="px-5 py-5 md:px-8 md:py-7 bg-panda-yellow hover:bg-panda-yellow/90 text-panda-purple font-bold rounded-xl shadow-xl transition-all duration-300 hover:shadow-2xl hover:-translate-y-1 text-sm md:text-lg group flex items-center justify-center border border-white/10">
-                <span>Book a Consultation</span>
+                <span>Book Free Consultation</span>
                 <ArrowRight className="ml-2 h-4 w-4 md:h-5 md:w-5 transition-transform group-hover:translate-x-1" />
               </Button>
-            </Link>
+            </a>
             <Link href="/features">
               <Button variant="outline" className="px-5 py-5 md:px-8 md:py-7 bg-white/10 backdrop-blur-sm hover:bg-white/20 text-white border border-white/30 font-semibold rounded-xl shadow-lg transition-all duration-200 hover:shadow-xl text-sm md:text-lg flex items-center justify-center">
                 <span>Explore Our Services</span>
