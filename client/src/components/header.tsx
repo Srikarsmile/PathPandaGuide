@@ -37,14 +37,14 @@ export default function Header() {
                   Home
                 </span>
               </Link>
-              <Link href="/tools">
-                <span className="text-gray-900 dark:text-gray-200 font-medium text-sm hover:text-panda-purple dark:hover:text-panda-yellow transition-colors duration-200">
-                  Resources
-                </span>
-              </Link>
-              <Link href="/features">
+              <Link href="/services">
                 <span className="text-gray-900 dark:text-gray-200 font-medium text-sm hover:text-panda-purple dark:hover:text-panda-yellow transition-colors duration-200">
                   Services
+                </span>
+              </Link>
+              <Link href="/search">
+                <span className="text-gray-900 dark:text-gray-200 font-medium text-sm hover:text-panda-purple dark:hover:text-panda-yellow transition-colors duration-200">
+                  University Search
                 </span>
               </Link>
               <Link href="/blog">

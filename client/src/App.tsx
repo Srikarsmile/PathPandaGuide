@@ -13,6 +13,8 @@ import Features from "@/pages/features";
 import About from "@/pages/about";
 import Services from "@/pages/services";
 import UniversitySearch from "@/pages/search";
+import Consultation from "@/pages/consultation";
+import CheckoutSuccess from "@/pages/checkout-success";
 import AuthPage from "@/pages/auth-page";
 import { lazy, Suspense } from "react";
 import { Helmet } from "react-helmet";
@@ -41,6 +43,8 @@ function Router() {
       <Route path="/services" component={Services} />
       <Route path="/search" component={UniversitySearch} />
       <Route path="/auth" component={AuthPage} />
+      <Route path="/consultation" component={Consultation} />
+      <Route path="/checkout-success" component={CheckoutSuccess} />
       <Route path="/consult">
         <Suspense fallback={
           <div className="min-h-screen flex items-center justify-center p-12 bg-gradient-to-b from-panda-purple/5 to-panda-lav/5">
