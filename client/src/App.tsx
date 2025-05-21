@@ -5,16 +5,8 @@ import { Toaster } from "@/components/ui/toaster";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import NotFound from "@/pages/not-found";
 import Home from "@/pages/home";
-import Blog from "@/pages/blog";
-import BlogPost from "@/pages/blog-post";
 import Contact from "@/pages/contact";
-import Tools from "@/pages/tools";
-import Features from "@/pages/features";
-import About from "@/pages/about";
 import Services from "@/pages/services";
-import UniversitySearch from "@/pages/search";
-import Consultation from "@/pages/consultation";
-import CheckoutSuccess from "@/pages/checkout-success";
 import AuthPage from "@/pages/auth-page";
 import { lazy, Suspense } from "react";
 import { Helmet } from "react-helmet";
@@ -22,82 +14,58 @@ import { AuthProvider } from "@/hooks/use-auth";
 import { ProtectedRoute } from "@/lib/protected-route";
 import { ThemeProvider } from "@/lib/theme-context";
 
-// Lazy load the consult page
-const Consult = lazy(() => import("@/pages/consult"));
-
 // Lazy load admin pages
 const AdminDashboard = lazy(() => import("@/pages/admin-dashboard"));
 const AdminBlogNew = lazy(() => import("@/pages/admin-blog-new"));
 const AdminBlogEdit = lazy(() => import("@/pages/admin-blog-edit"));
 
+// Loading fallback component
+const LoadingFallback = ({ message }: { message: string }) => (
+  <div className="min-h-screen flex items-center justify-center p-12 bg-gradient-to-b from-panda-purple/5 to-panda-lav/5">
+    <div className="flex flex-col items-center">
+      <div className="w-12 h-12 rounded-full border-4 border-panda-purple/30 border-t-panda-purple animate-spin mb-4"></div>
+      <p className="text-panda-purple dark:text-panda-lav font-medium">{message}</p>
+    </div>
+  </div>
+);
+
 function Router() {
   return (
     <Switch>
+      {/* Main Routes - 3-page structure */}
       <Route path="/" component={Home} />
-      <Route path="/blog" component={Blog} />
-      <Route path="/blog/:slug" component={BlogPost} />
-      <Route path="/contact" component={Contact} />
-      <Route path="/tools" component={Tools} />
-      <Route path="/features" component={Features} />
-      <Route path="/about" component={About} />
       <Route path="/services" component={Services} />
-      <Route path="/search" component={UniversitySearch} />
+      <Route path="/contact" component={Contact} />
+      
+      {/* Auth Route */}
       <Route path="/auth" component={AuthPage} />
-      <Route path="/consultation" component={Consultation} />
-      <Route path="/checkout-success" component={CheckoutSuccess} />
-      <Route path="/consult">
-        <Suspense fallback={
-          <div className="min-h-screen flex items-center justify-center p-12 bg-gradient-to-b from-panda-purple/5 to-panda-lav/5">
-            <div className="flex flex-col items-center">
-              <div className="w-12 h-12 rounded-full border-4 border-panda-purple/30 border-t-panda-purple animate-spin mb-4"></div>
-              <p className="text-panda-purple dark:text-panda-lav font-medium">Loading consultation page...</p>
-            </div>
-          </div>
-        }>
-          <Consult />
-        </Suspense>
-      </Route>
       
       {/* Admin Routes */}
-      <Route path="/admin">
-        <Suspense fallback={
-          <div className="min-h-screen flex items-center justify-center p-12 bg-gradient-to-b from-panda-purple/5 to-panda-lav/5">
-            <div className="flex flex-col items-center">
-              <div className="w-12 h-12 rounded-full border-4 border-panda-purple/30 border-t-panda-purple animate-spin mb-4"></div>
-              <p className="text-panda-purple dark:text-panda-lav font-medium">Loading admin dashboard...</p>
-            </div>
-          </div>
-        }>
-          <AdminDashboard />
+      <Route path="/admin" component={() => (
+        <Suspense fallback={<LoadingFallback message="Loading admin dashboard..." />}>
+          <ProtectedRoute>
+            <AdminDashboard />
+          </ProtectedRoute>
         </Suspense>
-      </Route>
+      )} />
       
-      <Route path="/admin/blog/new">
-        <Suspense fallback={
-          <div className="min-h-screen flex items-center justify-center p-12 bg-gradient-to-b from-panda-purple/5 to-panda-lav/5">
-            <div className="flex flex-col items-center">
-              <div className="w-12 h-12 rounded-full border-4 border-panda-purple/30 border-t-panda-purple animate-spin mb-4"></div>
-              <p className="text-panda-purple dark:text-panda-lav font-medium">Loading new blog post form...</p>
-            </div>
-          </div>
-        }>
-          <AdminBlogNew />
+      <Route path="/admin/blog/new" component={() => (
+        <Suspense fallback={<LoadingFallback message="Loading new blog post form..." />}>
+          <ProtectedRoute>
+            <AdminBlogNew />
+          </ProtectedRoute>
         </Suspense>
-      </Route>
+      )} />
       
-      <Route path="/admin/blog/edit/:id">
-        <Suspense fallback={
-          <div className="min-h-screen flex items-center justify-center p-12 bg-gradient-to-b from-panda-purple/5 to-panda-lav/5">
-            <div className="flex flex-col items-center">
-              <div className="w-12 h-12 rounded-full border-4 border-panda-purple/30 border-t-panda-purple animate-spin mb-4"></div>
-              <p className="text-panda-purple dark:text-panda-lav font-medium">Loading blog post editor...</p>
-            </div>
-          </div>
-        }>
-          <AdminBlogEdit />
+      <Route path="/admin/blog/edit/:id" component={({ params }) => (
+        <Suspense fallback={<LoadingFallback message="Loading blog post editor..." />}>
+          <ProtectedRoute>
+            <AdminBlogEdit />
+          </ProtectedRoute>
         </Suspense>
-      </Route>
+      )} />
       
+      {/* 404 Page */}
       <Route component={NotFound} />
     </Switch>
   );
