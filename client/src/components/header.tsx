@@ -61,7 +61,7 @@ export default function Header() {
             
             <div className="flex items-center space-x-4">
               <a 
-                href="https://wa.me/442012345678?text=Hi%20Pathpanda%20team%2C%20I%27d%20like%20to%20book%20a%20consultation%20about%20studying%20abroad."
+                href="https://wa.me/+918639885985?text=Hi%20Pathpanda%20team%2C%20I%27d%20like%20to%20book%20a%20consultation%20about%20studying%20abroad."
                 target="_blank"
                 rel="noopener"
               >
@@ -124,7 +124,7 @@ export default function Header() {
               
               <div className="px-4 pt-3 border-t border-gray-100 dark:border-gray-700 mt-2">
                 <a 
-                  href="https://wa.me/442012345678?text=Hi%20Pathpanda%20team%2C%20I%27d%20like%20to%20book%20a%20consultation%20about%20studying%20abroad."
+                  href="https://wa.me/+918639885985?text=Hi%20Pathpanda%20team%2C%20I%27d%20like%20to%20book%20a%20consultation%20about%20studying%20abroad."
                   target="_blank"
                   rel="noopener"
                   onClick={() => setIsMobileMenuOpen(false)}
