@@ -81,18 +81,18 @@ export default function Footer() {
             <h3 className="text-xl font-semibold mb-4 text-gray-800 dark:text-white">Legal</h3>
             <ul className="space-y-2">
               <li>
-                <Link href="/terms">
-                  <span className="text-gray-600 dark:text-gray-400 hover:text-panda-purple dark:hover:text-white transition-colors cursor-pointer">Terms of Service</span>
+                <Link href="/privacy-terms">
+                  <span className="text-gray-600 dark:text-gray-400 hover:text-panda-purple dark:hover:text-white transition-colors cursor-pointer">Privacy & Terms</span>
                 </Link>
               </li>
               <li>
-                <Link href="/privacy">
-                  <span className="text-gray-600 dark:text-gray-400 hover:text-panda-purple dark:hover:text-white transition-colors cursor-pointer">Privacy Policy</span>
+                <Link href="/success-stories">
+                  <span className="text-gray-600 dark:text-gray-400 hover:text-panda-purple dark:hover:text-white transition-colors cursor-pointer">Success Stories</span>
                 </Link>
               </li>
               <li>
-                <Link href="/cookies">
-                  <span className="text-gray-600 dark:text-gray-400 hover:text-panda-purple dark:hover:text-white transition-colors cursor-pointer">Cookie Policy</span>
+                <Link href="/faq">
+                  <span className="text-gray-600 dark:text-gray-400 hover:text-panda-purple dark:hover:text-white transition-colors cursor-pointer">FAQ</span>
                 </Link>
               </li>
             </ul>

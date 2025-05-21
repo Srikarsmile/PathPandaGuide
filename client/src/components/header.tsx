@@ -102,6 +102,16 @@ export default function Header() {
                   Services
                 </span>
               </Link>
+              <Link href="/success-stories" onClick={() => setIsMobileMenuOpen(false)}>
+                <span className="block text-gray-900 dark:text-white hover:bg-gray-50 dark:hover:bg-gray-800 px-4 py-2 rounded-md font-semibold text-sm">
+                  Success Stories
+                </span>
+              </Link>
+              <Link href="/faq" onClick={() => setIsMobileMenuOpen(false)}>
+                <span className="block text-gray-900 dark:text-white hover:bg-gray-50 dark:hover:bg-gray-800 px-4 py-2 rounded-md font-semibold text-sm">
+                  FAQ
+                </span>
+              </Link>
               <Link href="/contact" onClick={() => setIsMobileMenuOpen(false)}>
                 <span className="block text-gray-900 dark:text-white hover:bg-gray-50 dark:hover:bg-gray-800 px-4 py-2 rounded-md font-semibold text-sm">
                   Contact

@@ -11,13 +11,18 @@ import AuthPage from "@/pages/auth-page";
 import { lazy, Suspense } from "react";
 import { Helmet } from "react-helmet";
 import { AuthProvider } from "@/hooks/use-auth";
-import { ProtectedRoute } from "@/lib/protected-route";
 import { ThemeProvider } from "@/lib/theme-context";
+import { AdminRoute } from "@/lib/admin-route";
 
 // Lazy load admin pages
 const AdminDashboard = lazy(() => import("@/pages/admin-dashboard"));
 const AdminBlogNew = lazy(() => import("@/pages/admin-blog-new"));
 const AdminBlogEdit = lazy(() => import("@/pages/admin-blog-edit"));
+
+// Lazy load new pages
+const SuccessStories = lazy(() => import("@/pages/success-stories"));
+const FAQ = lazy(() => import("@/pages/faq"));
+const PrivacyTerms = lazy(() => import("@/pages/privacy-terms"));
 
 // Loading fallback component
 const LoadingFallback = ({ message }: { message: string }) => (
@@ -29,6 +34,15 @@ const LoadingFallback = ({ message }: { message: string }) => (
   </div>
 );
 
+// Regular page route with lazy loading
+const LazyRoute = ({ path, component: Component }: { path: string, component: React.LazyExoticComponent<any> }) => (
+  <Route path={path} component={() => (
+    <Suspense fallback={<LoadingFallback message={`Loading ${path.split('/').pop() || ''}...`} />}>
+      <Component />
+    </Suspense>
+  )} />
+);
+
 function Router() {
   return (
     <Switch>
@@ -38,37 +52,17 @@ function Router() {
       <Route path="/contact" component={Contact} />
       
       {/* New Pages from Pathpanda Content */}
-      <Route path="/success-stories" component={() => import("@/pages/success-stories").then(mod => <mod.default />)} />
-      <Route path="/faq" component={() => import("@/pages/faq").then(mod => <mod.default />)} />
-      <Route path="/privacy-terms" component={() => import("@/pages/privacy-terms").then(mod => <mod.default />)} />
+      <LazyRoute path="/success-stories" component={SuccessStories} />
+      <LazyRoute path="/faq" component={FAQ} />
+      <LazyRoute path="/privacy-terms" component={PrivacyTerms} />
       
       {/* Auth Route */}
       <Route path="/auth" component={AuthPage} />
       
       {/* Admin Routes */}
-      <Route path="/admin" component={() => (
-        <Suspense fallback={<LoadingFallback message="Loading admin dashboard..." />}>
-          <ProtectedRoute>
-            <AdminDashboard />
-          </ProtectedRoute>
-        </Suspense>
-      )} />
-      
-      <Route path="/admin/blog/new" component={() => (
-        <Suspense fallback={<LoadingFallback message="Loading new blog post form..." />}>
-          <ProtectedRoute>
-            <AdminBlogNew />
-          </ProtectedRoute>
-        </Suspense>
-      )} />
-      
-      <Route path="/admin/blog/edit/:id" component={({ params }) => (
-        <Suspense fallback={<LoadingFallback message="Loading blog post editor..." />}>
-          <ProtectedRoute>
-            <AdminBlogEdit />
-          </ProtectedRoute>
-        </Suspense>
-      )} />
+      <AdminRoute path="/admin" component={AdminDashboard} />
+      <AdminRoute path="/admin/blog/new" component={AdminBlogNew} />
+      <AdminRoute path="/admin/blog/edit/:id" component={AdminBlogEdit} />
       
       {/* 404 Page */}
       <Route component={NotFound} />
