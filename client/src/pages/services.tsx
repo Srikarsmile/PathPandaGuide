@@ -1,72 +1,76 @@
-
-import { Layout } from "@/components/layout";
-import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
+import Header from "@/components/header";
+import Footer from "@/components/footer";
+import { Helmet } from "react-helmet";
+import {
+  Accordion,
+  AccordionContent,
+  AccordionItem,
+  AccordionTrigger,
+} from "@/components/ui/accordion";
 
 export default function Services() {
   return (
-    <Layout title="Our Services">
-      {/* Hero */}
-      <section className="bg-[#FC7A7A0D] py-20">
-        <div className="max-w-4xl mx-auto text-center px-4">
-          <h1 className="text-4xl font-bold text-primary mb-4">
-            What We Do
-          </h1>
-          <p className="text-lg text-gray-700 dark:text-gray-300">
-            From the first university shortlist to the moment you land in the UK,
-            PathPanda is your single point of honest, lightning-fast guidance.
-          </p>
-        </div>
-      </section>
+    <>
+      <Helmet>
+        <title>Our Services | Path Panda</title>
+        <meta name="description" content="From your first shortlist to touchdown in the UK, PathPanda has you covered with university matching, application support, and visa assistance." />
+        <meta property="og:title" content="Our Services | Path Panda" />
+        <meta property="og:description" content="From your first shortlist to touchdown in the UK, PathPanda has you covered with university matching, application support, and visa assistance." />
+        <meta property="og:type" content="website" />
+        <meta property="og:url" content="https://pathpanda.com/services" />
+      </Helmet>
+      
+      <div className="min-h-screen flex flex-col">
+        <Header />
+        
+        <main className="flex-grow">
+          <section className="bg-[#FC7A7A0D] py-20 text-center">
+            <h1 className="text-4xl font-bold text-panda-purple mb-4">What We Do</h1>
+            <p className="text-gray-700 dark:text-gray-300 max-w-2xl mx-auto px-4">
+              From your first shortlist to touchdown in the UK, PathPanda has you covered.
+            </p>
+          </section>
 
-      {/* Accordion */}
-      <section className="max-w-3xl mx-auto px-4 py-16">
-        <Accordion type="single" collapsible className="space-y-6">
-          <AccordionItem value="university-matching" className="border border-primary/20 rounded-lg">
-            <AccordionTrigger className="px-4 font-semibold text-primary">
-              1  University & Course Matching
-            </AccordionTrigger>
-            <AccordionContent className="px-4">
-              <p>
-                We analyse your grades, budget and career goals, then recommend UK programmes that
-                maximise ROI—no bias, no hidden agenda. You'll get a personalized shortlist with entry
-                criteria, tuition, and scholarship flags.
-              </p>
-            </AccordionContent>
-          </AccordionItem>
+          <section className="max-w-3xl mx-auto px-4 py-16 space-y-6">
+            <Accordion type="single" collapsible className="w-full">
+              <AccordionItem value="item-1" className="border border-panda-purple/20 rounded-lg mb-4">
+                <AccordionTrigger className="font-semibold text-panda-purple px-4">
+                  1. University & Course Matching
+                </AccordionTrigger>
+                <AccordionContent className="px-4 pb-4">
+                  <p>Personalised shortlists—no bias, no hidden agenda.</p>
+                </AccordionContent>
+              </AccordionItem>
+              
+              <AccordionItem value="item-2" className="border border-panda-purple/20 rounded-lg mb-4">
+                <AccordionTrigger className="font-semibold text-panda-purple px-4">
+                  2. Application + SOP Review
+                </AccordionTrigger>
+                <AccordionContent className="px-4 pb-4">
+                  <p>Tracked-change feedback within 48 h—your voice, polished.</p>
+                </AccordionContent>
+              </AccordionItem>
+              
+              <AccordionItem value="item-3" className="border border-panda-purple/20 rounded-lg mb-4">
+                <AccordionTrigger className="font-semibold text-panda-purple px-4">
+                  3. Visa & Pre-departure Support
+                </AccordionTrigger>
+                <AccordionContent className="px-4 pb-4">
+                  <p>Tier-4 funds, accommodation, packing checklist—sorted.</p>
+                </AccordionContent>
+              </AccordionItem>
+            </Accordion>
+          </section>
 
-          <AccordionItem value="application-review" className="border border-primary/20 rounded-lg">
-            <AccordionTrigger className="px-4 font-semibold text-primary">
-              2  Application + SOP Review
-            </AccordionTrigger>
-            <AccordionContent className="px-4">
-              <p>
-                Submit draft essays and documents; we give tracked-change feedback within 48 h.
-                You keep your authentic voice—our job is clarity, structure and impact.
-              </p>
-            </AccordionContent>
-          </AccordionItem>
-
-          <AccordionItem value="visa-support" className="border border-primary/20 rounded-lg">
-            <AccordionTrigger className="px-4 font-semibold text-primary">
-              3  Visa & Pre-departure Support
-            </AccordionTrigger>
-            <AccordionContent className="px-4">
-              <p>
-                Tier-4 financial proof, accommodation search, packing list, flight hacks—everything
-                distilled into an action checklist so you board stress-free.
-              </p>
-            </AccordionContent>
-          </AccordionItem>
-        </Accordion>
-      </section>
-
-      {/* Call-out */}
-      <section className="bg-accent text-white text-center py-6 px-4">
-        <p className="text-lg font-semibold">
-          All counselling sessions are <span className="underline">100 % FREE</span>—universities
-          fund us, not you.
-        </p>
-      </section>
-    </Layout>
+          <section className="bg-panda-pink text-white text-center py-6 px-4">
+            <p className="text-lg font-semibold">
+              All counselling is <u>100% free</u>—universities fund us, not you.
+            </p>
+          </section>
+        </main>
+        
+        <Footer />
+      </div>
+    </>
   );
 }

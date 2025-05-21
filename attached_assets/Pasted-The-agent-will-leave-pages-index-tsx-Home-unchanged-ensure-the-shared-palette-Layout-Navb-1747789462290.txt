@@ -1,0 +1,175 @@
+The agent will ⬇️
+
+leave /pages/index.tsx (Home) unchanged
+
+ensure the shared palette + Layout, Navbar, Footer exist
+
+create / overwrite the five other pages with consistent copy & colours
+
+remove any left-over visa-check / Stripe code
+
+css
+Copy
+Edit
+🔧  PATCH PATHPANDA  – non-home pages only
+────────────────────────────────────────
+## 0  Palette (skip if already present)
+Edit tailwind.config.js
+```js
+extend:{ colors:{
+  primary:'#5C076B',
+  accent :'#FC7A7A',
+  highlight:'#FFCF33',
+  lavender:'#B088CF',
+}}
+1 Shared layout components
+• components/Layout.tsx ⟶ wraps children, sets <title>, includes Navbar, Footer, WhatsApp bubble (wa.me/91XXXXXXXXXX).
+• components/Navbar.tsx ⟶ links: Home | Services | University Search | Contact + “Book Consultation” button→/consultation; responsive.
+• components/Footer.tsx ⟶ bg-primary text-white, logo, © 2025 PathPanda .
+• components/ui/Button.tsx variants: primary (bg-primary), accent (bg-accent).
+
+2 Pages to create / replace
+Wrap each file in <Layout title='…'> and use Tailwind; keep dark-mode dark:bg-gray-900 dark:text-gray-100.
+
+/pages/services.tsx
+jsx
+Copy
+Edit
+<Layout title="Our Services">
+  <section className="bg-[#FC7A7A0D] py-20 text-center">
+    <h1 className="text-4xl font-bold text-primary mb-4">What We Do</h1>
+    <p className="text-gray-700 dark:text-gray-300">
+      From your first shortlist to touchdown in the UK, PathPanda has you covered.
+    </p>
+  </section>
+
+  <section className="max-w-3xl mx-auto px-4 py-16 space-y-6">
+    <details className="collapse collapse-arrow border border-primary/20 rounded-lg">
+      <summary className="collapse-title font-semibold text-primary">
+        1 University & Course Matching
+      </summary>
+      <div className="collapse-content">
+        <p>Personalised shortlists—no bias, no hidden agenda.</p>
+      </div>
+    </details>
+    <details className="collapse collapse-arrow border border-primary/20 rounded-lg">
+      <summary className="collapse-title font-semibold text-primary">
+        2 Application + SOP Review
+      </summary>
+      <div className="collapse-content">
+        <p>Tracked-change feedback within 48 h—your voice, polished.</p>
+      </div>
+    </details>
+    <details className="collapse collapse-arrow border border-primary/20 rounded-lg">
+      <summary className="collapse-title font-semibold text-primary">
+        3 Visa & Pre-departure Support
+      </summary>
+      <div className="collapse-content">
+        <p>Tier-4 funds, accommodation, packing checklist—sorted.</p>
+      </div>
+    </details>
+  </section>
+
+  <section className="bg-accent text-white text-center py-6 px-4">
+    <p className="text-lg font-semibold">
+      All counselling is <u>100 % free</u>—universities fund us, not you.
+    </p>
+  </section>
+</Layout>
+/pages/search.tsx
+jsx
+Copy
+Edit
+<Layout title="University Search">
+  <section className="max-w-4xl mx-auto px-4 py-20 text-center">
+    <h1 className="text-4xl font-bold text-primary mb-4">Find Your Ideal UK University</h1>
+    <p className="text-gray-700 dark:text-gray-300 mb-8">
+      Ask anything—our AI combs rankings, tuition tables and reviews in seconds.
+    </p>
+
+    {/* --- Search Bar & Results (hook up to /api/university-search) --- */}
+  </section>
+</Layout>
+/pages/consultation.tsx
+jsx
+Copy
+Edit
+<Layout title="Book Consultation">
+  <section className="max-w-3xl mx-auto px-4 py-20 text-center">
+    <h1 className="text-4xl font-bold text-primary mb-4">
+      Book Your Free 30-Minute Counselling Session
+    </h1>
+    <p className="text-gray-700 dark:text-gray-300 mb-10">
+      Chat via Zoom or WhatsApp—your choice.
+    </p>
+
+    <div
+      className="calendly-inline-widget"
+      data-url="https://calendly.com/pathpanda/30min"
+      style={{ minWidth: 320, height: 650 }}
+    />
+    <Script src="https://assets.calendly.com/assets/external/widget.js" />
+  </section>
+</Layout>
+/pages/contact.tsx
+jsx
+Copy
+Edit
+<Layout title="Contact Us">
+  <section className="max-w-2xl mx-auto px-4 py-20">
+    <h1 className="text-4xl font-bold text-primary text-center mb-6">Get in Touch</h1>
+    <p className="text-center text-gray-700 dark:text-gray-300 mb-10">
+      Average reply time: <strong>2 hours</strong>.
+    </p>
+
+    <form action="https://formspree.io/f/your-id" method="POST" className="space-y-6">
+      {/* inputs with border-primary/20 … */}
+      <Button variant="primary" type="submit" className="w-full">Send Message</Button>
+    </form>
+  </section>
+</Layout>
+/pages/about.tsx
+jsx
+Copy
+Edit
+<Layout title="About PathPanda">
+  <section className="max-w-6xl mx-auto grid md:grid-cols-2 gap-12 px-4 py-20 items-center">
+    <div>
+      <h1 className="text-4xl font-bold text-primary mb-4">Our Story</h1>
+      <p className="text-gray-700 dark:text-gray-300 leading-relaxed mb-6">
+        I’m <strong>Srikar</strong>, a CS grad from Vijayawada who landed at
+        the University of Leeds in 2019. PathPanda is the mentor I wish I’d had.
+      </p>
+      <h2 className="text-2xl font-semibold text-primary mb-2">Values</h2>
+      <ul className="list-disc pl-6 space-y-1">
+        <li><b>Integrity</b> — honest advice, no hidden fees.</li>
+        <li><b>Student-First</b> — your goals trump our commissions.</li>
+        <li><b>Lightning Fast</b> — replies in under 24 h.</li>
+      </ul>
+    </div>
+    <Image src="/images/founder.jpg" alt="Founder" width={420} height={560}
+      className="rounded-xl shadow-lg ring-4 ring-primary/20 object-cover" />
+  </section>
+</Layout>
+/pages/checkout-success.tsx (only if needed)
+jsx
+Copy
+Edit
+<Layout title="Payment Successful">
+  <section className="min-h-[60vh] flex flex-col items-center justify-center text-center px-4">
+    <p className="text-6xl mb-4">✅</p>
+    <h1 className="text-3xl font-bold text-primary mb-4">Payment received!</h1>
+    <p className="text-lg text-gray-700 dark:text-gray-300 mb-8">
+      We’ll be in touch within 24 hours.
+    </p>
+    <Button variant="primary" href="/">Back to Home</Button>
+  </section>
+</Layout>
+3 API ROUTE — Perplexity only
+If missing, add /pages/api/university-search.ts (see earlier code block).
+Delete any visa/Stripe routes.
+
+4 Clean-up
+• Remove Visa-Check link and stripe imports.
+• Ensure every new page imports <Layout>.
+• Do NOT touch /pages/index.tsx.

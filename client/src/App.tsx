@@ -11,6 +11,8 @@ import Contact from "@/pages/contact";
 import Tools from "@/pages/tools";
 import Features from "@/pages/features";
 import About from "@/pages/about";
+import Services from "@/pages/services";
+import UniversitySearch from "@/pages/search";
 import AuthPage from "@/pages/auth-page";
 import { lazy, Suspense } from "react";
 import { Helmet } from "react-helmet";
@@ -37,6 +39,7 @@ function Router() {
       <Route path="/features" component={Features} />
       <Route path="/about" component={About} />
       <Route path="/services" component={Services} />
+      <Route path="/search" component={UniversitySearch} />
       <Route path="/auth" component={AuthPage} />
       <Route path="/consult">
         <Suspense fallback={
