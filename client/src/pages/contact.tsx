@@ -1,75 +1,41 @@
-import { useState } from "react";
 import Header from "@/components/header";
 import Footer from "@/components/footer";
 import { Button } from "@/components/ui/button";
+import { Helmet } from "react-helmet";
+import { useEffect } from "react";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
-import { useForm } from "react-hook-form";
-import { z } from "zod";
-import { zodResolver } from "@hookform/resolvers/zod";
-import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from "@/components/ui/form";
-import { Helmet } from "react-helmet";
-import { useToast } from "@/hooks/use-toast";
 
-const contactFormSchema = z.object({
-  name: z.string().min(2, "Name must be at least 2 characters."),
-  email: z.string().email("Please enter a valid email address."),
-  subject: z.string().min(5, "Subject must be at least 5 characters."),
-  message: z.string().min(10, "Message must be at least 10 characters."),
-});
-
-type ContactFormValues = z.infer<typeof contactFormSchema>;
+// Declare the Calendly type to avoid TypeScript errors
+declare global {
+  interface Window {
+    Calendly?: any;
+  }
+}
 
 export default function Contact() {
-  const [isSubmitting, setIsSubmitting] = useState(false);
-  const { toast } = useToast();
-  
-  const form = useForm<ContactFormValues>({
-    resolver: zodResolver(contactFormSchema),
-    defaultValues: {
-      name: "",
-      email: "",
-      subject: "",
-      message: "",
-    },
-  });
+  useEffect(() => {
+    // Load Calendly script
+    const script = document.createElement('script');
+    script.src = "https://assets.calendly.com/assets/external/widget.js";
+    script.async = true;
+    document.body.appendChild(script);
 
-  const onSubmit = async (data: ContactFormValues) => {
-    setIsSubmitting(true);
-    
-    try {
-      // In a real application, we would send this data to an API endpoint
-      console.log("Contact form submitted:", data);
-      
-      // Simulate API call
-      await new Promise(resolve => setTimeout(resolve, 1000));
-      
-      toast({
-        title: "Message sent!",
-        description: "We'll get back to you as soon as possible.",
-      });
-      
-      form.reset();
-    } catch (error) {
-      console.error("Error submitting form:", error);
-      toast({
-        title: "Error",
-        description: "There was a problem sending your message. Please try again.",
-        variant: "destructive",
-      });
-    } finally {
-      setIsSubmitting(false);
-    }
-  };
+    // Clean up on component unmount
+    return () => {
+      if (document.body.contains(script)) {
+        document.body.removeChild(script);
+      }
+    };
+  }, []);
 
   return (
     <>
       <Helmet>
-        <title>Contact Us | Path Panda</title>
-        <meta name="description" content="Contact Path Panda for assistance with your study abroad journey. We're here to help with visa guidance, course matching, and scholarship applications." />
-        <meta property="og:title" content="Contact Path Panda" />
-        <meta property="og:description" content="Get in touch with our experienced study abroad consultants." />
+        <title>Contact & Booking | Path Panda</title>
+        <meta name="description" content="Contact Path Panda for your UK university application needs, or book a free 30-minute consultation call for personalized guidance." />
+        <meta property="og:title" content="Contact & Booking | Path Panda" />
+        <meta property="og:description" content="Contact Path Panda for your UK university application needs, or book a free 30-minute consultation call for personalized guidance." />
         <meta property="og:type" content="website" />
         <meta property="og:url" content="https://pathpanda.com/contact" />
       </Helmet>
@@ -77,124 +43,58 @@ export default function Contact() {
       <div className="min-h-screen flex flex-col">
         <Header />
         
-        <main className="flex-grow py-12 bg-gray-50 dark:bg-gray-900">
-          <div className="container mx-auto px-4">
-            <div className="max-w-2xl mx-auto">
-              <Card>
-                <CardHeader className="text-center">
-                  <CardTitle className="text-3xl font-bold text-panda-purple dark:text-panda-lav">Contact Us</CardTitle>
-                  <CardDescription>
-                    Have questions about studying abroad? We're here to help!
-                  </CardDescription>
-                </CardHeader>
-                <CardContent>
-                  <Form {...form}>
-                    <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-6">
-                      <FormField
-                        control={form.control}
-                        name="name"
-                        render={({ field }) => (
-                          <FormItem>
-                            <FormLabel>Name</FormLabel>
-                            <FormControl>
-                              <Input placeholder="Your name" {...field} />
-                            </FormControl>
-                            <FormMessage />
-                          </FormItem>
-                        )}
-                      />
-                      
-                      <FormField
-                        control={form.control}
-                        name="email"
-                        render={({ field }) => (
-                          <FormItem>
-                            <FormLabel>Email</FormLabel>
-                            <FormControl>
-                              <Input type="email" placeholder="your.email@example.com" {...field} />
-                            </FormControl>
-                            <FormMessage />
-                          </FormItem>
-                        )}
-                      />
-                      
-                      <FormField
-                        control={form.control}
-                        name="subject"
-                        render={({ field }) => (
-                          <FormItem>
-                            <FormLabel>Subject</FormLabel>
-                            <FormControl>
-                              <Input placeholder="What is your inquiry about?" {...field} />
-                            </FormControl>
-                            <FormMessage />
-                          </FormItem>
-                        )}
-                      />
-                      
-                      <FormField
-                        control={form.control}
-                        name="message"
-                        render={({ field }) => (
-                          <FormItem>
-                            <FormLabel>Message</FormLabel>
-                            <FormControl>
-                              <Textarea 
-                                placeholder="Please provide details about your inquiry..." 
-                                className="min-h-[150px]"
-                                {...field} 
-                              />
-                            </FormControl>
-                            <FormMessage />
-                          </FormItem>
-                        )}
-                      />
-                      
-                      <Button 
-                        type="submit" 
-                        className="w-full bg-panda-purple hover:bg-panda-purple/90 text-white"
-                        disabled={isSubmitting}
-                      >
-                        {isSubmitting ? "Sending..." : "Send Message"}
-                      </Button>
-                    </form>
-                  </Form>
-                </CardContent>
-              </Card>
-              
-              <div className="mt-12 grid md:grid-cols-3 gap-6">
-                <Card>
-                  <CardContent className="pt-6 text-center">
-                    <div className="mb-4 mx-auto bg-panda-lav/20 w-12 h-12 rounded-full flex items-center justify-center">
-                      <i className="fas fa-envelope text-panda-purple text-xl"></i>
-                    </div>
-                    <h3 className="font-medium text-lg mb-2">Email</h3>
-                    <p className="text-gray-600 dark:text-gray-400">info@pathpanda.com</p>
-                  </CardContent>
-                </Card>
-                
-                <Card>
-                  <CardContent className="pt-6 text-center">
-                    <div className="mb-4 mx-auto bg-panda-pink/20 w-12 h-12 rounded-full flex items-center justify-center">
-                      <i className="fas fa-phone text-panda-pink text-xl"></i>
-                    </div>
-                    <h3 className="font-medium text-lg mb-2">Phone</h3>
-                    <p className="text-gray-600 dark:text-gray-400">+1 (555) 123-4567</p>
-                  </CardContent>
-                </Card>
-                
-                <Card>
-                  <CardContent className="pt-6 text-center">
-                    <div className="mb-4 mx-auto bg-panda-yellow/20 w-12 h-12 rounded-full flex items-center justify-center">
-                      <i className="fas fa-map-marker-alt text-panda-yellow text-xl"></i>
-                    </div>
-                    <h3 className="font-medium text-lg mb-2">Office</h3>
-                    <p className="text-gray-600 dark:text-gray-400">123 Education Lane, Suite 456<br />New York, NY 10001</p>
-                  </CardContent>
-                </Card>
+        <main className="flex-grow">
+          <section className="max-w-3xl mx-auto px-4 py-20 text-center">
+            <h1 className="text-4xl font-bold text-panda-purple mb-6">Say Hello 👋</h1>
+            <p className="text-gray-700 dark:text-gray-300 mb-10">
+              Quick question? Use the form. Ready for a full discussion? Pick a slot below.
+            </p>
+
+            {/* Contact form */}
+            <form action="https://formspree.io/f/your-id" method="POST" className="space-y-6 text-left">
+              <Input 
+                name="name" 
+                placeholder="Full name" 
+                required
+                className="w-full border-panda-purple/30 rounded-lg px-4 py-3"
+              />
+              <Input 
+                name="email" 
+                type="email" 
+                placeholder="Email address" 
+                required
+                className="w-full border-panda-purple/30 rounded-lg px-4 py-3"
+              />
+              <Textarea 
+                name="message" 
+                placeholder="Message" 
+                rows={4} 
+                required
+                className="w-full border-panda-purple/30 rounded-lg px-4 py-3"
+              />
+              <div className="text-center">
+                <Button 
+                  type="submit" 
+                  className="bg-panda-purple hover:bg-panda-purple/90 text-white px-8"
+                >
+                  Send Message
+                </Button>
               </div>
-            </div>
-          </div>
+            </form>
+
+            {/* Divider */}
+            <div id="book" className="my-16 h-px bg-panda-purple/20"></div>
+
+            {/* Calendly */}
+            <h2 className="text-2xl font-semibold text-panda-purple mb-4">
+              Book a Free 30-Minute Call
+            </h2>
+            <div
+              className="calendly-inline-widget"
+              data-url="https://calendly.com/pathpanda/30min"
+              style={{ minWidth: 320, height: 650 }}
+            />
+          </section>
         </main>
         
         <Footer />

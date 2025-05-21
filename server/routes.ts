@@ -470,6 +470,112 @@ export async function registerRoutes(app: Express): Promise<Server> {
     }
   });
 
+  // University Search endpoint
+  app.post("/api/university-search", async (req, res) => {
+    try {
+      const { query } = req.body;
+      
+      if (!query || typeof query !== "string") {
+        return res.status(400).json({ message: "Query parameter is required" });
+      }
+
+      // Check for API key
+      const apiKey = process.env.PERPLEXITY_API_KEY;
+      if (!apiKey) {
+        return res.status(500).json({ message: "API key not configured. Please add the Perplexity API key." });
+      }
+
+      // Make request to Perplexity API
+      const perplexityResponse = await fetch("https://api.perplexity.ai/chat/completions", {
+        method: "POST",
+        headers: {
+          "Authorization": `Bearer ${apiKey}`,
+          "Content-Type": "application/json"
+        },
+        body: JSON.stringify({
+          model: "llama-3.1-sonar-small-128k-online",
+          messages: [
+            {
+              role: "system",
+              content: `You are a helpful UK university search assistant for Path Panda. 
+              The user will ask about universities matching certain criteria (location, program, cost, etc.).
+              
+              You must ONLY respond with a JSON array of university objects with the following fields:
+              - name: string (university name)
+              - city: string (city location)
+              - ranking: number (optional, UK university ranking if available)
+              - website: string (optional, university website if available)
+              
+              Limit results to a maximum of 6 universities. Do not include ANY explanatory text, ONLY the JSON array.
+              If no universities match the criteria, return an empty array [].`
+            },
+            {
+              role: "user",
+              content: query
+            }
+          ],
+          temperature: 0.2,
+          top_p: 0.9,
+          max_tokens: 1000,
+          stream: false,
+          frequency_penalty: 1
+        })
+      });
+      
+      if (!perplexityResponse.ok) {
+        const errorText = await perplexityResponse.text();
+        console.error("Perplexity API error:", errorText);
+        return res.status(perplexityResponse.status).json({ 
+          message: "Error from Perplexity API", 
+          details: errorText 
+        });
+      }
+      
+      const data = await perplexityResponse.json();
+      
+      try {
+        // Extract JSON array from content
+        const content = data.choices[0].message.content;
+        let universities;
+        
+        try {
+          universities = JSON.parse(content);
+        } catch (parseError) {
+          // Try to extract JSON from the string if it contains additional text
+          const jsonMatch = content.match(/\[.*\]/s);
+          if (jsonMatch) {
+            universities = JSON.parse(jsonMatch[0]);
+          } else {
+            throw parseError;
+          }
+        }
+        
+        if (!Array.isArray(universities)) {
+          throw new Error("Response is not an array");
+        }
+        
+        // Validate each university object
+        const validatedUniversities = universities.map(uni => ({
+          name: uni.name || "Unknown University",
+          city: uni.city || "Unknown Location",
+          ranking: typeof uni.ranking === 'number' ? uni.ranking : undefined,
+          website: typeof uni.website === 'string' ? uni.website : undefined
+        }));
+        
+        return res.json(validatedUniversities);
+      } catch (parseError) {
+        console.error("Error parsing API response:", parseError);
+        return res.status(500).json({ 
+          message: "Error parsing API response", 
+          error: String(parseError) 
+        });
+      }
+    } catch (error) {
+      console.error("Server error:", error);
+      return res.status(500).json({ message: "Internal server error", error: String(error) });
+    }
+  });
+
   const httpServer = createServer(app);
   return httpServer;
 }

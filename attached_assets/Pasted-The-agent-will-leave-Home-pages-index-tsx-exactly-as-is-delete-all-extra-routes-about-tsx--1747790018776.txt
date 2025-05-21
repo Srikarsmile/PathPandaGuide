@@ -1,0 +1,248 @@
+The agent will ⬇️
+
+leave Home (/pages/index.tsx) exactly as-is
+
+delete all extra routes (about.tsx, search.tsx, visa-check.tsx, etc.)
+
+build a single, long “Services” page with anchor links, inline AI search tool, FAQs, and repeated CTAs
+
+create a slim Contact / Book page (contact form + Calendly)
+
+update Navbar to only: Home · Services · Contact
+
+keep the Perplexity API route for the embedded search
+
+php-template
+Copy
+Edit
+🔧  PATHPANDA  —  3-PAGE REFACTOR
+────────────────────────────────────────
+🏗️ 1  Shared setup  (do not touch /pages/index.tsx)
+────────────────────────────────────────
+✓ Palette already in tailwind.config.js   
+✓ components/Layout.tsx / Navbar / Footer already exist — just update Navbar links:
+
+• Navbar links: Home (/) · Services (/services) · Contact (/contact)  
+• Remove any “University Search”, “Visa Check”, “About”, etc.  
+• Keep “Book Consultation” button → /contact#book
+
+WhatsApp bubble stays.
+
+────────────────────────────────────────
+📄 2  Delete pages we no longer need
+────────────────────────────────────────
+Remove:  
+/pages/about.tsx  
+/pages/search.tsx  
+/pages/visa-check.tsx  
+/pages/checkout-success.tsx (unless used elsewhere)  
+
+────────────────────────────────────────
+📄 3  Create /pages/services.tsx  (single long scroll)
+────────────────────────────────────────
+```jsx
+import { useState } from 'react'
+import Layout from '@/components/Layout'
+import Button from '@/components/ui/Button'
+import Section from '@/components/ui/Section'
+
+export default function Services() {
+  /* === Inline university search hook === */
+  type University = { name:string, city:string, ranking?:number, website?:string }
+  const [q,setQ]=useState(''),[data,setData]=useState<University[]|null>(null)
+  const [loading,setLoading]=useState(false),[err,setErr]=useState<string|null>(null)
+  async function runSearch(){
+    if(!q.trim()) return
+    setLoading(true); setErr(null); setData(null)
+    const r = await fetch('/api/university-search',{method:'POST',body:JSON.stringify({query:q})})
+    const j = await r.json()
+    r.ok ? setData(j) : setErr(j.message||'Error'); setLoading(false)
+  }
+
+  return (
+    <Layout title="Our Services">
+      {/* Anchored hero */}
+      <Section className="text-center">
+        <h1 id="top" className="text-4xl font-bold text-primary mb-4">
+          What We Do
+        </h1>
+        <p className="text-gray-700 dark:text-gray-300 max-w-2xl mx-auto">
+          From your first shortlist to touchdown in the UK, PathPanda is your one-stop mentor.
+        </p>
+        <nav className="flex flex-wrap gap-2 justify-center mt-8 text-sm">
+          {['matching','sop','visa','ai','faq','book'].map(id=>(
+            <a key={id} href={`#${id}`} className="px-3 py-1 rounded-full bg-lavender/20 hover:bg-lavender/40">
+              {id.toUpperCase()}
+            </a>
+          ))}
+        </nav>
+      </Section>
+
+      {/* 1 University matching */}
+      <Section id="matching">
+        <h2 className="text-2xl font-semibold text-primary mb-2">
+          University & Course Matching
+        </h2>
+        <p>
+          We analyse your grades, budget and career goals, then recommend UK programmes that
+          maximise ROI—no bias, no hidden agenda.
+        </p>
+      </Section>
+
+      {/* 2 SOP */}
+      <Section id="sop" className="bg-[#FC7A7A0D]">
+        <h2 className="text-2xl font-semibold text-primary mb-2">
+          Application & SOP Review
+        </h2>
+        <p>
+          Upload your draft essays and documents; we return tracked-change feedback within 48 h.
+          Your authentic voice—polished for impact.
+        </p>
+      </Section>
+
+      {/* 3 Visa support */}
+      <Section id="visa">
+        <h2 className="text-2xl font-semibold text-primary mb-2">
+          Visa & Pre-Departure Support
+        </h2>
+        <p>
+          Tier-4 funding proofs, accommodation search, packing list, flight hacks—everything
+          distilled into a simple checklist so you board stress-free.
+        </p>
+      </Section>
+
+      {/* 4 AI search demo */}
+      <Section id="ai" className="bg-[#FC7A7A0D]">
+        <h2 className="text-2xl font-semibold text-primary mb-6 text-center">
+          Try Our AI-Powered University Finder
+        </h2>
+        <div className="max-w-xl mx-auto space-y-6">
+          <div className="flex gap-2">
+            <input
+              value={q}
+              onChange={e=>setQ(e.target.value)}
+              onKeyDown={e=>e.key==='Enter'&&runSearch()}
+              placeholder="e.g. 1-year MBA in London under £25k tuition"
+              className="flex-1 border border-primary/30 rounded-lg px-4 py-3 focus:outline-none"
+            />
+            <Button variant="accent" onClick={runSearch}>Search</Button>
+          </div>
+          {loading && <p>Crunching numbers…</p>}
+          {err && <p className="text-red-600">{err}</p>}
+          {data && (
+            data.length===0
+              ? <p>No universities matched that query.</p>
+              : <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                  {data.map(u=>(
+                    <div key={u.name} className="bg-white dark:bg-gray-900 shadow rounded-xl p-4">
+                      <h3 className="font-semibold text-primary">{u.name}</h3>
+                      <p className="text-sm">{u.city}</p>
+                      {u.ranking && (
+                        <span className="text-xs bg-highlight px-2 py-1 rounded-full">
+                          Rank {u.ranking}
+                        </span>
+                      )}
+                      {u.website && (
+                        <a target="_blank" href={u.website} className="block mt-1 text-accent underline">
+                          Visit site →
+                        </a>
+                      )}
+                    </div>
+                  ))}
+                </div>
+          )}
+        </div>
+      </Section>
+
+      {/* 5 FAQ */}
+      <Section id="faq">
+        <h2 className="text-2xl font-semibold text-primary mb-4 text-center">FAQ</h2>
+        <div className="max-w-3xl mx-auto space-y-4">
+          <details className="border border-primary/20 rounded-lg p-4">
+            <summary className="font-semibold">Is counselling really free?</summary>
+            <p className="mt-2">Yes. UK universities fund us after you enrol—so we never charge students.</p>
+          </details>
+          <details className="border border-primary/20 rounded-lg p-4">
+            <summary className="font-semibold">How fast do you reply?</summary>
+            <p className="mt-2">Average reply time: 2 hours, max 24 hours.</p>
+          </details>
+        </div>
+      </Section>
+
+      {/* 6 CTA */}
+      <Section id="book" className="text-center">
+        <h2 className="text-3xl font-bold text-primary mb-4">Ready to start?</h2>
+        <Button variant="primary" href="/contact#book">Book Your Free Session</Button>
+      </Section>
+
+      {/* Notice bar */}
+      <div className="bg-accent text-white text-center py-6">
+        All counselling sessions are <span className="underline">100 % FREE</span>.
+      </div>
+    </Layout>
+  )
+}
+────────────────────────────────────────
+📄 4 Create /pages/contact.tsx
+────────────────────────────────────────
+
+jsx
+Copy
+Edit
+import Layout from '@/components/Layout'
+import Button from '@/components/ui/Button'
+import Script from 'next/script'
+
+export default function Contact(){
+  return (
+    <Layout title="Contact & Booking">
+      <section className="max-w-3xl mx-auto px-4 py-20 text-center">
+        <h1 className="text-4xl font-bold text-primary mb-6">Say Hello 👋</h1>
+        <p className="text-gray-700 dark:text-gray-300 mb-10">
+          Quick question? Use the form. Ready for a full discussion? Pick a slot below.
+        </p>
+
+        {/* Contact form */}
+        <form action="https://formspree.io/f/your-id" method="POST" className="space-y-6 text-left">
+          <input name="name" placeholder="Full name" required
+            className="w-full border border-primary/30 rounded-lg px-4 py-3" />
+          <input name="email" type="email" placeholder="Email address" required
+            className="w-full border border-primary/30 rounded-lg px-4 py-3" />
+          <textarea name="message" placeholder="Message" rows={4} required
+            className="w-full border border-primary/30 rounded-lg px-4 py-3" />
+          <Button variant="primary" type="submit">Send Message</Button>
+        </form>
+
+        {/* Divider */}
+        <div id="book" className="my-16 h-px bg-primary/20"></div>
+
+        {/* Calendly */}
+        <h2 className="text-2xl font-semibold text-primary mb-4">
+          Book a Free 30-Minute Call
+        </h2>
+        <div
+          className="calendly-inline-widget"
+          data-url="https://calendly.com/pathpanda/30min"
+          style={{ minWidth: 320, height: 650 }}
+        />
+        <Script src="https://assets.calendly.com/assets/external/widget.js" />
+      </section>
+    </Layout>
+  )
+}
+────────────────────────────────────────
+📄 5 Keep /pages/api/university-search.ts (Perplexity)
+────────────────────────────────────────
+— leave as-is or create if missing —
+
+────────────────────────────────────────
+🧹 6 Clean up routing
+────────────────────────────────────────
+• Remove any imports or routes related to visa-check or Stripe.
+• Navbar links only: Home / Services / Contact.
+• Ensure <Link href="/services#ai"> etc. still resolve.
+
+────────────────────────────────────────
+✅ After edits
+────────────────────────────────────────
+Run:
