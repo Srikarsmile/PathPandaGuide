@@ -1,23 +1,7 @@
 import { Helmet } from "react-helmet";
-import { useEffect } from "react";
 import { Layout } from "@/components/layout";
 
 export default function Consultation() {
-  useEffect(() => {
-    // Load Cal.com script
-    const script = document.createElement('script');
-    script.src = "https://cal.com/embed.js";
-    script.async = true;
-    document.head.appendChild(script);
-    
-    return () => {
-      // Clean up on unmount
-      const calScript = document.querySelector('script[src="https://cal.com/embed.js"]');
-      if (calScript && calScript.parentNode) {
-        calScript.parentNode.removeChild(calScript);
-      }
-    };
-  }, []);
 
   return (
     <Layout title="Book Consultation">
@@ -38,13 +22,18 @@ export default function Consultation() {
           Chat via Zoom or WhatsApp—your choice.
         </p>
 
-        {/* Cal.com Embed */}
-        <div 
-          className="cal-embed rounded-lg shadow-lg border border-gray-200 dark:border-gray-700 overflow-hidden"
-          data-cal-link="srikar-reddy-o5okkw" 
-          data-cal-config='{"layout":"month_view"}'
-          style={{ minWidth: 320, height: 650 }}
-        ></div>
+        <div className="rounded-lg shadow-lg border border-gray-200 dark:border-gray-700 p-8">
+          <h3 className="text-xl font-semibold mb-3">Contact Us</h3>
+          <p className="text-gray-600 dark:text-gray-400 mb-4">
+            For scheduling consultations, please send us an email or use the contact form.
+          </p>
+          <a 
+            href="/contact" 
+            className="inline-block bg-panda-purple hover:bg-panda-purple/90 text-white px-6 py-3 rounded-md"
+          >
+            Go to Contact Page
+          </a>
+        </div>
       </section>
     </Layout>
   );

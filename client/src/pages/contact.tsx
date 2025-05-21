@@ -2,32 +2,10 @@ import Header from "@/components/header";
 import Footer from "@/components/footer";
 import { Button } from "@/components/ui/button";
 import { Helmet } from "react-helmet";
-import { useEffect } from "react";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 
-// Declare the Calendly type to avoid TypeScript errors
-declare global {
-  interface Window {
-    Calendly?: any;
-  }
-}
-
 export default function Contact() {
-  useEffect(() => {
-    // Load Calendly script
-    const script = document.createElement('script');
-    script.src = "https://assets.calendly.com/assets/external/widget.js";
-    script.async = true;
-    document.body.appendChild(script);
-
-    // Clean up on component unmount
-    return () => {
-      if (document.body.contains(script)) {
-        document.body.removeChild(script);
-      }
-    };
-  }, []);
 
   return (
     <>
@@ -82,18 +60,7 @@ export default function Contact() {
               </div>
             </form>
 
-            {/* Divider */}
-            <div id="book" className="my-16 h-px bg-panda-purple/20"></div>
-
-            {/* Calendly */}
-            <h2 className="text-2xl font-semibold text-panda-purple mb-4">
-              Book a Free 30-Minute Call
-            </h2>
-            <div
-              className="calendly-inline-widget"
-              data-url="https://calendly.com/pathpanda/30min"
-              style={{ minWidth: 320, height: 650 }}
-            />
+            {/* End of contact form */}
           </section>
         </main>
         
