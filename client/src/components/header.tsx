@@ -60,13 +60,17 @@ export default function Header() {
             </nav>
             
             <div className="flex items-center space-x-4">
-              <Link href="/contact#book">
+              <a 
+                href="https://wa.me/442012345678?text=Hi%20Pathpanda%20team%2C%20I%27d%20like%20to%20book%20a%20consultation%20about%20studying%20abroad."
+                target="_blank"
+                rel="noopener"
+              >
                 <Button
                   className="bg-panda-yellow hover:bg-panda-yellow/90 text-panda-purple font-medium text-sm px-4 py-1.5 rounded shadow"
                 >
                   Book Consultation
                 </Button>
-              </Link>
+              </a>
               
               <AuthButton />
               <DarkModeToggle />
@@ -119,13 +123,18 @@ export default function Header() {
               </Link>
               
               <div className="px-4 pt-3 border-t border-gray-100 dark:border-gray-700 mt-2">
-                <Link href="/contact#book" onClick={() => setIsMobileMenuOpen(false)}>
+                <a 
+                  href="https://wa.me/442012345678?text=Hi%20Pathpanda%20team%2C%20I%27d%20like%20to%20book%20a%20consultation%20about%20studying%20abroad."
+                  target="_blank"
+                  rel="noopener"
+                  onClick={() => setIsMobileMenuOpen(false)}
+                >
                   <Button
                     className="bg-panda-yellow hover:bg-panda-yellow/90 text-panda-purple font-medium text-sm w-full py-2 shadow"
                   >
                     Book Consultation
                   </Button>
-                </Link>
+                </a>
               </div>
               
               <div className="px-4 flex justify-start">
