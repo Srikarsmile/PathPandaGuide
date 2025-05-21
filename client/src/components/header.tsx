@@ -65,11 +65,11 @@ export default function Header() {
             </nav>
             
             <div className="flex items-center space-x-4">
-              <Link href="/consult">
+              <Link href="/consultation">
                 <Button
                   className="bg-panda-yellow hover:bg-panda-yellow/90 text-panda-purple font-medium text-sm px-4 py-1.5 rounded shadow"
                 >
-                  Schedule Advising
+                  Book Consultation
                 </Button>
               </Link>
               
@@ -102,14 +102,14 @@ export default function Header() {
                   Home
                 </span>
               </Link>
-              <Link href="/tools" onClick={() => setIsMobileMenuOpen(false)}>
-                <span className="block text-gray-900 dark:text-white hover:bg-gray-50 dark:hover:bg-gray-800 px-4 py-2 rounded-md font-semibold text-sm">
-                  Resources
-                </span>
-              </Link>
-              <Link href="/features" onClick={() => setIsMobileMenuOpen(false)}>
+              <Link href="/services" onClick={() => setIsMobileMenuOpen(false)}>
                 <span className="block text-gray-900 dark:text-white hover:bg-gray-50 dark:hover:bg-gray-800 px-4 py-2 rounded-md font-semibold text-sm">
                   Services
+                </span>
+              </Link>
+              <Link href="/search" onClick={() => setIsMobileMenuOpen(false)}>
+                <span className="block text-gray-900 dark:text-white hover:bg-gray-50 dark:hover:bg-gray-800 px-4 py-2 rounded-md font-semibold text-sm">
+                  University Search
                 </span>
               </Link>
               <Link href="/blog" onClick={() => setIsMobileMenuOpen(false)}>
@@ -129,11 +129,11 @@ export default function Header() {
               </Link>
               
               <div className="px-4 pt-3 border-t border-gray-100 dark:border-gray-700 mt-2">
-                <Link href="/consult" onClick={() => setIsMobileMenuOpen(false)}>
+                <Link href="/consultation" onClick={() => setIsMobileMenuOpen(false)}>
                   <Button
                     className="bg-panda-yellow hover:bg-panda-yellow/90 text-panda-purple font-medium text-sm w-full py-2 shadow"
                   >
-                    Schedule Advising
+                    Book Consultation
                   </Button>
                 </Link>
               </div>
