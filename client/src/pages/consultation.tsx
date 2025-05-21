@@ -3,24 +3,19 @@ import Footer from "@/components/footer";
 import { Helmet } from "react-helmet";
 import { useEffect } from "react";
 
-// Declare the Calendly type to avoid TypeScript errors
-declare global {
-  interface Window {
-    Calendly?: any;
-  }
-}
-
 export default function Consultation() {
   useEffect(() => {
-    // Load Calendly script
+    // Load Cal.com script
     const script = document.createElement('script');
-    script.src = "https://assets.calendly.com/assets/external/widget.js";
+    script.src = "https://cal.com/embed.js";
     script.async = true;
     document.body.appendChild(script);
 
     // Clean up on component unmount
     return () => {
-      document.body.removeChild(script);
+      if (script.parentNode) {
+        document.body.removeChild(script);
+      }
     };
   }, []);
 
@@ -47,9 +42,10 @@ export default function Consultation() {
               Chat via Zoom or WhatsApp—your choice.
             </p>
 
-            <div
-              className="calendly-inline-widget"
-              data-url="https://calendly.com/pathpanda/30min"
+            {/* Cal.com Embed */}
+            <div 
+              data-cal-link="srikar-reddy-o5okkw" 
+              data-cal-config='{"layout":"month_view"}'
               style={{ minWidth: 320, height: 650 }}
             ></div>
           </section>
