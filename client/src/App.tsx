@@ -37,6 +37,11 @@ function Router() {
       <Route path="/services" component={Services} />
       <Route path="/contact" component={Contact} />
       
+      {/* New Pages from Pathpanda Content */}
+      <Route path="/success-stories" component={() => import("@/pages/success-stories").then(mod => <mod.default />)} />
+      <Route path="/faq" component={() => import("@/pages/faq").then(mod => <mod.default />)} />
+      <Route path="/privacy-terms" component={() => import("@/pages/privacy-terms").then(mod => <mod.default />)} />
+      
       {/* Auth Route */}
       <Route path="/auth" component={AuthPage} />
       
