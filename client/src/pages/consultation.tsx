@@ -1,7 +1,6 @@
-import Header from "@/components/header";
-import Footer from "@/components/footer";
 import { Helmet } from "react-helmet";
 import { useEffect } from "react";
+import { Layout } from "@/components/layout";
 
 export default function Consultation() {
   useEffect(() => {
@@ -9,18 +8,19 @@ export default function Consultation() {
     const script = document.createElement('script');
     script.src = "https://cal.com/embed.js";
     script.async = true;
-    document.body.appendChild(script);
-
-    // Clean up on component unmount
+    document.head.appendChild(script);
+    
     return () => {
-      if (script.parentNode) {
-        document.body.removeChild(script);
+      // Clean up on unmount
+      const calScript = document.querySelector('script[src="https://cal.com/embed.js"]');
+      if (calScript && calScript.parentNode) {
+        calScript.parentNode.removeChild(calScript);
       }
     };
   }, []);
 
   return (
-    <>
+    <Layout title="Book Consultation">
       <Helmet>
         <title>Book Consultation | Path Panda</title>
         <meta name="description" content="Book your free 30-minute counselling session with Path Panda. Get personalized guidance for your study abroad journey via Zoom or WhatsApp." />
@@ -30,29 +30,22 @@ export default function Consultation() {
         <meta property="og:url" content="https://pathpanda.com/consultation" />
       </Helmet>
       
-      <div className="min-h-screen flex flex-col">
-        <Header />
-        
-        <main className="flex-grow">
-          <section className="max-w-3xl mx-auto px-4 py-20 text-center">
-            <h1 className="text-4xl font-bold text-panda-purple mb-4">
-              Book Your Free 30-Minute Counselling Session
-            </h1>
-            <p className="text-gray-700 dark:text-gray-300 mb-10">
-              Chat via Zoom or WhatsApp—your choice.
-            </p>
+      <section className="max-w-3xl mx-auto px-4 py-12 text-center">
+        <h1 className="text-4xl font-bold text-panda-purple mb-4">
+          Book Your Free 30-Minute Counselling Session
+        </h1>
+        <p className="text-gray-700 dark:text-gray-300 mb-10">
+          Chat via Zoom or WhatsApp—your choice.
+        </p>
 
-            {/* Cal.com Embed */}
-            <div 
-              data-cal-link="srikar-reddy-o5okkw" 
-              data-cal-config='{"layout":"month_view"}'
-              style={{ minWidth: 320, height: 650 }}
-            ></div>
-          </section>
-        </main>
-        
-        <Footer />
-      </div>
-    </>
+        {/* Cal.com Embed */}
+        <div 
+          className="cal-embed rounded-lg shadow-lg border border-gray-200 dark:border-gray-700 overflow-hidden"
+          data-cal-link="srikar-reddy-o5okkw" 
+          data-cal-config='{"layout":"month_view"}'
+          style={{ minWidth: 320, height: 650 }}
+        ></div>
+      </section>
+    </Layout>
   );
 }
