@@ -168,32 +168,41 @@ export default function Services() {
             </div>
           </section>
 
-          {/* Success Stories - Hero Image */}
-          <section className="py-16 px-4">
-            <div className="container mx-auto max-w-5xl">
-              <div className="relative rounded-xl overflow-hidden shadow-2xl">
-                <div className="absolute inset-0 bg-gradient-to-r from-panda-purple/70 to-panda-purple/40"></div>
-                <img 
-                  src="https://placehold.co/1200x400/e2e8f0/1e293b?text=Coach+and+student+high-fiving+over+an+acceptance+email" 
-                  alt="Coach and student high-fiving over an acceptance email"
-                  className="w-full h-auto object-cover"
-                />
-                <div className="absolute inset-0 flex items-center justify-center flex-col p-8 text-center">
-                  <h2 className="text-3xl sm:text-4xl font-bold text-white mb-4 drop-shadow-lg">
-                    Success is a Partnership
-                  </h2>
-                  <p className="text-white/90 text-lg sm:text-xl max-w-2xl drop-shadow-md">
-                    Join the thousands of students who've achieved their dreams with Pathpanda's guidance
+          {/* Student Success Stories */}
+          <Section className="bg-white dark:bg-gray-900">
+            <div className="mb-12 text-center">
+              <h2 className="text-3xl sm:text-4xl font-bold text-gray-900 dark:text-white mb-4 leading-tight">
+                Real <span className="text-panda-purple dark:text-panda-lav">Results</span> for Real Students
+              </h2>
+              <p className="text-gray-700 dark:text-gray-300 max-w-3xl mx-auto text-lg">
+                Our data-driven approach delivers up to 4× higher acceptance rates than DIY applications
+              </p>
+            </div>
+            
+            <div className="relative rounded-xl overflow-hidden shadow-xl border border-gray-100 dark:border-gray-700">
+              <div className="absolute inset-0 bg-gradient-to-r from-panda-purple/70 to-panda-purple/40"></div>
+              <img 
+                src="https://placehold.co/1200x400/e2e8f0/1e293b?text=Coach+and+student+high-fiving+over+an+acceptance+email" 
+                alt="Coach and student high-fiving over an acceptance email"
+                className="w-full h-auto object-cover"
+              />
+              <div className="absolute inset-0 flex items-center justify-center flex-col p-8 text-center">
+                <div className="bg-black/30 backdrop-blur-sm p-6 rounded-xl max-w-xl">
+                  <h3 className="text-2xl sm:text-3xl font-bold text-white mb-4 drop-shadow-lg">
+                    Our Expert Support Makes the Difference
+                  </h3>
+                  <p className="text-white/90 text-lg sm:text-xl max-w-2xl drop-shadow-md mb-6">
+                    Join the thousands of students who've achieved their dreams with our personalized guidance
                   </p>
                   <Link href="/success-stories">
-                    <Button className="mt-6 bg-white hover:bg-white/90 text-panda-purple">
+                    <Button className="mt-2 bg-white hover:bg-white/90 text-panda-purple">
                       Read Success Stories
                     </Button>
                   </Link>
                 </div>
               </div>
             </div>
-          </section>
+          </Section>
 
           {/* CTA */}
           <section className="py-16 px-4 bg-panda-purple text-white text-center">
