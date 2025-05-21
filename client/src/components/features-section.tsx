@@ -11,7 +11,7 @@ export default function FeaturesSection() {
       description: "Navigate complex visa requirements with our step-by-step guidance and application support.",
       iconBgClass: "bg-panda-purple",
       iconColorClass: "text-white",
-      link: "/features"
+      link: "/services"
     },
     {
       icon: GraduationCap,
@@ -19,7 +19,7 @@ export default function FeaturesSection() {
       description: "Find the perfect academic program that aligns with your career goals and interests.",
       iconBgClass: "bg-panda-pink",
       iconColorClass: "text-white",
-      link: "/features"
+      link: "/services"
     },
     {
       icon: Award,
@@ -27,7 +27,7 @@ export default function FeaturesSection() {
       description: "Discover and apply for scholarships and financial aid opportunities to fund your education.",
       iconBgClass: "bg-panda-yellow",
       iconColorClass: "text-panda-purple",
-      link: "/features"
+      link: "/services"
     }
   ];
 
@@ -110,9 +110,9 @@ export default function FeaturesSection() {
 
         {/* CTA */}
         <div className="text-center">
-          <Link href="/features">
+          <Link href="/services">
             <Button className="bg-transparent text-panda-purple hover:bg-panda-purple/10 dark:text-panda-lav hover:dark:bg-panda-lav/10 border border-panda-purple/30 dark:border-panda-lav/30 px-8 py-6 rounded-full">
-              Explore All Features
+              Explore All Services
               <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 ml-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M14 5l7 7m0 0l-7 7m7-7H3" />
               </svg>

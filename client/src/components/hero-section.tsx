@@ -42,7 +42,7 @@ export default function HeroSection() {
                 <ArrowRight className="ml-2 h-4 w-4 md:h-5 md:w-5 transition-transform group-hover:translate-x-1" />
               </Button>
             </a>
-            <Link href="/features">
+            <Link href="/services">
               <Button variant="outline" className="px-5 py-5 md:px-8 md:py-7 bg-white/10 backdrop-blur-sm hover:bg-white/20 text-white border border-white/30 font-semibold rounded-xl shadow-lg transition-all duration-200 hover:shadow-xl text-sm md:text-lg flex items-center justify-center">
                 <span>Explore Our Services</span>
               </Button>
