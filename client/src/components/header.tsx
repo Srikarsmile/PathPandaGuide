@@ -42,9 +42,9 @@ export default function Header() {
                   Services
                 </span>
               </Link>
-              <Link href="/success-stories">
+              <Link href="/blog">
                 <span className="text-gray-900 dark:text-gray-200 font-medium text-sm hover:text-panda-purple dark:hover:text-panda-yellow transition-colors duration-200">
-                  Success Stories
+                  Blog
                 </span>
               </Link>
               <Link href="/faq">
