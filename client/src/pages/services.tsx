@@ -114,7 +114,7 @@ export default function Services() {
                     </div>
                     <h4 className="font-semibold text-gray-900 dark:text-white mb-2">Smart Matching</h4>
                     <p className="text-sm text-gray-600 dark:text-gray-400">
-                      AI-powered university recommendations
+                      Data-driven university recommendations
                     </p>
                     {/* Arrow for larger screens */}
                     <div className="hidden lg:block absolute top-8 -right-3 text-panda-purple">
