@@ -63,7 +63,7 @@ export default function BlogPostPage() {
         const response = await fetch('/api/login', {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({ username: 'admin', password: 'admin123' }),
+          body: JSON.stringify({ username: 'admin', password: 'adminpass' }),
         });
         
         if (response.ok) {
