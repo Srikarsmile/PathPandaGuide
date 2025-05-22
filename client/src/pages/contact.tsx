@@ -21,20 +21,16 @@ export default function Contact() {
         <Header />
         
         <main className="flex-grow">
-          {/* Simple Hero */}
-          <section className="bg-gradient-to-br from-panda-purple to-panda-lav py-16">
-            <div className="container mx-auto px-4 text-center">
-              <h1 className="text-4xl md:text-5xl font-bold text-white mb-4">
+          {/* Contact Section */}
+          <section className="py-16 bg-gray-50">
+            <div className="text-center mb-12">
+              <h1 className="text-4xl md:text-5xl font-bold text-gray-900 mb-4">
                 Contact Us
               </h1>
-              <p className="text-xl text-white/90 max-w-2xl mx-auto">
+              <p className="text-xl text-gray-600 max-w-2xl mx-auto">
                 Ready to start your study abroad journey? Let's talk!
               </p>
             </div>
-          </section>
-
-          {/* Contact Options & Form */}
-          <section className="py-16 bg-gray-50">
             <div className="container mx-auto px-4">
               <div className="max-w-4xl mx-auto">
                 
