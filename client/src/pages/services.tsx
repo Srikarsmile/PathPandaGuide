@@ -180,22 +180,22 @@ export default function Services() {
             </div>
             
             <div className="relative rounded-xl overflow-hidden shadow-xl border border-gray-100 dark:border-gray-700">
-              <div className="absolute inset-0 bg-gradient-to-r from-panda-purple/80 to-panda-purple/60 z-10"></div>
               <img 
                 src="https://placehold.co/1200x400/e2e8f0/1e293b?text=Coach+and+student+high-fiving+over+an+acceptance+email" 
                 alt="Coach and student high-fiving over an acceptance email"
                 className="w-full h-auto object-cover min-h-[400px]"
               />
-              <div className="absolute inset-0 flex items-center justify-center flex-col p-6 sm:p-8 text-center z-20">
-                <div className="bg-white/95 dark:bg-gray-900/95 backdrop-blur-md p-6 sm:p-8 rounded-2xl max-w-2xl shadow-2xl border border-white/20">
-                  <h3 className="text-2xl sm:text-3xl lg:text-4xl font-bold text-gray-900 dark:text-white mb-4">
+              <div className="absolute inset-0 bg-gradient-to-r from-black/70 via-black/50 to-black/70"></div>
+              <div className="absolute inset-0 flex items-center justify-center flex-col p-6 sm:p-8 text-center">
+                <div className="max-w-2xl">
+                  <h3 className="text-2xl sm:text-3xl lg:text-4xl font-bold text-white mb-4 drop-shadow-lg">
                     Our Expert Support Makes the Difference
                   </h3>
-                  <p className="text-gray-700 dark:text-gray-300 text-lg sm:text-xl mb-6 leading-relaxed">
+                  <p className="text-white/90 text-lg sm:text-xl mb-6 leading-relaxed drop-shadow-md">
                     Join the thousands of students who've achieved their dreams with our personalized guidance
                   </p>
                   <Link href="/success-stories">
-                    <Button className="bg-panda-purple hover:bg-panda-purple/90 text-white px-6 py-3 rounded-lg font-semibold transition-all duration-300 hover:shadow-lg hover:-translate-y-1">
+                    <Button className="bg-panda-yellow hover:bg-panda-yellow/90 text-panda-purple px-6 py-3 rounded-lg font-bold transition-all duration-300 hover:shadow-lg hover:-translate-y-1">
                       Read Success Stories
                       <ArrowRight className="ml-2 h-5 w-5" />
                     </Button>
