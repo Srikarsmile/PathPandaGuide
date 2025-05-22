@@ -14,45 +14,12 @@ export function ThemeProvider({ children }: { children: ReactNode }) {
   const [isTransitioning, setIsTransitioning] = useState(false);
 
   useEffect(() => {
-    // Check for saved theme preference or prefer-color-scheme
-    const savedTheme = localStorage.getItem('theme');
-    const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
-    
-    if (savedTheme === 'dark' || (!savedTheme && prefersDark)) {
-      setTheme('dark');
-      document.documentElement.classList.add('dark');
-    } else {
-      setTheme('light');
-      document.documentElement.classList.remove('dark');
-    }
+    // Force light mode only
+    setTheme('light');
+    document.documentElement.classList.remove('dark');
+    localStorage.setItem('theme', 'light');
 
-    // Set up system preference change listener
-    const mediaQuery = window.matchMedia('(prefers-color-scheme: dark)');
-    const handleChange = (e: MediaQueryListEvent) => {
-      if (localStorage.getItem('theme') === null) {
-        // Only follow system if user hasn't explicitly set a preference
-        const newTheme = e.matches ? 'dark' : 'light';
-        handleThemeChange(newTheme);
-      }
-    };
-    
-    // Add the listener
-    if (mediaQuery.addEventListener) {
-      mediaQuery.addEventListener('change', handleChange);
-    } else {
-      // For older browsers
-      mediaQuery.addListener(handleChange);
-    }
-    
-    // Clean up
-    return () => {
-      if (mediaQuery.removeEventListener) {
-        mediaQuery.removeEventListener('change', handleChange);
-      } else {
-        // For older browsers
-        mediaQuery.removeListener(handleChange);
-      }
-    };
+    // No theme listeners - always light mode
   }, []);
 
   // Handle theme change with transitions
@@ -79,8 +46,8 @@ export function ThemeProvider({ children }: { children: ReactNode }) {
   };
 
   const toggleTheme = () => {
-    const newTheme = theme === 'light' ? 'dark' : 'light';
-    handleThemeChange(newTheme);
+    // Always stay in light mode - do nothing
+    return;
   };
 
   return (
