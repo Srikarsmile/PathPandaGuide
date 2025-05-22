@@ -2,7 +2,7 @@ import { useState } from "react";
 import { Link } from "wouter";
 import { Button } from "@/components/ui/button";
 import { Menu } from "lucide-react";
-import DarkModeToggle from "./dark-mode-toggle";
+
 
 import pathPandaLogo from "../assets/path-panda-logo.png";
 
@@ -14,7 +14,7 @@ export default function Header() {
   };
 
   return (
-    <header className="bg-white dark:bg-gray-900 shadow-sm sticky top-0 z-50 border-b border-gray-100 dark:border-gray-800">
+    <header className="bg-white shadow-sm sticky top-0 z-50 border-b border-gray-100">
       <div className="container mx-auto px-6 py-0">
         <div className="flex justify-between items-center">
           <div className="flex items-center">
@@ -33,23 +33,23 @@ export default function Header() {
           <div className="hidden md:flex items-center space-x-6">
             <nav className="flex items-center space-x-6">
               <Link href="/">
-                <span className="text-gray-900 dark:text-gray-200 font-medium text-sm hover:text-panda-purple dark:hover:text-panda-yellow transition-colors duration-200">
+                <span className="text-gray-900 font-medium text-sm hover:text-panda-purple transition-colors duration-200">
                   Home
                 </span>
               </Link>
               <Link href="/services">
-                <span className="text-gray-900 dark:text-gray-200 font-medium text-sm hover:text-panda-purple dark:hover:text-panda-yellow transition-colors duration-200">
+                <span className="text-gray-900 font-medium text-sm hover:text-panda-purple transition-colors duration-200">
                   Services
                 </span>
               </Link>
               <Link href="/blog">
-                <span className="text-gray-900 dark:text-gray-200 font-medium text-sm hover:text-panda-purple dark:hover:text-panda-yellow transition-colors duration-200">
+                <span className="text-gray-900 font-medium text-sm hover:text-panda-purple transition-colors duration-200">
                   Blog
                 </span>
               </Link>
 
               <Link href="/contact">
-                <span className="text-gray-900 dark:text-gray-200 font-medium text-sm hover:text-panda-purple dark:hover:text-panda-yellow transition-colors duration-200">
+                <span className="text-gray-900 font-medium text-sm hover:text-panda-purple transition-colors duration-200">
                   Contact
                 </span>
               </Link>
@@ -67,18 +67,16 @@ export default function Header() {
                   Book WhatsApp Consultation
                 </Button>
               </a>
-              
-              <DarkModeToggle />
+
             </div>
           </div>
           
           {/* Mobile menu button */}
           <div className="flex items-center md:hidden">
-            <DarkModeToggle className="mr-2" />
             <Button 
               variant="ghost" 
               size="icon" 
-              className="text-gray-700 dark:text-gray-300 hover:text-panda-purple dark:hover:text-panda-lav p-1"
+              className="text-gray-700 hover:text-panda-purple p-1"
               onClick={toggleMobileMenu}
               aria-label="Toggle mobile menu"
             >
@@ -89,7 +87,7 @@ export default function Header() {
         
         {/* Mobile menu */}
         {isMobileMenuOpen && (
-          <div className="md:hidden mt-3 pb-3 border-t border-gray-100 dark:border-gray-700 pt-3 animate-in slide-in-from-top duration-300">
+          <div className="md:hidden mt-3 pb-3 border-t border-gray-100 pt-3 animate-in slide-in-from-top duration-300">
             <nav className="flex flex-col space-y-3">
               <Link href="/" onClick={() => setIsMobileMenuOpen(false)}>
                 <span className="block text-gray-900 dark:text-white hover:bg-gray-50 dark:hover:bg-gray-800 px-4 py-2 rounded-md font-semibold text-sm">
