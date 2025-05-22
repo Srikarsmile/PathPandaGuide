@@ -26,7 +26,7 @@ export default function Blog() {
   const [selectedCategory, setSelectedCategory] = useState<string>("all");
 
   const { data: blogPosts = [], isLoading } = useQuery({
-    queryKey: ['/api/blog'],
+    queryKey: ['/api/blog-posts'],
   });
 
   // Filter posts based on search and category
