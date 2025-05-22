@@ -242,28 +242,28 @@ export default function Services() {
             </div>
           </section>
 
-          {/* Student Success Stories */}
+          {/* Blog Section */}
           <Section className="bg-white dark:bg-gray-900">
             <div className="mb-12 text-center">
               <h2 className="text-3xl sm:text-4xl font-bold text-gray-900 dark:text-white mb-4 leading-tight">
-                Real <span className="text-panda-purple dark:text-panda-lav">Results</span> for Real Students
+                Study Abroad <span className="text-panda-purple dark:text-panda-lav">Insights</span>
               </h2>
               <p className="text-gray-700 dark:text-gray-300 max-w-3xl mx-auto text-lg">
-                Our data-driven approach delivers up to 4× higher acceptance rates than DIY applications
+                Expert guidance, application tips, and the latest updates from the world of international education
               </p>
             </div>
             
             <div className="bg-gradient-to-r from-panda-purple to-panda-purple/80 dark:from-panda-purple dark:to-panda-purple/90 rounded-xl p-8 sm:p-12 text-center shadow-xl border border-gray-100 dark:border-gray-700">
               <div className="max-w-2xl mx-auto">
                 <h3 className="text-2xl sm:text-3xl lg:text-4xl font-bold text-white mb-4">
-                  Our Expert Support Makes the Difference
+                  Get Expert Study Abroad Tips
                 </h3>
                 <p className="text-white/90 text-lg sm:text-xl mb-6 leading-relaxed">
-                  Join the thousands of students who've achieved their dreams with our personalized guidance
+                  Stay updated with application deadlines, scholarship opportunities, and insider secrets from our experts
                 </p>
-                <Link href="/success-stories">
+                <Link href="/blog">
                   <Button className="bg-panda-yellow hover:bg-panda-yellow/90 text-panda-purple px-6 py-3 rounded-lg font-bold transition-all duration-300 hover:shadow-lg hover:-translate-y-1">
-                    Read Success Stories
+                    Read Our Blog
                     <ArrowRight className="ml-2 h-5 w-5" />
                   </Button>
                 </Link>
