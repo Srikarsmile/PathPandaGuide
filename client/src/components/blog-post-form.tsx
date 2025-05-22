@@ -33,7 +33,15 @@ const blogPostSchema = z.object({
   categoryColor: z.string().regex(/^#([0-9A-F]{3}){1,2}$/i, { 
     message: "Must be a valid hex color (e.g. #FF0000)" 
   }),
-  imageUrl: z.string().url({ message: "Must be a valid URL." }),
+  imageUrl: z.string().min(1, { message: "Image is required." }).refine((val) => {
+    // Accept either valid URLs or local file paths
+    try {
+      new URL(val);
+      return true;
+    } catch {
+      return val.startsWith('/') || val.startsWith('./') || val.startsWith('../');
+    }
+  }, { message: "Must be a valid URL or file path." }),
   imageAlt: z.string().min(3, { message: "Image alt text is required." }),
   published: z.boolean().default(false),
 });
