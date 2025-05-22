@@ -220,9 +220,9 @@ export default function Blog() {
           <div className="flex flex-col sm:flex-row gap-4 max-w-md mx-auto">
             <Input 
               placeholder="Enter your email" 
-              className="bg-white/10 border-white/20 text-white placeholder:text-white/60"
+              className="bg-white border-2 border-white text-gray-900 placeholder:text-gray-500 focus:border-panda-yellow focus:ring-2 focus:ring-panda-yellow/20"
             />
-            <Button className="bg-panda-yellow hover:bg-panda-yellow/90 text-panda-purple font-semibold">
+            <Button className="bg-panda-yellow hover:bg-panda-yellow/90 text-panda-purple font-semibold px-8 py-2 whitespace-nowrap">
               Subscribe
             </Button>
           </div>
