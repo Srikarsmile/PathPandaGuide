@@ -80,13 +80,87 @@ export default function Services() {
                 </p>
               </div>
               
-              {/* Alt image for hero - could be a process flowchart */}
-              <div className="relative max-w-3xl mx-auto bg-white dark:bg-gray-800 rounded-xl p-6 shadow-xl border border-gray-200 dark:border-gray-700">
-                <img 
-                  src="https://placehold.co/800x300/f4f4f9/333333?text=Flowchart+of+Pathpanda's+four-step+process" 
-                  alt="Flowchart of Pathpanda's four-step process"
-                  className="w-full h-auto rounded-lg"
-                />
+              {/* Process Flowchart */}
+              <div className="relative max-w-4xl mx-auto bg-white dark:bg-gray-800 rounded-xl p-6 sm:p-8 shadow-xl border border-gray-200 dark:border-gray-700">
+                <div className="text-center mb-6">
+                  <h3 className="text-xl sm:text-2xl font-bold text-gray-900 dark:text-white mb-2">
+                    Your Journey to Success
+                  </h3>
+                  <p className="text-gray-600 dark:text-gray-400">
+                    Our proven 4-step process
+                  </p>
+                </div>
+                
+                <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6">
+                  {/* Step 1 */}
+                  <div className="relative text-center">
+                    <div className="bg-panda-purple/10 dark:bg-panda-purple/20 rounded-full w-16 h-16 flex items-center justify-center mx-auto mb-4 border-2 border-panda-purple">
+                      <span className="text-2xl font-bold text-panda-purple">1</span>
+                    </div>
+                    <h4 className="font-semibold text-gray-900 dark:text-white mb-2">Discovery Call</h4>
+                    <p className="text-sm text-gray-600 dark:text-gray-400">
+                      Understand your goals and preferences
+                    </p>
+                    {/* Arrow for larger screens */}
+                    <div className="hidden lg:block absolute top-8 -right-3 text-panda-purple">
+                      <ArrowRight className="w-6 h-6" />
+                    </div>
+                  </div>
+
+                  {/* Step 2 */}
+                  <div className="relative text-center">
+                    <div className="bg-panda-purple/10 dark:bg-panda-purple/20 rounded-full w-16 h-16 flex items-center justify-center mx-auto mb-4 border-2 border-panda-purple">
+                      <span className="text-2xl font-bold text-panda-purple">2</span>
+                    </div>
+                    <h4 className="font-semibold text-gray-900 dark:text-white mb-2">Smart Matching</h4>
+                    <p className="text-sm text-gray-600 dark:text-gray-400">
+                      AI-powered university recommendations
+                    </p>
+                    {/* Arrow for larger screens */}
+                    <div className="hidden lg:block absolute top-8 -right-3 text-panda-purple">
+                      <ArrowRight className="w-6 h-6" />
+                    </div>
+                  </div>
+
+                  {/* Step 3 */}
+                  <div className="relative text-center">
+                    <div className="bg-panda-purple/10 dark:bg-panda-purple/20 rounded-full w-16 h-16 flex items-center justify-center mx-auto mb-4 border-2 border-panda-purple">
+                      <span className="text-2xl font-bold text-panda-purple">3</span>
+                    </div>
+                    <h4 className="font-semibold text-gray-900 dark:text-white mb-2">Expert Coaching</h4>
+                    <p className="text-sm text-gray-600 dark:text-gray-400">
+                      1-on-1 support for applications & essays
+                    </p>
+                    {/* Arrow for larger screens */}
+                    <div className="hidden lg:block absolute top-8 -right-3 text-panda-purple">
+                      <ArrowRight className="w-6 h-6" />
+                    </div>
+                  </div>
+
+                  {/* Step 4 */}
+                  <div className="relative text-center">
+                    <div className="bg-panda-yellow/20 dark:bg-panda-yellow/30 rounded-full w-16 h-16 flex items-center justify-center mx-auto mb-4 border-2 border-panda-yellow">
+                      <CheckCircle className="w-8 h-8 text-panda-yellow" />
+                    </div>
+                    <h4 className="font-semibold text-gray-900 dark:text-white mb-2">Success!</h4>
+                    <p className="text-sm text-gray-600 dark:text-gray-400">
+                      Multiple acceptances & scholarship wins
+                    </p>
+                  </div>
+                </div>
+
+                {/* Mobile arrows */}
+                <div className="lg:hidden flex justify-center space-x-4 mt-6">
+                  <div className="flex items-center space-x-2 text-panda-purple">
+                    <div className="w-2 h-2 bg-panda-purple rounded-full"></div>
+                    <div className="w-8 h-0.5 bg-panda-purple"></div>
+                    <div className="w-2 h-2 bg-panda-purple rounded-full"></div>
+                    <div className="w-8 h-0.5 bg-panda-purple"></div>
+                    <div className="w-2 h-2 bg-panda-purple rounded-full"></div>
+                    <div className="w-8 h-0.5 bg-panda-purple"></div>
+                    <div className="w-2 h-2 bg-panda-yellow rounded-full"></div>
+                  </div>
+                </div>
               </div>
             </div>
           </section>
