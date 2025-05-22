@@ -115,7 +115,9 @@ export default function BlogPostForm({ post, onSuccess, onCancel }: BlogPostForm
         title: "Blog post created",
         description: "Your blog post has been created successfully.",
       });
+      // Invalidate both admin and public blog posts cache
       queryClient.invalidateQueries({ queryKey: ["/api/admin/blog-posts"] });
+      queryClient.invalidateQueries({ queryKey: ["/api/blog-posts"] });
       if (onSuccess) onSuccess();
     },
     onError: (error) => {
@@ -138,7 +140,9 @@ export default function BlogPostForm({ post, onSuccess, onCancel }: BlogPostForm
         title: "Blog post updated",
         description: "Your blog post has been updated successfully.",
       });
+      // Invalidate both admin and public blog posts cache
       queryClient.invalidateQueries({ queryKey: ["/api/admin/blog-posts"] });
+      queryClient.invalidateQueries({ queryKey: ["/api/blog-posts"] });
       if (onSuccess) onSuccess();
     },
     onError: (error) => {
