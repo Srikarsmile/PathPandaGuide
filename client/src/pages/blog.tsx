@@ -5,9 +5,11 @@ import { Card, CardContent } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
-import { Search, Calendar, User, ArrowRight, Filter } from "lucide-react";
+import { Search, Calendar, User, ArrowRight, Filter, Edit, Plus, X } from "lucide-react";
 import { useState } from "react";
 import { Link } from "wouter";
+import { Dialog, DialogContent, DialogHeader, DialogTitle } from "@/components/ui/dialog";
+import BlogPostForm from "@/components/blog-post-form";
 type BlogPost = {
   id: number;
   slug: string;
@@ -24,10 +26,44 @@ type BlogPost = {
 export default function Blog() {
   const [searchQuery, setSearchQuery] = useState("");
   const [selectedCategory, setSelectedCategory] = useState<string>("all");
+  const [showCodeDialog, setShowCodeDialog] = useState(false);
+  const [showEditMenu, setShowEditMenu] = useState(false);
+  const [editingPost, setEditingPost] = useState<BlogPost | null>(null);
+  const [showNewPostForm, setShowNewPostForm] = useState(false);
+  const [accessCode, setAccessCode] = useState("");
 
   const { data: blogPosts = [], isLoading } = useQuery({
     queryKey: ['/api/blog-posts'],
   });
+
+  const handleCodeSubmit = () => {
+    if (accessCode === "4455") {
+      setShowEditMenu(true);
+      setShowCodeDialog(false);
+      setAccessCode("");
+    } else {
+      alert("Invalid access code");
+      setAccessCode("");
+    }
+  };
+
+  const handleEditPost = (post: BlogPost) => {
+    setEditingPost(post);
+    setShowEditMenu(false);
+  };
+
+  const handleNewPost = () => {
+    setShowNewPostForm(true);
+    setShowEditMenu(false);
+  };
+
+  const closeAllDialogs = () => {
+    setShowCodeDialog(false);
+    setShowEditMenu(false);
+    setShowNewPostForm(false);
+    setEditingPost(null);
+    setAccessCode("");
+  };
 
   // Filter posts based on search and category
   const filteredPosts = (blogPosts as BlogPost[]).filter((post: BlogPost) => {
@@ -82,7 +118,17 @@ export default function Blog() {
       </Helmet>
 
       {/* Hero Section */}
-      <section className="bg-gradient-to-br from-panda-purple/10 via-panda-lav/10 to-panda-pink/10 py-16">
+      <section className="bg-gradient-to-br from-panda-purple/10 via-panda-lav/10 to-panda-pink/10 py-16 relative">
+        {/* Edit Icon */}
+        <Button
+          variant="ghost"
+          size="sm"
+          onClick={() => setShowCodeDialog(true)}
+          className="absolute top-4 right-4 text-panda-purple hover:text-panda-purple/80 hover:bg-panda-purple/10"
+        >
+          <Edit className="h-4 w-4" />
+        </Button>
+        
         <div className="max-w-6xl mx-auto px-4 text-center">
           <h1 className="text-4xl md:text-5xl font-bold text-panda-purple mb-6">
             Your Study Abroad Journey Starts Here
@@ -155,7 +201,17 @@ export default function Blog() {
         ) : (
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
             {filteredPosts.map((post: BlogPost) => (
-              <Card key={post.id} className="overflow-hidden hover:shadow-lg transition-all duration-300 hover:scale-105">
+              <Card key={post.id} className="overflow-hidden hover:shadow-lg transition-all duration-300 hover:scale-105 relative">
+                {showEditMenu && (
+                  <Button
+                    variant="ghost"
+                    size="sm"
+                    onClick={() => handleEditPost(post)}
+                    className="absolute top-2 right-2 z-10 bg-white/90 hover:bg-white text-panda-purple hover:text-panda-purple/80"
+                  >
+                    <Edit className="h-3 w-3" />
+                  </Button>
+                )}
                 <div className="h-48 overflow-hidden bg-gradient-to-br from-panda-purple/20 to-panda-lav/20">
                   {post.imageUrl ? (
                     <img 
@@ -228,6 +284,85 @@ export default function Blog() {
           </div>
         </div>
       </section>
+
+      {/* Code Entry Dialog */}
+      <Dialog open={showCodeDialog} onOpenChange={setShowCodeDialog}>
+        <DialogContent className="sm:max-w-md">
+          <DialogHeader>
+            <DialogTitle>Enter Access Code</DialogTitle>
+          </DialogHeader>
+          <div className="space-y-4">
+            <Input
+              type="password"
+              placeholder="Enter code..."
+              value={accessCode}
+              onChange={(e) => setAccessCode(e.target.value)}
+              onKeyPress={(e) => e.key === 'Enter' && handleCodeSubmit()}
+            />
+            <div className="flex gap-2">
+              <Button onClick={handleCodeSubmit} className="bg-panda-purple hover:bg-panda-purple/90">
+                Access
+              </Button>
+              <Button variant="outline" onClick={closeAllDialogs}>
+                Cancel
+              </Button>
+            </div>
+          </div>
+        </DialogContent>
+      </Dialog>
+
+      {/* Edit Menu Dialog */}
+      <Dialog open={showEditMenu} onOpenChange={setShowEditMenu}>
+        <DialogContent className="sm:max-w-md">
+          <DialogHeader>
+            <DialogTitle>Blog Management</DialogTitle>
+          </DialogHeader>
+          <div className="space-y-4">
+            <Button 
+              onClick={handleNewPost}
+              className="w-full bg-panda-purple hover:bg-panda-purple/90"
+            >
+              <Plus className="h-4 w-4 mr-2" />
+              Write New Article
+            </Button>
+            <p className="text-sm text-gray-600 dark:text-gray-400 text-center">
+              Click on any article to edit it
+            </p>
+            <Button variant="outline" onClick={closeAllDialogs} className="w-full">
+              Done
+            </Button>
+          </div>
+        </DialogContent>
+      </Dialog>
+
+      {/* New Post Form Dialog */}
+      <Dialog open={showNewPostForm} onOpenChange={setShowNewPostForm}>
+        <DialogContent className="sm:max-w-4xl max-h-[90vh] overflow-y-auto">
+          <DialogHeader>
+            <DialogTitle>Write New Article</DialogTitle>
+          </DialogHeader>
+          <BlogPostForm 
+            onSuccess={closeAllDialogs}
+            onCancel={closeAllDialogs}
+          />
+        </DialogContent>
+      </Dialog>
+
+      {/* Edit Post Form Dialog */}
+      <Dialog open={!!editingPost} onOpenChange={() => setEditingPost(null)}>
+        <DialogContent className="sm:max-w-4xl max-h-[90vh] overflow-y-auto">
+          <DialogHeader>
+            <DialogTitle>Edit Article</DialogTitle>
+          </DialogHeader>
+          {editingPost && (
+            <BlogPostForm 
+              post={editingPost}
+              onSuccess={closeAllDialogs}
+              onCancel={closeAllDialogs}
+            />
+          )}
+        </DialogContent>
+      </Dialog>
     </Layout>
   );
 }
