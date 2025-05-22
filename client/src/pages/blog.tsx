@@ -125,16 +125,32 @@ export default function Blog() {
       <section className="max-w-6xl mx-auto px-4 py-16">
         {filteredPosts.length === 0 ? (
           <div className="text-center py-16">
-            <div className="text-6xl mb-4">📚</div>
-            <h3 className="text-2xl font-semibold text-gray-600 dark:text-gray-400 mb-2">
-              {searchQuery || selectedCategory !== "all" ? "No articles found" : "No blog posts yet"}
-            </h3>
-            <p className="text-gray-500 dark:text-gray-500">
-              {searchQuery || selectedCategory !== "all" 
-                ? "Try adjusting your search or filter criteria" 
-                : "Check back soon for expert study abroad insights and tips!"
-              }
-            </p>
+            <div className="bg-gradient-to-br from-panda-purple/10 to-panda-lav/10 rounded-2xl p-12 max-w-2xl mx-auto">
+              <div className="text-6xl mb-6">📚</div>
+              <h3 className="text-3xl font-bold text-panda-purple mb-4">
+                {searchQuery || selectedCategory !== "all" ? "No articles found" : "Blog Coming Soon!"}
+              </h3>
+              <p className="text-lg text-gray-600 dark:text-gray-300 mb-8">
+                {searchQuery || selectedCategory !== "all" 
+                  ? "Try adjusting your search or filter criteria to find the content you're looking for." 
+                  : "We're preparing amazing study abroad content including visa guides, university insights, scholarship tips, and student success stories!"
+                }
+              </p>
+              {!searchQuery && selectedCategory === "all" && (
+                <div className="grid gap-4 max-w-md mx-auto">
+                  <div className="bg-white dark:bg-gray-800 p-4 rounded-lg shadow-sm">
+                    <h4 className="font-semibold text-panda-purple mb-2">Coming Soon:</h4>
+                    <ul className="text-sm text-gray-600 dark:text-gray-400 space-y-1 text-left">
+                      <li>• Visa application step-by-step guides</li>
+                      <li>• University comparison and ranking insights</li>
+                      <li>• Scholarship opportunities and application tips</li>
+                      <li>• Student life experiences from around the world</li>
+                      <li>• Career advice for international graduates</li>
+                    </ul>
+                  </div>
+                </div>
+              )}
+            </div>
           </div>
         ) : (
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
