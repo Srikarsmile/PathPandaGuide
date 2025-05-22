@@ -20,9 +20,14 @@ type BlogPost = {
   description: string;
   content: string;
   imageUrl?: string;
+  imageAlt?: string;
   category: string;
+  categoryColor?: string;
+  date?: Date;
   author?: string;
+  authorId?: number;
   createdAt: string;
+  updatedAt?: Date;
   published: boolean;
 };
 

@@ -162,6 +162,41 @@ export async function registerRoutes(app: Express): Promise<Server> {
     }
   });
 
+  // Public blog posts endpoint (published posts only)
+  app.get("/api/blog-posts", async (req, res) => {
+    try {
+      const posts = await dbStorage.getAllBlogPosts();
+      // Filter to only show published posts for public access
+      const publishedPosts = posts.filter((post: BlogPost) => post.published);
+      res.json(publishedPosts);
+    } catch (error) {
+      console.error("Error fetching blog posts:", error);
+      res.status(500).json({ message: "Error fetching blog posts" });
+    }
+  });
+
+  // Get individual blog post by slug (public access for published posts)
+  app.get("/api/blog-posts/:slug", async (req, res) => {
+    try {
+      const slug = req.params.slug;
+      const post = await dbStorage.getBlogPostBySlug(slug);
+      
+      if (!post) {
+        return res.status(404).json({ message: "Blog post not found" });
+      }
+      
+      // Only return published posts to public
+      if (!post.published) {
+        return res.status(404).json({ message: "Blog post not found" });
+      }
+      
+      res.json(post);
+    } catch (error) {
+      console.error("Error fetching blog post:", error);
+      res.status(500).json({ message: "Error fetching blog post" });
+    }
+  });
+
   // Admin API routes
   // Blog Posts
   app.get("/api/admin/blog-posts", requireAdmin, async (req, res) => {
