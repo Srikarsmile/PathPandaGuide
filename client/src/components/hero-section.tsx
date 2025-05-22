@@ -1,6 +1,6 @@
 import { Button } from "@/components/ui/button";
 import { Link } from "wouter";
-import { ArrowRight, GraduationCap, Globe, Award } from "lucide-react";
+import { ArrowRight, GraduationCap } from "lucide-react";
 
 export default function HeroSection() {
   return (
@@ -31,31 +31,24 @@ export default function HeroSection() {
           <p className="text-base md:text-xl mb-6 md:mb-8 text-white font-medium max-w-lg drop-shadow-sm">
             Personalised guidance and data‑driven matching for UK, USA & Canada admissions.
           </p>
-          <div className="flex flex-wrap gap-3 md:gap-4 items-center">
+          <div className="flex flex-col items-start">
             <a
-              href="https://wa.me/+918639885985?text=Hi%20Pathpanda%20team%2C%20I%27d%20like%20to%20book%20a%20consultation%20about%20studying%20abroad."
+              href="https://wa.me/918639885985?text=Hi%20Pathpanda%20team%2C%20I%27d%20like%20to%20book%20a%20consultation%20about%20studying%20abroad."
               target="_blank"
               rel="noopener"
             >
               <Button className="px-5 py-5 md:px-8 md:py-7 bg-panda-yellow hover:bg-panda-yellow/90 text-panda-purple font-bold rounded-xl shadow-xl transition-all duration-300 hover:shadow-2xl hover:-translate-y-1 text-sm md:text-lg group flex items-center justify-center border border-white/10">
-                <span>Book Free Consultation</span>
+                <span>Book WhatsApp Consultation</span>
                 <ArrowRight className="ml-2 h-4 w-4 md:h-5 md:w-5 transition-transform group-hover:translate-x-1" />
               </Button>
             </a>
-            <Link href="/services">
-              <Button variant="outline" className="px-5 py-5 md:px-8 md:py-7 bg-white/10 backdrop-blur-sm hover:bg-white/20 text-white border border-white/30 font-semibold rounded-xl shadow-lg transition-all duration-200 hover:shadow-xl text-sm md:text-lg flex items-center justify-center">
-                <span>Explore Our Services</span>
-              </Button>
-            </Link>
+            <p className="text-xs mt-2 opacity-80">
+              Chat with an advisor in &lt; 5 min — free consultation.
+            </p>
           </div>
 
           {/* Stats */}
-          <div className="grid grid-cols-3 gap-2 md:gap-4 mt-8 md:mt-12 bg-gradient-to-r from-white/10 to-white/5 backdrop-blur-sm rounded-xl p-3 md:p-6 border border-white/20 shadow-xl">
-            <div className="text-center relative">
-              <div className="absolute -top-1 -left-1 w-6 h-6 border-t-2 border-l-2 border-panda-yellow/50 rounded-tl-lg"></div>
-              <div className="text-2xl sm:text-3xl md:text-4xl font-bold text-panda-yellow drop-shadow-lg">50+</div>
-              <div className="text-xs md:text-sm text-white font-medium">Destinations</div>
-            </div>
+          <div className="grid grid-cols-2 gap-4 md:gap-6 mt-8 md:mt-12 bg-gradient-to-r from-white/10 to-white/5 backdrop-blur-sm rounded-xl p-4 md:p-6 border border-white/20 shadow-xl">
             <div className="text-center relative">
               <div className="absolute -top-1 -left-1 w-6 h-6 border-t-2 border-l-2 border-panda-yellow/50 rounded-tl-lg"></div>
               <div className="text-2xl sm:text-3xl md:text-4xl font-bold text-panda-yellow drop-shadow-lg">1000+</div>
@@ -88,18 +81,10 @@ export default function HeroSection() {
               className="absolute inset-4 object-cover rounded-xl shadow-lg"
             />
             
-            {/* Enhanced badges */}
+            {/* Enhanced badge */}
             <div className="absolute -left-4 md:-left-5 top-10 bg-gradient-to-r from-white to-gray-100 rounded-lg shadow-2xl p-2 md:p-3 flex items-center gap-1 md:gap-2 animate-float border-2 border-[#FFD700]/40">
               <GraduationCap className="h-5 w-5 md:h-6 md:w-6 text-panda-purple" />
               <span className="text-xs md:text-sm font-bold text-gray-800">Top-tier Universities</span>
-            </div>
-            <div className="absolute -right-4 md:-right-5 top-1/3 bg-gradient-to-r from-white to-gray-100 rounded-lg shadow-2xl p-2 md:p-3 flex items-center gap-1 md:gap-2 animate-float-reverse hidden sm:flex border-2 border-[#FFD700]/40">
-              <Globe className="h-5 w-5 md:h-6 md:w-6 text-panda-purple" />
-              <span className="text-xs md:text-sm font-bold text-gray-800">Global Network</span>
-            </div>
-            <div className="absolute -left-4 md:-left-5 bottom-10 bg-gradient-to-r from-white to-gray-100 rounded-lg shadow-2xl p-2 md:p-3 flex items-center gap-1 md:gap-2 animate-float-slow border-2 border-[#FFD700]/40">
-              <Award className="h-5 w-5 md:h-6 md:w-6 text-[#FFC000]" />
-              <span className="text-xs md:text-sm font-bold text-gray-800">Scholarship Access</span>
             </div>
           </div>
         </div>
