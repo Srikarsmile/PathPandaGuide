@@ -20,7 +20,8 @@ const AdminBlogNew = lazy(() => import("@/pages/admin-blog-new"));
 const AdminBlogEdit = lazy(() => import("@/pages/admin-blog-edit"));
 
 // Lazy load new pages
-const SuccessStories = lazy(() => import("@/pages/success-stories"));
+const Blog = lazy(() => import("@/pages/blog"));
+const BlogPost = lazy(() => import("@/pages/blog-post"));
 const FAQ = lazy(() => import("@/pages/faq"));
 const PrivacyTerms = lazy(() => import("@/pages/privacy-terms"));
 
@@ -52,7 +53,8 @@ function Router() {
       <Route path="/contact" component={Contact} />
       
       {/* New Pages from Pathpanda Content */}
-      <LazyRoute path="/success-stories" component={SuccessStories} />
+      <LazyRoute path="/blog" component={Blog} />
+      <LazyRoute path="/blog/:slug" component={BlogPost} />
       <LazyRoute path="/faq" component={FAQ} />
       <LazyRoute path="/privacy-terms" component={PrivacyTerms} />
       
