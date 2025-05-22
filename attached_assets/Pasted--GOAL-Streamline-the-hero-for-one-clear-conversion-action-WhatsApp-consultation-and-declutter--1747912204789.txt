@@ -1,0 +1,76 @@
+### GOAL
+
+Streamline the hero for one clear conversion action (WhatsApp consultation) and declutter the navbar & stats bar.
+
+---
+
+## 1 · Navbar.jsx  *(or components/Navbar.tsx / NavBar.vue—adjust to your stack)*
+
+**Changes**
+
+1. **Delete** the *FAQ* and *Sign In* list items.
+2. **Keep** links: **Home · Services · Blog · Contact**.
+3. Leave the dark‑mode toggle untouched.
+4. Update the right‑side CTA button:
+
+   ```jsx
+   <a
+     href="https://wa.me/918639885985?text=Hi%20Pathpanda%20team%2C%20I%27d%20like%20to%20book%20a%20consultation%20about%20studying%20abroad."
+     target="_blank"
+     rel="noopener"
+     className="btn-primary ml-auto"
+   >
+     Book WhatsApp Consultation
+   </a>
+   ```
+
+---
+
+## 2 · Hero.jsx  *(or HeroSection.tsx / sections/Hero.vue)*
+
+**Changes**
+
+1. **Sub‑headline** → replace with:
+
+   > Personalised guidance and data‑driven matching for UK, USA & Canada admissions.
+2. **CTA buttons**
+
+   * Remove the secondary **“Explore Our Services”** button entirely.
+   * Convert the primary button to match the Navbar (same label + WhatsApp deep‑link).
+   * Add helper copy under the button:
+
+     ```jsx
+     <p className="text-xs mt-2 opacity-80">
+       Chat with an advisor in &lt; 5 min — free consultation.
+     </p>
+     ```
+
+---
+
+## 3 · HeroBadgeGroup.jsx  *(or inside hero image markup)*
+
+Keep **only** the “Top‑tier Universities” badge. Remove the “Global Network” and “Scholarship Access” badge elements.
+
+---
+
+## 4 · Stats.jsx  *(or components/StatsCards.tsx)*
+
+1. Delete the **“50+ Destinations”** stat card.
+2. Keep the remaining two cards:
+
+   * **1 000+ Institutions**
+   * **10 k+ Students Placed**
+
+---
+
+## 5 · Lint & Test
+
+1. Run `npm run lint` then `npm run dev`.
+2. Verify:
+
+   * Navbar shows the reduced link set and the yellow **Book WhatsApp Consultation** button.
+   * Hero displays **one** yellow CTA button (no secondary button).
+   * Stats bar shows only two cards.
+   * Hero image overlay shows a single badge.
+
+**Deployment complete** when all checks pass and the WhatsApp deep‑link opens chat as expected.
