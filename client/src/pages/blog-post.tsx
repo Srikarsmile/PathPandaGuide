@@ -85,7 +85,7 @@ export default function BlogPostPage() {
     );
   }
 
-  if (error || !post) {
+  if (error) {
     return (
       <Layout title="Article Not Found">
         <div className="min-h-screen flex items-center justify-center">
@@ -104,6 +104,16 @@ export default function BlogPostPage() {
               </Button>
             </Link>
           </div>
+        </div>
+      </Layout>
+    );
+  }
+
+  if (!post) {
+    return (
+      <Layout title="Loading...">
+        <div className="min-h-screen flex items-center justify-center">
+          <div className="w-12 h-12 rounded-full border-4 border-panda-purple/30 border-t-panda-purple animate-spin"></div>
         </div>
       </Layout>
     );
