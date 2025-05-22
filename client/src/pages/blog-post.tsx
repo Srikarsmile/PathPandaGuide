@@ -1,13 +1,18 @@
 import { Layout } from "@/components/layout";
 import { Helmet } from "react-helmet";
-import { useQuery } from "@tanstack/react-query";
-import { useRoute } from "wouter";
+import { useQuery, useMutation, useQueryClient } from "@tanstack/react-query";
+import { useRoute, useLocation } from "wouter";
 import { Card, CardContent } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
-import { Calendar, User, ArrowLeft, Share2, Clock, Tag } from "lucide-react";
+import { Input } from "@/components/ui/input";
+import { Calendar, User, ArrowLeft, Share2, Clock, Tag, Edit, Trash2, X } from "lucide-react";
 import { Link } from "wouter";
 import ReactMarkdown from "react-markdown";
+import { Dialog, DialogContent, DialogHeader, DialogTitle } from "@/components/ui/dialog";
+import BlogPostForm from "@/components/blog-post-form";
+import { useState } from "react";
+import { apiRequest } from "@/lib/queryClient";
 type BlogPost = {
   id: number;
   slug: string;
@@ -23,12 +28,62 @@ type BlogPost = {
 
 export default function BlogPostPage() {
   const [, params] = useRoute('/blog/:slug');
+  const [, setLocation] = useLocation();
   const slug = params?.slug;
+  const queryClient = useQueryClient();
+  
+  const [showCodeDialog, setShowCodeDialog] = useState(false);
+  const [showEditForm, setShowEditForm] = useState(false);
+  const [showActionMenu, setShowActionMenu] = useState(false);
+  const [accessCode, setAccessCode] = useState("");
 
   const { data: post, isLoading, error } = useQuery<BlogPost>({
     queryKey: [`/api/blog-posts/${slug}`],
     enabled: !!slug,
   });
+
+  const deleteMutation = useMutation({
+    mutationFn: async (id: number) => {
+      const response = await fetch(`/api/admin/blog-posts/${id}`, {
+        method: "DELETE",
+      });
+      if (!response.ok) throw new Error('Failed to delete post');
+      return response.json();
+    },
+    onSuccess: () => {
+      queryClient.invalidateQueries({ queryKey: ['/api/blog-posts'] });
+      setLocation('/blog');
+    },
+  });
+
+  const handleCodeSubmit = () => {
+    if (accessCode === "4455") {
+      setShowActionMenu(true);
+      setShowCodeDialog(false);
+      setAccessCode("");
+    } else {
+      alert("Invalid access code");
+      setAccessCode("");
+    }
+  };
+
+  const handleEdit = () => {
+    setShowEditForm(true);
+    setShowActionMenu(false);
+  };
+
+  const handleDelete = () => {
+    if (post && confirm("Are you sure you want to delete this article? This action cannot be undone.")) {
+      deleteMutation.mutate(post.id);
+    }
+  };
+
+  const closeAllDialogs = () => {
+    setShowCodeDialog(false);
+    setShowActionMenu(false);
+    setShowEditForm(false);
+    setAccessCode("");
+  };
 
   const getCategoryColor = (category: string) => {
     const colors: { [key: string]: string } = {
@@ -134,14 +189,25 @@ export default function BlogPostPage() {
         <meta name="article:section" content={post.category || ""} />
       </Helmet>
 
-      {/* Back to Blog Button */}
+      {/* Back to Blog Button and Edit Button */}
       <div className="max-w-4xl mx-auto px-4 pt-8">
-        <Link href="/blog">
-          <Button variant="ghost" className="mb-6 text-panda-purple hover:text-panda-purple/80">
-            <ArrowLeft className="h-4 w-4 mr-2" />
-            Back to Blog
+        <div className="flex justify-between items-center mb-6">
+          <Link href="/blog">
+            <Button variant="ghost" className="text-panda-purple hover:text-panda-purple/80">
+              <ArrowLeft className="h-4 w-4 mr-2" />
+              Back to Blog
+            </Button>
+          </Link>
+          
+          <Button
+            variant="ghost"
+            size="sm"
+            onClick={() => setShowCodeDialog(true)}
+            className="text-panda-purple hover:text-panda-purple/80 hover:bg-panda-purple/10"
+          >
+            <Edit className="h-4 w-4" />
           </Button>
-        </Link>
+        </div>
       </div>
 
       {/* Article Header */}
@@ -247,6 +313,78 @@ export default function BlogPostPage() {
           </Link>
         </div>
       </section>
+
+      {/* Code Entry Dialog */}
+      <Dialog open={showCodeDialog} onOpenChange={setShowCodeDialog}>
+        <DialogContent className="sm:max-w-md">
+          <DialogHeader>
+            <DialogTitle>Enter Access Code</DialogTitle>
+          </DialogHeader>
+          <div className="space-y-4">
+            <Input
+              type="password"
+              placeholder="Enter code..."
+              value={accessCode}
+              onChange={(e) => setAccessCode(e.target.value)}
+              onKeyPress={(e) => e.key === 'Enter' && handleCodeSubmit()}
+            />
+            <div className="flex gap-2">
+              <Button onClick={handleCodeSubmit} className="bg-panda-purple hover:bg-panda-purple/90">
+                Access
+              </Button>
+              <Button variant="outline" onClick={closeAllDialogs}>
+                Cancel
+              </Button>
+            </div>
+          </div>
+        </DialogContent>
+      </Dialog>
+
+      {/* Action Menu Dialog */}
+      <Dialog open={showActionMenu} onOpenChange={setShowActionMenu}>
+        <DialogContent className="sm:max-w-md">
+          <DialogHeader>
+            <DialogTitle>Article Management</DialogTitle>
+          </DialogHeader>
+          <div className="space-y-4">
+            <Button 
+              onClick={handleEdit}
+              className="w-full bg-panda-purple hover:bg-panda-purple/90"
+            >
+              <Edit className="h-4 w-4 mr-2" />
+              Edit Article
+            </Button>
+            <Button 
+              onClick={handleDelete}
+              variant="destructive"
+              className="w-full"
+              disabled={deleteMutation.isPending}
+            >
+              <Trash2 className="h-4 w-4 mr-2" />
+              {deleteMutation.isPending ? 'Deleting...' : 'Delete Article'}
+            </Button>
+            <Button variant="outline" onClick={closeAllDialogs} className="w-full">
+              Cancel
+            </Button>
+          </div>
+        </DialogContent>
+      </Dialog>
+
+      {/* Edit Form Dialog */}
+      <Dialog open={showEditForm} onOpenChange={setShowEditForm}>
+        <DialogContent className="sm:max-w-4xl max-h-[90vh] overflow-y-auto">
+          <DialogHeader>
+            <DialogTitle>Edit Article</DialogTitle>
+          </DialogHeader>
+          {post && (
+            <BlogPostForm 
+              post={post}
+              onSuccess={closeAllDialogs}
+              onCancel={closeAllDialogs}
+            />
+          )}
+        </DialogContent>
+      </Dialog>
     </Layout>
   );
 }
