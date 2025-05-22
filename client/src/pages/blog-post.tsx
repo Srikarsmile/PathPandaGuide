@@ -25,7 +25,7 @@ export default function BlogPostPage() {
   const [, params] = useRoute('/blog/:slug');
   const slug = params?.slug;
 
-  const { data: post, isLoading, error } = useQuery({
+  const { data: post, isLoading, error } = useQuery<BlogPost>({
     queryKey: ['/api/blog-posts', slug],
     enabled: !!slug,
   });
@@ -51,6 +51,7 @@ export default function BlogPostPage() {
   };
 
   const estimateReadingTime = (content: string) => {
+    if (!content) return 0;
     const wordsPerMinute = 200;
     const wordCount = content.split(/\s+/).length;
     return Math.ceil(wordCount / wordsPerMinute);
