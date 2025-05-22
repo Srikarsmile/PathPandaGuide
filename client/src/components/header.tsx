@@ -3,7 +3,7 @@ import { Link } from "wouter";
 import { Button } from "@/components/ui/button";
 import { Menu } from "lucide-react";
 import DarkModeToggle from "./dark-mode-toggle";
-import AuthButton from "./auth-button";
+
 import pathPandaLogo from "../assets/path-panda-logo.png";
 
 export default function Header() {
@@ -47,11 +47,7 @@ export default function Header() {
                   Blog
                 </span>
               </Link>
-              <Link href="/faq">
-                <span className="text-gray-900 dark:text-gray-200 font-medium text-sm hover:text-panda-purple dark:hover:text-panda-yellow transition-colors duration-200">
-                  FAQ
-                </span>
-              </Link>
+
               <Link href="/contact">
                 <span className="text-gray-900 dark:text-gray-200 font-medium text-sm hover:text-panda-purple dark:hover:text-panda-yellow transition-colors duration-200">
                   Contact
@@ -68,11 +64,10 @@ export default function Header() {
                 <Button
                   className="bg-panda-yellow hover:bg-panda-yellow/90 text-panda-purple font-medium text-sm px-4 py-1.5 rounded shadow"
                 >
-                  Book Consultation
+                  Book WhatsApp Consultation
                 </Button>
               </a>
               
-              <AuthButton />
               <DarkModeToggle />
             </div>
           </div>
@@ -111,11 +106,7 @@ export default function Header() {
                   Blog
                 </span>
               </Link>
-              <Link href="/faq" onClick={() => setIsMobileMenuOpen(false)}>
-                <span className="block text-gray-900 dark:text-white hover:bg-gray-50 dark:hover:bg-gray-800 px-4 py-2 rounded-md font-semibold text-sm">
-                  FAQ
-                </span>
-              </Link>
+
               <Link href="/contact" onClick={() => setIsMobileMenuOpen(false)}>
                 <span className="block text-gray-900 dark:text-white hover:bg-gray-50 dark:hover:bg-gray-800 px-4 py-2 rounded-md font-semibold text-sm">
                   Contact
@@ -132,14 +123,11 @@ export default function Header() {
                   <Button
                     className="bg-panda-yellow hover:bg-panda-yellow/90 text-panda-purple font-medium text-sm w-full py-2 shadow"
                   >
-                    Book Consultation
+                    Book WhatsApp Consultation
                   </Button>
                 </a>
               </div>
-              
-              <div className="px-4 flex justify-start">
-                <AuthButton />
-              </div>
+
             </nav>
           </div>
         )}

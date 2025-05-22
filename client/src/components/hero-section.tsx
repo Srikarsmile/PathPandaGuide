@@ -29,7 +29,7 @@ export default function HeroSection() {
             Your <span className="text-panda-yellow drop-shadow-md">Path</span> to Academic Excellence Abroad
           </h1>
           <p className="text-base md:text-xl mb-6 md:mb-8 text-white font-medium max-w-lg drop-shadow-sm">
-            Personalized guidance from advisors who understand your ambitions. We transform your international education aspirations into exceptional academic journeys.
+            Personalised guidance and data‑driven matching for UK, USA & Canada admissions.
           </p>
           <div className="flex flex-wrap gap-3 md:gap-4 items-center">
             <a
