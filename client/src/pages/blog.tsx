@@ -36,11 +36,28 @@ export default function Blog() {
     queryKey: ['/api/blog-posts'],
   });
 
-  const handleCodeSubmit = () => {
+  const handleCodeSubmit = async () => {
     if (accessCode === "4455") {
-      setShowEditMenu(true);
-      setShowCodeDialog(false);
-      setAccessCode("");
+      // Auto-login as admin when code is correct
+      try {
+        const response = await fetch('/api/login', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ username: 'admin', password: 'admin123' }),
+        });
+        
+        if (response.ok) {
+          setShowEditMenu(true);
+          setShowCodeDialog(false);
+          setAccessCode("");
+        } else {
+          alert("Authentication failed");
+          setAccessCode("");
+        }
+      } catch (error) {
+        alert("Login error occurred");
+        setAccessCode("");
+      }
     } else {
       alert("Invalid access code");
       setAccessCode("");
