@@ -53,10 +53,13 @@ export default function BlogPostPage() {
         method: "DELETE",
       });
       if (!response.ok) throw new Error('Failed to delete post');
-      return response.json();
+      // DELETE returns 204 with no content, so don't try to parse JSON
+      return true;
     },
     onSuccess: () => {
+      // Invalidate both blog posts cache and admin cache
       queryClient.invalidateQueries({ queryKey: ['/api/blog-posts'] });
+      queryClient.invalidateQueries({ queryKey: ['/api/admin/blog-posts'] });
       setLocation('/blog');
     },
   });
