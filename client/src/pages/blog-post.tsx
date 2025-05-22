@@ -120,18 +120,18 @@ export default function BlogPostPage() {
   }
 
   return (
-    <Layout title={post?.title || "Blog Post"}>
+    <Layout title={post.title || "Blog Post"}>
       <Helmet>
-        <title>{post?.title ? `${post.title} | Path Panda Blog` : "Blog Post | Path Panda"}</title>
-        <meta name="description" content={post?.description || ""} />
-        <meta property="og:title" content={post?.title ? `${post.title} | Path Panda Blog` : "Blog Post | Path Panda"} />
-        <meta property="og:description" content={post?.description || ""} />
+        <title>{post.title ? `${post.title} | Path Panda Blog` : "Blog Post | Path Panda"}</title>
+        <meta name="description" content={post.description || ""} />
+        <meta property="og:title" content={post.title ? `${post.title} | Path Panda Blog` : "Blog Post | Path Panda"} />
+        <meta property="og:description" content={post.description || ""} />
         <meta property="og:type" content="article" />
-        <meta property="og:url" content={`https://pathpanda.com/blog/${post?.slug || ""}`} />
-        {post?.imageUrl && <meta property="og:image" content={post.imageUrl} />}
-        <meta name="article:published_time" content={post?.createdAt || ""} />
-        <meta name="article:author" content={post?.author || "Path Panda Team"} />
-        <meta name="article:section" content={post?.category || ""} />
+        <meta property="og:url" content={`https://pathpanda.com/blog/${post.slug || ""}`} />
+        {post.imageUrl && <meta property="og:image" content={post.imageUrl} />}
+        <meta name="article:published_time" content={post.createdAt || ""} />
+        <meta name="article:author" content={post.author || "Path Panda Team"} />
+        <meta name="article:section" content={post.category || ""} />
       </Helmet>
 
       {/* Back to Blog Button */}
